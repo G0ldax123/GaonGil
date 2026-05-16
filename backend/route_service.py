@@ -10,10 +10,20 @@ RECOMMENDATION_ORDER = {
     "위험": 2,
 }
 
+USER_SPEED_METERS_PER_SECOND = {
+    "crutches": 0.94,
+    "wheelchair": 0.69,
+    "elderly": 0.24,
+    "stroller": 0.83,
+}
+
 ROUTE_KEY_ORDER = (
     "routeId",
     "name",
     "description",
+    "distance",
+    "estimatedMinutes",
+    "estimatedTimeText",
     "recommendation",
     "summaryTitle",
     "summary",
@@ -85,6 +95,38 @@ def merge_point_analysis(route_points: list[dict[str, Any]], ai_points: list[dic
     return merged_points
 
 
+def calculate_estimated_minutes(distance: Any, user_type: str) -> int | None:
+    """Convert a route distance into whole-minute travel time for the given user type."""
+
+    speed = USER_SPEED_METERS_PER_SECOND.get(user_type)
+    if speed is None:
+        return None
+
+    try:
+        distance_meter = float(distance)
+    except (TypeError, ValueError):
+        return None
+
+    if distance_meter < 0:
+        return None
+    if distance_meter == 0:
+        return 0
+
+    travel_minutes = distance_meter / speed / 60
+    rounded_minutes = int(travel_minutes)
+    if travel_minutes > rounded_minutes:
+        rounded_minutes += 1
+    return max(1, rounded_minutes)
+
+
+def format_estimated_time(minutes: int | None) -> str:
+    """Format the estimated time in a frontend-friendly Korean minute label."""
+
+    if minutes is None:
+        return ""
+    return f"{minutes}분"
+
+
 def order_point_payload(point: dict[str, Any]) -> dict[str, Any]:
     """Match the backend example response order for each point payload."""
 
@@ -130,11 +172,14 @@ def build_recommendation(start: str, end: str, user_type: str) -> dict[str, Any]
         route_summary = ai_result.get("routeSummary", {}) if ai_result else {}
         ai_points = ai_result.get("points", []) if ai_result else []
         points = [order_point_payload(point) for point in merge_point_analysis(route.get("points", []), ai_points)]
+        estimated_minutes = calculate_estimated_minutes(route.get("distance"), user_type)
 
         routes.append(
             order_route_payload(
                 {
                     **route,
+                    "estimatedMinutes": estimated_minutes,
+                    "estimatedTimeText": format_estimated_time(estimated_minutes),
                     "recommendation": route_summary.get("recommendation", "위험"),
                     "summaryTitle": route_summary.get("summaryTitle", "분석 결과 없음"),
                     "summary": route_summary.get("aiSummary", "아직 분석 결과가 없습니다."),
