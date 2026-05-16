@@ -155,6 +155,7 @@ def _normalize_route_set(route_set: dict) -> dict:
                 "routeId": route["routeId"],
                 "name": route.get("name", _default_route_name(route["routeId"])),
                 "description": route.get("description", ""),
+                "distance": route.get("distance"),
                 "origin": start,
                 "destination": end,
                 "points": _augment_points_with_assets(route),

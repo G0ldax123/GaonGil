@@ -5,13 +5,16 @@
     "end": {},
     "routes": [
       {
-        "routeId": "route_a"
+        "routeId": "route_a",
+        "distance": 470
       },
       {
-        "routeId": "route_b"
+        "routeId": "route_b",
+        "distance": 415
       },
       {
-        "routeId": "route_c"
+        "routeId": "route_c",
+        "distance": 935
       }
     ]
   }
