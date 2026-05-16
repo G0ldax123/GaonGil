@@ -64,6 +64,8 @@
 
   applyFrame();
   applyUserTypePatch(screen);
+  applyReportFormPatch(screen);
+  applyRouteDetailLayoutPatch(screen);
   applyResultData(screen);
   applyRoutePins(screen);
   applyRiskPointIcons(screen);
@@ -877,6 +879,122 @@
       `;
     }
 
+    document.head.appendChild(style);
+  }
+
+  function applyReportFormPatch(currentScreen) {
+    if (currentScreen !== "5") return;
+
+    const root = document.querySelector(".element");
+    if (!root) return;
+
+    const style = document.createElement("style");
+    style.textContent = `
+      .gg-report-field {
+        position: absolute;
+        z-index: 20;
+        border: 0;
+        border-bottom: 1px solid #767676;
+        border-radius: 0;
+        padding: 0 0 7px;
+        box-sizing: border-box;
+        background: transparent;
+        color: #42454d;
+        font-family: "Pretendard-Regular", Helvetica, sans-serif;
+        font-size: 13px;
+        line-height: 18px;
+        letter-spacing: 0;
+        outline: none;
+      }
+      .gg-report-field::placeholder {
+        color: #b3b3b3;
+        opacity: 1;
+      }
+      .gg-report-name {
+        top: 365px;
+        left: 24px;
+        width: 152px;
+        height: 28px;
+      }
+      .gg-report-phone {
+        top: 365px;
+        left: 187px;
+        width: 145px;
+        height: 28px;
+      }
+      .gg-report-content {
+        top: 454px;
+        left: 24px;
+        width: 308px;
+        height: 48px;
+        resize: none;
+        overflow: hidden;
+      }
+      .gg-report-file {
+        top: 532px;
+        left: 24px;
+        width: 308px;
+        height: 34px;
+        padding-bottom: 0;
+        color: #767676;
+      }
+      .gg-report-file::file-selector-button {
+        margin-right: 8px;
+        border: 0;
+        border-radius: 6px;
+        padding: 6px 9px;
+        background: #eef3ff;
+        color: #3665fc;
+        font-family: "Pretendard-Medium", Helvetica, sans-serif;
+        font-size: 12px;
+      }
+      .element .text-wrapper-4,
+      .element .text-wrapper-5,
+      .element .p,
+      .element .text-wrapper-6 {
+        visibility: hidden !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    addReportInput(root, "input", "gg-report-name", "성함을 입력해주세요", "text");
+    addReportInput(root, "input", "gg-report-phone", "휴대폰 번호를 입력해주세요", "tel");
+    addReportInput(root, "textarea", "gg-report-content", "제보할 내용을 최대한 구체적으로 작성해주세요");
+    addReportInput(root, "input", "gg-report-file", "", "file");
+  }
+
+  function addReportInput(root, tagName, className, placeholder, type) {
+    if (root.querySelector(`.${className}`)) return;
+
+    const field = document.createElement(tagName);
+    field.className = `gg-report-field ${className}`;
+    if (type) field.setAttribute("type", type);
+    if (placeholder) field.setAttribute("placeholder", placeholder);
+    if (className === "gg-report-phone") field.setAttribute("inputmode", "tel");
+    root.appendChild(field);
+  }
+
+  function applyRouteDetailLayoutPatch(currentScreen) {
+    if (!["4-1", "4-2", "4-3"].includes(currentScreen)) return;
+
+    const style = document.createElement("style");
+    style.textContent = `
+      .element > .p,
+      .element .group-4 .text-wrapper-6,
+      .element .group-2 .text-wrapper-6 {
+        width: 170px !important;
+        max-width: 170px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        word-break: keep-all !important;
+        line-height: 16px !important;
+        text-align: left !important;
+      }
+      .element > .p {
+        left: 184px !important;
+      }
+    `;
     document.head.appendChild(style);
   }
 
