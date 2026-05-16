@@ -9,11 +9,14 @@
     ],
     "routeSummary": {
       "recommendation": "안전",
-      "summaryTitle": "대체로 평탄하고 통행 가능한 경로",
-      "aiSummary": "휠체어 이용자 기준으로 경로 C는 대부분 일반적인 도로와 보행 공간으로 이어지며, 도착지 접근 구간과 드림하우스 앞에서도 계단이나 막히는 단차 없이 전반적으로 통행 가능한 경로입니다.",
+      "summaryTitle": "대체로 무난한 경로",
+      "aiSummary": "휠체어 이용자는 경로 대부분을 무난하게 이동할 수 있으며, 마지막 구간에 오르막과 도착지 진입 경사가 보이지만 계단이나 막히는 단차는 확인되지 않습니다.",
       "mainRiskFactors": [],
-      "mainRiskPoints": [],
-      "reason": "경로 전반에 계단이 보이지 않고, 일반적인 골목 경사와 도로 구간이 이어집니다. 교차로와 도착지 접근 구간에서도 휠체어 이동을 막을 정도의 단차나 좁은 길이 확인되지 않아 전반적으로 안전한 경로로 판단됩니다."
+      "mainRiskPoints": [
+        "c_12: 가파른 길",
+        "c_13: 가파른 길"
+      ],
+      "reason": "경로 전반은 보도 또는 차도 가장자리를 따라 이동 가능하고 계단과 막히는 단차가 보이지 않습니다. 마지막 접근 구간에 오르막과 진입 경사가 있어 휠체어 이용자는 힘이 더 들 수 있으나, 통행을 막을 정도의 계단이나 도착지 접근 단차는 확인되지 않아 전체적으로는 이동 가능한 경로로 판단됩니다."
     },
     "points": [
       {
@@ -26,9 +29,9 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "일반 골목 구간",
-        "aiSummary": "일반적인 골목 도로로 보이며 휠체어 이동을 막는 계단이나 단차는 보이지 않습니다.",
-        "reason": "계단과 단차가 보이지 않고, 일반적인 내리막 수준으로 통행을 어렵게 할 정도의 가파른 길은 아닙니다.",
+        "summaryTitle": "골목 초입 통행 가능",
+        "aiSummary": "차도 가장자리로 이동 가능한 일반적인 골목 구간입니다.",
+        "reason": "계단과 단차가 확인되지 않으며, 일반적인 골목 경사 수준으로 보입니다. 휠체어 이용자의 통행을 어렵게 할 정도의 가파른 길은 아닙니다.",
         "analysisProvider": "openai"
       },
       {
@@ -41,9 +44,9 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "보행 여유가 있는 도로",
-        "aiSummary": "차도 가장자리와 보행 가능한 공간이 비교적 분명해 휠체어로 지나가기 무리가 적은 구간입니다.",
-        "reason": "계단이 없고, 도로 가장자리 진입도 막히는 단차로 보이지 않습니다. 일반적인 내리막 도로입니다.",
+        "summaryTitle": "보행 공간 연결 양호",
+        "aiSummary": "도로와 가장자리 공간이 비교적 정돈되어 있어 이동 가능한 구간입니다.",
+        "reason": "계단과 단차가 보이지 않고 통행 공간도 확보되어 있습니다. 일반적인 내리막 또는 평탄한 도로 수준으로 보여 휠체어 통행이 가능합니다.",
         "analysisProvider": "openai"
       },
       {
@@ -56,9 +59,9 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "주택가 연결 구간",
-        "aiSummary": "주택가 도로를 따라 이동하는 구간으로, 실제 이동 경로에 뚜렷한 장애물은 보이지 않습니다.",
-        "reason": "계단과 단차가 확인되지 않으며, 길 폭도 휠체어 통행을 막을 정도로 좁지 않습니다.",
+        "summaryTitle": "일반적인 도로 구간",
+        "aiSummary": "주행 공간과 가장자리 이동 공간이 있어 무난하게 지날 수 있는 구간입니다.",
+        "reason": "계단, 단차, 좁은 길이 확인되지 않습니다. 도로 경사는 일반적인 수준으로 보여 휠체어 이용자의 이동을 크게 방해하지 않습니다.",
         "analysisProvider": "openai"
       },
       {
@@ -71,9 +74,9 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "교차로 접근 구간",
-        "aiSummary": "교차로로 이어지는 구간이지만 도로 가장자리와 보행 공간이 이어져 전반적으로 통행 가능합니다.",
-        "reason": "계단이 없고, 실제 이동 경로에서 문제 되는 단차나 좁은 길이 두드러지지 않습니다.",
+        "summaryTitle": "교차로 접근 무난",
+        "aiSummary": "교차로로 이어지는 구간이지만 통행 자체를 막는 요소는 보이지 않습니다.",
+        "reason": "계단과 단차가 확인되지 않고 차도 가장자리 이동이 가능합니다. 경사도 일반적인 수준으로 보여 위험 요소는 크지 않습니다.",
         "analysisProvider": "openai"
       },
       {
@@ -86,9 +89,9 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "상가 앞 완만한 연결",
-        "aiSummary": "상가 앞 보행 공간이 이어지는 구간으로 휠체어가 지날 수 있는 연결 상태가 양호해 보입니다.",
-        "reason": "계단이 없고, 보행 공간 진입부도 막히는 단차로 보이지 않습니다. 가파른 길은 확인되지 않습니다.",
+        "summaryTitle": "상가 앞 보행 가능",
+        "aiSummary": "상가 앞 보도 형태 공간이 이어져 비교적 안정적으로 이동 가능한 구간입니다.",
+        "reason": "보도 진입부가 완만하게 연결되어 보이며 막히는 단차나 계단은 확인되지 않습니다. 좁은 길도 아니어서 휠체어 이용이 가능합니다.",
         "analysisProvider": "openai"
       },
       {
@@ -101,9 +104,9 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "상가 골목 이동 구간",
-        "aiSummary": "상가가 있는 골목 도로 구간으로, 휠체어 통행을 직접 막는 요소는 뚜렷하지 않습니다.",
-        "reason": "계단과 단차가 보이지 않고, 길 폭도 통행 불가능할 정도로 좁지 않습니다.",
+        "summaryTitle": "상업 골목 구간 양호",
+        "aiSummary": "도로 폭과 가장자리 공간이 확보되어 있어 무난하게 이동할 수 있습니다.",
+        "reason": "계단과 단차가 보이지 않고 일반적인 골목 경사 수준입니다. 휠체어 이용자의 통행을 어렵게 할 정도의 가파른 길은 아닙니다.",
         "analysisProvider": "openai"
       },
       {
@@ -116,9 +119,9 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "넓은 보행 공간 구간",
-        "aiSummary": "상가가 이어진 비교적 넓은 도로와 보행 공간이 보여 휠체어로 이동하기 무난한 편입니다.",
-        "reason": "계단과 단차가 없고, 실제 이동 경로는 좁은 길로 보이지 않습니다.",
+        "summaryTitle": "넓은 도로 구간",
+        "aiSummary": "보도와 차도 가장자리가 비교적 분명해 이동이 쉬운 구간입니다.",
+        "reason": "계단, 단차, 좁은 길이 확인되지 않습니다. 평탄하거나 일반적인 도로 경사로 보여 휠체어 이용에 큰 제약이 없습니다.",
         "analysisProvider": "openai"
       },
       {
@@ -130,10 +133,10 @@
           "steepRoad": "false",
           "narrowRoad": "false"
         },
-        "recommendation": "주의",
-        "summaryTitle": "횡단부 진입 확인 필요",
-        "aiSummary": "교차로 횡단 구간으로 보이며 전반적 이동은 가능해 보이지만, 휠체어는 횡단부의 턱낮춤 상태를 현장에서 한 번 확인하는 것이 좋습니다.",
-        "reason": "계단은 보이지 않습니다. 횡단 구간은 이어져 있으나 실제 진입부의 턱낮춤과 단차 상태가 화면상 완전히 명확하지 않아 주의가 필요합니다.",
+        "recommendation": "안전",
+        "summaryTitle": "횡단보도 연결 가능",
+        "aiSummary": "큰 교차로 구간이지만 횡단보도 중심으로 이동 가능한 지점입니다.",
+        "reason": "횡단보도와 보도 연결부가 보이며, 뚜렷한 계단은 없습니다. 보도 경계의 남은 턱은 화면상 명확하지 않지만 통행을 막는 단차로 보이지는 않습니다.",
         "analysisProvider": "openai"
       },
       {
@@ -141,14 +144,14 @@
         "locationName": "경로 C 주요 지점 9",
         "detectedElements": {
           "stairs": "false",
-          "curb": "false",
+          "curb": "unknown",
           "steepRoad": "false",
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "큰 교차로 횡단 가능",
-        "aiSummary": "횡단보도와 보행 공간 연결이 비교적 자연스러워 휠체어 통행이 가능한 구간으로 보입니다.",
-        "reason": "계단이 없고, 횡단보도 진입부는 턱낮춤이 적용된 형태로 보여 막히는 단차 위험이 크지 않습니다.",
+        "summaryTitle": "교차로 횡단 구간",
+        "aiSummary": "횡단보도와 보도 진입이 가능한 일반적인 교차로 구간입니다.",
+        "reason": "계단은 확인되지 않으며, 보도 진입부는 턱낮춤 또는 완만한 연결로 보입니다. 남은 단차는 화면상 확실하지 않지만 휠체어 통행을 막는 수준으로 보이지 않습니다.",
         "analysisProvider": "openai"
       },
       {
@@ -161,9 +164,9 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "이면도로 횡단 구간",
-        "aiSummary": "이면도로 횡단과 보행 공간 연결이 무난하여 휠체어로 지나가기 어렵지 않아 보입니다.",
-        "reason": "계단과 단차가 보이지 않고, 실제 이동 경로는 좁은 길이 아닙니다.",
+        "summaryTitle": "이면도로 이동 가능",
+        "aiSummary": "보도와 차도 가장자리 공간이 있어 안정적으로 이동 가능한 구간입니다.",
+        "reason": "계단과 단차가 확인되지 않고 길 폭도 무난합니다. 일반적인 도로 경사 수준으로 휠체어 이용이 가능합니다.",
         "analysisProvider": "openai"
       },
       {
@@ -176,9 +179,9 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "주택가 직선 구간",
-        "aiSummary": "주택가 도로를 따라 직선으로 이어지는 구간이며, 휠체어 이동을 막는 요소는 크지 않습니다.",
-        "reason": "계단과 단차가 보이지 않고, 보행 가능한 가장자리 공간이 이어집니다. 일반적인 골목 경사 수준입니다.",
+        "summaryTitle": "주거지 도로 구간",
+        "aiSummary": "주거지 앞 도로와 보행 공간이 정돈되어 있어 무난하게 지나갈 수 있습니다.",
+        "reason": "계단과 단차가 보이지 않으며 길 폭도 충분합니다. 일반적인 오르막 또는 평지 수준으로 보여 큰 부담은 아닙니다.",
         "analysisProvider": "openai"
       },
       {
@@ -187,13 +190,13 @@
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
-          "steepRoad": "false",
+          "steepRoad": "true",
           "narrowRoad": "false"
         },
-        "recommendation": "안전",
-        "summaryTitle": "도착지 인근 골목 진입",
-        "aiSummary": "도착지 인근 골목으로 들어가는 구간이지만 일반적인 오르막 수준으로 보여 휠체어 이동이 가능한 편입니다.",
-        "reason": "계단이 없고, 일반적인 오르막으로 통행을 어렵게 할 정도의 가파른 길은 아닙니다. 좁은 길로 보이지도 않습니다.",
+        "recommendation": "주의",
+        "summaryTitle": "마지막 오르막 주의",
+        "aiSummary": "도착지로 이어지는 골목이 눈에 띄는 오르막이라 휠체어 이용 시 추진력이 더 필요한 구간입니다.",
+        "reason": "계단과 단차는 없지만 가파른 길이 확인됩니다. 휠체어 이용자는 마지막 접근 전 오르막에서 힘이 더 들고 보조가 필요할 수 있어 주의가 필요합니다.",
         "analysisProvider": "openai"
       },
       {
@@ -202,13 +205,13 @@
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
-          "steepRoad": "false",
+          "steepRoad": "true",
           "narrowRoad": "false"
         },
-        "recommendation": "안전",
-        "summaryTitle": "드림하우스 접근 가능",
-        "aiSummary": "드림하우스 앞 최종 접근 구간은 경사 진입로 형태로 이어져 있으며, 계단 없이 휠체어로 접근 가능한 모습입니다.",
-        "reason": "도착지 접근 계단이 없고, 도착지 접근 단차도 막히는 형태로 보이지 않습니다. 완만한 진입 경사로 이어져 휠체어 접근이 가능합니다.",
+        "recommendation": "주의",
+        "summaryTitle": "도착지 진입 경사 주의",
+        "aiSummary": "드림하우스 앞 진입부는 계단 없이 연결되지만 짧은 오르막 경사가 있어 휠체어 이용 시 주의가 필요합니다.",
+        "reason": "도착지 접근 계단이나 도착지 접근 단차는 확인되지 않습니다. 다만 도착지 진입부가 경사진 형태여서 휠체어 이용자는 힘이 더 들 수 있으므로 가파른 길에 대한 주의가 필요합니다.",
         "analysisProvider": "openai"
       }
     ]
@@ -223,19 +226,19 @@
     ],
     "routeSummary": {
       "recommendation": "주의",
-      "summaryTitle": "도착 전 짧은 오르막 구간 주의",
-      "aiSummary": "휠체어 이용자 기준으로 경로 B는 전반적으로 이동 가능한 편이지만, 도착 직전 골목의 오르막과 드림하우스 앞 진입 경사가 있어 마지막 접근에서는 주의가 필요합니다.",
+      "summaryTitle": "도착지 전 구간에 오르막 주의",
+      "aiSummary": "휠체어 이용자는 대부분 구간을 무난하게 이동할 수 있지만, 도착지에 가까워질수록 오르막이 다소 뚜렷해지고 마지막 접근로가 경사진 진입면이라 속도 조절과 보조가 필요할 수 있습니다.",
       "mainRiskFactors": [],
       "mainRiskPoints": [
         "b_8: 가파른 길",
         "b_9: 가파른 길"
       ],
-      "reason": "대부분 구간은 일반적인 도로와 보도로 이어져 통행이 가능합니다. 다만 도착지에 가까워질수록 짧은 오르막이 나타나고, 마지막 진입부에 경사진 접근면이 보여 휠체어 이용자는 속도 조절과 보조가 필요할 수 있습니다. 계단이나 도착지 접근 계단은 보이지 않습니다."
+      "reason": "전반적으로 계단이나 막히는 단차는 보이지 않아 이동은 가능해 보입니다. 다만 도착지 접근부에서 오르막이 다소 뚜렷하고 마지막 진입면도 경사가 있어 휠체어 이용자는 속도 조절과 보조가 필요할 수 있습니다."
     },
     "points": [
       {
         "pointId": "b_1",
-        "locationName": "경로 B 첫 번째 주요 지점",
+        "locationName": "경로 B 주요 지점 1",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -243,14 +246,14 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "일반 골목 구간",
-        "aiSummary": "차도와 가장자리 공간을 따라 이동 가능한 일반 골목 구간으로 보입니다.",
-        "reason": "계단과 단차가 실제 이동 경로를 막는 모습은 보이지 않습니다. 일반적인 골목 경사 수준으로 통행을 어렵게 할 정도의 가파른 길은 아닙니다.",
+        "summaryTitle": "초입 골목 통행 무난",
+        "aiSummary": "차도 가장자리를 따라 이동하는 골목 구간으로, 휠체어가 통행을 어렵게 할 정도의 단차나 가파른 길은 보이지 않습니다.",
+        "reason": "단차나 계단 없이 진행 가능한 골목입니다. 일반적인 골목 경사 수준으로 보여 휠체어 통행을 어렵게 할 정도의 가파른 길은 아닙니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "b_2",
-        "locationName": "경로 B 두 번째 주요 지점",
+        "locationName": "경로 B 주요 지점 2",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -258,14 +261,14 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "직선 골목 통행 가능",
-        "aiSummary": "폭이 무난한 골목을 따라 계속 이동할 수 있는 구간입니다.",
-        "reason": "실제 이동 경로에 계단이나 단차가 보이지 않습니다. 일반적인 골목 경사로 보여 휠체어 이동을 막을 정도의 가파른 길은 아닙니다.",
+        "summaryTitle": "연속 골목 구간 무난",
+        "aiSummary": "좁지 않은 골목 직진 구간으로, 휠체어 이용에 큰 장애가 되는 요소는 보이지 않습니다.",
+        "reason": "계단, 단차, 좁은 길이 확인되지 않습니다. 일반적인 오르내림 범위의 골목으로 보여 무난하게 이동 가능합니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "b_3",
-        "locationName": "경로 B 세 번째 주요 지점",
+        "locationName": "경로 B 주요 지점 3",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -273,29 +276,29 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "대로 진입 전 연결 구간",
-        "aiSummary": "대로 방향으로 이어지는 연결 구간이며 특별한 물리적 장벽은 두드러지지 않습니다.",
-        "reason": "계단은 보이지 않고, 실제 이동 경로를 막는 단차도 뚜렷하지 않습니다. 좁은 길로 보기 어렵고 가파른 길도 아닙니다.",
+        "summaryTitle": "대로 합류 전 구간 통행 가능",
+        "aiSummary": "대로로 내려가는 연결 구간이지만, 휠체어가 바로 통행하기 어려운 계단이나 큰 단차는 보이지 않습니다.",
+        "reason": "계단은 없고, 이동 공간도 확보됩니다. 내리막이 보이지만 일반적인 도로 경사로 보여 가파른 길로 판단되지는 않습니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "b_4",
-        "locationName": "경로 B 네 번째 주요 지점",
+        "locationName": "경로 B 주요 지점 4",
         "detectedElements": {
           "stairs": "false",
-          "curb": "unknown",
+          "curb": "false",
           "steepRoad": "false",
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "보도 이동 가능 구간",
-        "aiSummary": "보도를 따라 이동 가능한 구간이며 경사는 있으나 일반적인 내리막 수준입니다.",
-        "reason": "보도는 확보되어 있으며 계단은 보이지 않습니다. 가장자리 연결부에 턱낮춤 여부는 일부 불명확하지만, 통행을 어렵게 할 정도의 가파른 길은 아닙니다.",
+        "summaryTitle": "보도 구간 비교적 양호",
+        "aiSummary": "보도 폭이 확보되어 있고 대로변으로 이어지는 구간으로, 휠체어 통행은 비교적 안정적입니다.",
+        "reason": "보도 공간이 확보되어 있고 계단이나 문제 되는 단차는 보이지 않습니다. 도로 경사는 일반적인 수준입니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "b_5",
-        "locationName": "경로 B 다섯 번째 주요 지점",
+        "locationName": "경로 B 주요 지점 5",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -303,14 +306,14 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "상가 앞 보행 구간",
-        "aiSummary": "상가가 있는 도로 구간으로 보도와 가장자리 공간을 따라 이동이 가능합니다.",
-        "reason": "계단이나 단차가 실제 이동 경로를 막는 모습은 보이지 않습니다. 길 폭도 무난하며 가파른 길로 보이지 않습니다.",
+        "summaryTitle": "상가 앞 보도 통행 가능",
+        "aiSummary": "상가가 이어진 구간이지만 보행 공간이 비교적 확보되어 있어 휠체어 통행이 가능합니다.",
+        "reason": "좁은 길로 보기 어렵고, 계단이나 막히는 단차도 확인되지 않습니다. 평탄에 가까운 구간입니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "b_6",
-        "locationName": "경로 B 여섯 번째 주요 지점",
+        "locationName": "경로 B 주요 지점 6",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -318,14 +321,14 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "횡단 연결 양호",
-        "aiSummary": "횡단보도와 보도 연결이 비교적 무난해 계속 이동 가능한 지점입니다.",
-        "reason": "계단은 보이지 않으며 횡단 연결부도 비교적 자연스럽습니다. 앞쪽 오르막은 일반적인 수준으로 가파른 길로 판단되지는 않습니다.",
+        "summaryTitle": "횡단 구간 접근 무난",
+        "aiSummary": "횡단보도와 연결된 구간으로 보이며, 휠체어 이동을 막는 뚜렷한 턱은 보이지 않습니다.",
+        "reason": "보도와 횡단 구간 연결이 비교적 자연스럽습니다. 계단이나 문제 되는 단차가 보이지 않아 통행이 가능합니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "b_7",
-        "locationName": "경로 B 일곱 번째 주요 지점",
+        "locationName": "경로 B 주요 지점 7",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -333,14 +336,14 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "일반 도로 구간",
-        "aiSummary": "보도 가장자리와 차도 옆 공간이 이어져 전반적으로 무난한 구간입니다.",
-        "reason": "계단과 단차가 이동을 막는 모습은 보이지 않습니다. 일반적인 오르막 수준으로 통행을 어렵게 할 정도의 가파른 길은 아닙니다.",
+        "summaryTitle": "주택가 도로 구간 무난",
+        "aiSummary": "보도 가장자리와 차도 공간이 비교적 정리되어 있어 휠체어가 지나갈 수 있는 주택가 구간입니다.",
+        "reason": "계단과 단차가 보이지 않고 폭도 크게 좁지 않습니다. 약한 오르막이 있으나 일반적인 수준입니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "b_8",
-        "locationName": "경로 B 여덟 번째 주요 지점",
+        "locationName": "경로 B 주요 지점 8",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -348,14 +351,14 @@
           "narrowRoad": "false"
         },
         "recommendation": "주의",
-        "summaryTitle": "도착 전 오르막 주의",
-        "aiSummary": "도착지로 들어가는 골목이 짧지만 비교적 가파르게 올라가 보여 휠체어 이용자는 주의가 필요합니다.",
-        "reason": "계단이나 단차는 보이지 않지만, 도착지 방향 실제 이동 경로에 가파른 길이 나타납니다. 휠체어 이용자는 추진과 제동에 부담이 생길 수 있어 주의가 필요합니다.",
+        "summaryTitle": "도착지 전 오르막 주의",
+        "aiSummary": "도착지로 접어드는 골목이 다소 뚜렷한 오르막으로 보여, 휠체어 이용자는 추진력과 속도 조절에 주의가 필요합니다.",
+        "reason": "계단이나 단차는 없지만 도착지 접근부에 가파른 길이 보입니다. 휠체어 이용자는 혼자 오르기 버거울 수 있어 주의가 필요합니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "b_9",
-        "locationName": "경로 B 아홉 번째 주요 지점",
+        "locationName": "경로 B 주요 지점 9",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -364,8 +367,8 @@
         },
         "recommendation": "주의",
         "summaryTitle": "도착지 진입 경사 주의",
-        "aiSummary": "드림하우스 앞 최종 접근부는 계단 없이 이어지지만 진입 면이 경사진 형태여서 휠체어 이용자는 조심해서 접근해야 합니다.",
-        "reason": "도착지 접근 계단은 보이지 않고 단차도 크게 두드러지지 않습니다. 다만 도착지 접근부에 가파른 길이 있어 휠체어 이용자는 마지막 진입 시 속도 조절과 보조가 필요할 수 있습니다.",
+        "aiSummary": "도착지 앞 진입면은 계단 없이 이어지지만 경사진 진입로 형태라 휠체어는 마지막 접근 시 주의가 필요합니다.",
+        "reason": "도착지 접근 계단이나 막히는 단차는 보이지 않습니다. 다만 도착지 접근 구간이 경사진 진입면이라 휠체어 이용자는 가파른 길에서 속도 조절과 보조가 필요할 수 있습니다.",
         "analysisProvider": "openai"
       }
     ]
@@ -380,22 +383,22 @@
     ],
     "routeSummary": {
       "recommendation": "위험",
-      "summaryTitle": "도착지 접근 계단으로 휠체어 통행 어려움",
-      "aiSummary": "휠체어 이용자 기준으로 route_a는 중간 구간은 대체로 통행 가능하지만, 후반부 오르막 뒤 도착지 접근 구간에 계단이 있어 최종 목적지까지 현실적으로 이동하기 어려운 경로입니다.",
+      "summaryTitle": "도착지 접근 계단으로 휠체어 통행 위험",
+      "aiSummary": "이 경로는 휠체어 이용자 기준으로 중간 구간은 대체로 이동 가능하지만, 초반과 후반에 가파른 길이 있고 마지막 도착지 접근 구간에 계단이 있어 최종 목적지까지 현실적으로 통행하기 어렵습니다.",
       "mainRiskFactors": [
         "계단"
       ],
       "mainRiskPoints": [
         "a_1: 가파른 길",
-        "a_7: 계단",
+        "a_7: 가파른 길",
         "a_8: 계단"
       ],
-      "reason": "초반에 제동과 조작에 부담이 되는 가파른 길이 보이고, 마지막 접근 구간에서 계단이 확인됩니다. 특히 도착지 접근 계단은 휠체어 이용자의 최종 진입을 막는 요소이므로 경로 전체를 위험으로 판단했습니다."
+      "reason": "초반과 후반에 휠체어 제어에 부담이 되는 가파른 길이 보이며, 마지막 지점은 도착지 접근 계단이 확인되어 목적지 진입이 어렵습니다. 중간 상업가로와 횡단보도 구간은 대체로 무난하지만, 도착지 접근 계단 때문에 경로 전체는 위험으로 판단됩니다."
     },
     "points": [
       {
         "pointId": "a_1",
-        "locationName": "경로 A 첫 번째 주요 지점",
+        "locationName": "경로 A 주요 지점 1",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -403,14 +406,14 @@
           "narrowRoad": "false"
         },
         "recommendation": "주의",
-        "summaryTitle": "내리막 경사가 다소 큰 구간",
-        "aiSummary": "차도 가장자리를 따라 이동은 가능해 보이지만, 휠체어 이용자에게는 제동과 방향 조절에 부담이 되는 가파른 내리막 구간입니다.",
-        "reason": "가파른 길이 확인됩니다. 휠체어 이용자는 속도 제어와 안정성에 주의가 필요합니다.",
+        "summaryTitle": "초반 내리막 경사 주의",
+        "aiSummary": "차도 가장자리로 이동은 가능해 보이지만 내리막이 일반적인 골목 경사보다 더 가파르게 보여 휠체어 제어에 주의가 필요합니다.",
+        "reason": "가파른 길이 확인됩니다. 휠체어 이용자는 하행 시 제동과 방향 유지에 부담이 있을 수 있어 주의가 필요합니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "a_2",
-        "locationName": "경로 A 두 번째 주요 지점",
+        "locationName": "경로 A 주요 지점 2",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -418,14 +421,14 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "횡단보도와 보행 공간이 무난한 구간",
-        "aiSummary": "횡단보도와 주변 보행 공간이 비교적 정비되어 있어 휠체어 이용자도 무난하게 이동 가능한 지점입니다.",
-        "reason": "턱낮춤이 보이고 계단, 단차, 가파른 길, 좁은 길 위험은 뚜렷하지 않습니다.",
+        "summaryTitle": "횡단보도와 보행공간 양호",
+        "aiSummary": "횡단보도와 보도 연결이 비교적 잘 되어 있어 휠체어 이용자도 무난하게 지나갈 수 있는 구간입니다.",
+        "reason": "턱낮춤이 보이며 계단, 단차, 가파른 길, 좁은 길의 뚜렷한 방해 요소는 확인되지 않습니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "a_3",
-        "locationName": "경로 A 세 번째 주요 지점",
+        "locationName": "경로 A 주요 지점 3",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -433,14 +436,14 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "교차로 진입이 가능한 구간",
-        "aiSummary": "교차로 횡단 구간에 큰 방해 요소가 보이지 않아 휠체어 이용자도 통과 가능한 지점입니다.",
-        "reason": "턱낮춤이 보이며 계단이나 단차로 판단할 만한 요소는 없습니다. 통행을 어렵게 할 정도의 가파른 길도 아닙니다.",
+        "summaryTitle": "교차로 통행 가능",
+        "aiSummary": "교차로와 횡단보도 진입부가 비교적 평탄하게 연결되어 있어 휠체어 이용자 통행이 가능한 지점입니다.",
+        "reason": "턱낮춤이 보이며 계단이나 문제되는 단차는 확인되지 않습니다. 가파른 길이나 좁은 길도 두드러지지 않습니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "a_4",
-        "locationName": "경로 A 네 번째 주요 지점",
+        "locationName": "경로 A 주요 지점 4",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -448,14 +451,14 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "상가 거리 보행 가능 구간",
-        "aiSummary": "상가가 있는 도로 구간으로 보행 공간이 이어져 있어 휠체어 이용자도 비교적 무난하게 이동할 수 있습니다.",
-        "reason": "계단, 단차, 좁은 길은 확인되지 않습니다. 일반적인 도로 경사 수준입니다.",
+        "summaryTitle": "상업가로 구간 무난",
+        "aiSummary": "보도 폭이 확보된 상업가로 구간으로, 휠체어 이용자가 비교적 무난하게 이동할 수 있습니다.",
+        "reason": "계단, 단차, 가파른 길, 좁은 길의 뚜렷한 위험 요소가 보이지 않습니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "a_5",
-        "locationName": "경로 A 다섯 번째 주요 지점",
+        "locationName": "경로 A 주요 지점 5",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -463,14 +466,14 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "일반적인 골목 경사 구간",
-        "aiSummary": "약한 오르막이 이어지지만 일반적인 골목 경사 수준으로 보여 휠체어 이용자도 통행 가능한 지점입니다.",
-        "reason": "일반적인 오르막이며 통행을 어렵게 할 정도의 가파른 길은 아닙니다. 계단, 단차, 좁은 길 위험도 뚜렷하지 않습니다.",
+        "summaryTitle": "횡단 구간 대체로 양호",
+        "aiSummary": "횡단보도와 주변 보행 연결이 비교적 자연스러워 휠체어 이용자도 지나가기 쉬운 구간입니다.",
+        "reason": "턱낮춤이 보이며 문제되는 단차나 계단은 확인되지 않습니다. 가파른 길이나 좁은 길도 두드러지지 않습니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "a_6",
-        "locationName": "경로 A 여섯 번째 주요 지점",
+        "locationName": "경로 A 주요 지점 6",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -478,39 +481,39 @@
           "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "좁지 않은 이면도로 구간",
-        "aiSummary": "이면도로 형태의 구간이지만 폭이 아주 좁지 않고 큰 턱이나 계단도 없어 휠체어 통행이 가능한 지점입니다.",
-        "reason": "계단과 단차가 보이지 않고, 가파른 길로 판단할 정도의 경사는 아닙니다.",
+        "summaryTitle": "골목 진입 가능",
+        "aiSummary": "골목길이지만 통행 폭은 확보되어 있고 일반적인 오르막 수준으로 보여 휠체어 이용자도 지나갈 수 있습니다.",
+        "reason": "일반적인 골목 경사 수준이며 통행을 어렵게 할 정도의 가파른 길은 아닙니다. 계단, 단차, 좁은 길의 뚜렷한 위험 요소도 보이지 않습니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "a_7",
-        "locationName": "경로 A 일곱 번째 주요 지점",
+        "locationName": "경로 A 주요 지점 7",
         "detectedElements": {
-          "stairs": "true",
+          "stairs": "false",
           "curb": "false",
-          "steepRoad": "false",
+          "steepRoad": "true",
           "narrowRoad": "false"
         },
-        "recommendation": "위험",
-        "summaryTitle": "도착지 앞 계단이 보이는 구간",
-        "aiSummary": "앞쪽 최종 접근부에 계단이 보여 휠체어 이용자는 도착지 방향으로 계속 진행하기 어렵습니다.",
-        "reason": "도착지 접근 계단이 확인됩니다. 휠체어 이용자는 최종 진입이 막힐 수 있어 위험합니다.",
+        "recommendation": "주의",
+        "summaryTitle": "도착 전 오르막 부담",
+        "aiSummary": "도착지로 가까워질수록 오르막이 뚜렷해져 휠체어 이용자가 독립적으로 오르기에는 부담이 있는 구간입니다.",
+        "reason": "가파른 길이 확인됩니다. 휠체어 이용자는 추진력 확보와 제어에 부담이 있어 주의가 필요합니다.",
         "analysisProvider": "openai"
       },
       {
         "pointId": "a_8",
-        "locationName": "경로 A 여덟 번째 주요 지점",
+        "locationName": "경로 A 주요 지점 8",
         "detectedElements": {
           "stairs": "true",
           "curb": "false",
-          "steepRoad": "false",
+          "steepRoad": "true",
           "narrowRoad": "false"
         },
         "recommendation": "위험",
-        "summaryTitle": "도착지 접근 계단으로 진입 곤란",
-        "aiSummary": "도착지 바로 앞 접근로가 계단으로 구성되어 있어 휠체어 이용자는 목적지까지 실제로 진입하기 어려운 지점입니다.",
-        "reason": "도착지 접근 계단이 명확합니다. 휠체어 이용자는 계단 때문에 목적지 진입이 어렵습니다.",
+        "summaryTitle": "도착지 접근 계단으로 진입 어려움",
+        "aiSummary": "마지막 접근 구간에 여러 계단이 있어 휠체어 이용자는 목적지 입구 방향으로 사실상 진입하기 어렵습니다.",
+        "reason": "도착지 접근 계단이 확인됩니다. 가파른 길도 함께 보여 휠체어 이용자는 독립적으로 목적지까지 이동하기 어렵습니다.",
         "analysisProvider": "openai"
       }
     ]
