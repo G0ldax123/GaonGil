@@ -406,5 +406,1233 @@
         "analysisProvider": "openai"
       }
     ]
+  },
+  {
+    "routeId": "route_b",
+    "userType": "crutches",
+    "userTypeLabel": "목발 이용자",
+    "name": "경로 B",
+    "analysisProviders": [
+      "openai"
+    ],
+    "routeSummary": {
+      "recommendation": "안전",
+      "summaryTitle": "목발 이동이 전반적으로 무난한 경로",
+      "aiSummary": "목발로 전 구간 통행이 대체로 무난합니다.",
+      "mainRiskFactors": [],
+      "mainRiskPoints": [],
+      "reason": "전 구간에서 목발 이용자의 이동을 직접 막는 계단, 단차, 좁은 길이 뚜렷하게 확인되지 않습니다. 보도 진입부에는 턱낮춤이 보이고, 일부 구간은 일반적인 오르막과 골목 경사 수준으로 통행을 어렵게 할 정도의 경사로는 아닙니다. 도착지 접근 구간도 연속된 계단이나 뚜렷한 도착지 접근 단차 없이 이어져 전반적으로 무난합니다."
+    },
+    "points": [
+      {
+        "pointId": "b_1",
+        "locationName": "경로 B 주요 지점 1",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "골목 시작 구간은 무난함",
+        "aiSummary": "목발로 무리 없이 지날 수 있는 구간입니다.",
+        "reason": "실제 이동 경로에 계단이나 단차가 보이지 않습니다. 도로 폭도 목발 이용을 막을 정도로 좁지 않으며, 일반적인 골목 경사 수준으로 통행을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_2",
+        "locationName": "경로 B 주요 지점 2",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "보도 진입이 비교적 부드러움",
+        "aiSummary": "보도 진입이 비교적 무난한 지점입니다.",
+        "reason": "이동 방향의 보도 진입부에 턱낮춤이 보여 목발로 올라서기 어려운 단차로 보이지 않습니다. 계단은 확인되지 않으며, 경사도 일반적인 도로 연결 수준입니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_3",
+        "locationName": "경로 B 주요 지점 3",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "상가 앞 보행 공간 확보",
+        "aiSummary": "보행 공간이 확보된 무난한 구간입니다.",
+        "reason": "이동 가능한 보행 공간이 이어지고 실제 경로에 계단이나 단차가 뚜렷하지 않습니다. 좁은 길로 보기 어렵고, 보이는 경사는 일반적인 시가지 도로 수준입니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_4",
+        "locationName": "경로 B 주요 지점 4",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "횡단부와 직진 구간 무난함",
+        "aiSummary": "횡단부와 직진 이동이 대체로 무난합니다.",
+        "reason": "횡단보도와 연결된 이동 동선에 계단이 없고, 보도 가장자리도 통행을 막는 단차로 보이지 않습니다. 전방 오르막은 일반적인 오르막 수준으로 목발 이동을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_5",
+        "locationName": "경로 B 주요 지점 5",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "연속 이동이 가능한 도로",
+        "aiSummary": "목발로 연속 이동이 가능한 구간입니다.",
+        "reason": "보도와 차도 가장자리를 따라 이동 공간이 이어지며 계단이나 뚜렷한 단차가 확인되지 않습니다. 경사는 일반적인 골목 경사 수준이고, 목발 이용을 막을 정도의 좁은 길도 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_6",
+        "locationName": "경로 B 주요 지점 6",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "도착지 접근도 무난함",
+        "aiSummary": "도착지 접근도 대체로 무난합니다.",
+        "reason": "도착지 접근 구간에 연속된 계단이나 도착지 접근 단차가 확인되지 않고, 노면 연결도 비교적 부드럽습니다. 진입 폭도 목발 이용을 직접 막을 정도로 좁지 않으며, 보이는 경사 역시 일반적인 골목 경사 수준입니다.",
+        "analysisProvider": "openai"
+      }
+    ]
+  },
+  {
+    "routeId": "route_c",
+    "userType": "crutches",
+    "userTypeLabel": "목발 이용자",
+    "name": "경로 C",
+    "analysisProviders": [
+      "openai"
+    ],
+    "routeSummary": {
+      "recommendation": "안전",
+      "summaryTitle": "목발 이동이 대체로 무난한 경로",
+      "aiSummary": "목발 이용자가 전 구간 무난히 이동 가능합니다.",
+      "mainRiskFactors": [],
+      "mainRiskPoints": [],
+      "reason": "전반적으로 보도나 도로 가장자리 공간이 확보되어 있고, 계단이나 통행을 막는 단차가 뚜렷하게 보이지 않습니다. 일부 구간은 골목이나 차도 가장자리를 따라 이동해야 하지만 좁은 길로 보기 어렵고, 일반적인 오르막·내리막 수준으로 통행을 어렵게 할 정도의 경사로는 아닙니다. 도착지 주변도 계단이나 막히는 단차 없이 접근 가능한 모습입니다."
+    },
+    "points": [
+      {
+        "pointId": "c_1",
+        "locationName": "경로 C 주요 지점 1",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "초반 골목 구간 무난",
+        "aiSummary": "목발 이용자가 무난히 지날 수 있습니다.",
+        "reason": "골목 가장자리를 따라 이동 가능한 공간이 보이며, 계단과 단차는 확인되지 않습니다. 일반적인 골목 경사 수준으로 통행을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_2",
+        "locationName": "경로 C 주요 지점 2",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "연속 골목 구간 안정적",
+        "aiSummary": "목발 이용자가 비교적 편하게 이동 가능합니다.",
+        "reason": "도로 가장자리 공간이 이어지고 있어 보행이 가능합니다. 계단과 단차는 보이지 않으며, 일반적인 내리막 수준으로 경사로 부담이 크지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_3",
+        "locationName": "경로 C 주요 지점 3",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "교차로 접근도 무난",
+        "aiSummary": "목발 이용자가 무리 없이 통과 가능합니다.",
+        "reason": "교차로 접근 구간이지만 이동 공간이 유지되고 있습니다. 계단은 없고, 보이는 높이 차도 통행을 막는 단차 수준은 아닙니다. 경사도 일반적인 도로 수준입니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_4",
+        "locationName": "경로 C 주요 지점 4",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "상가 앞 보행 공간 양호",
+        "aiSummary": "목발 이용자가 안전하게 이동 가능한 구간입니다.",
+        "reason": "상가 앞 보도 형태의 이동 공간이 있고 폭도 무난합니다. 계단과 단차가 실제 이동 경로를 막지 않으며, 경사로 부담도 크지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_5",
+        "locationName": "경로 C 주요 지점 5",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "넓은 도로변 구간 양호",
+        "aiSummary": "목발 이용자가 비교적 안정적으로 이동 가능합니다.",
+        "reason": "보도 폭이 비교적 넉넉하고 직선 구간이라 이동이 수월합니다. 계단, 단차, 좁은 길 문제는 보이지 않으며 평지에 가까운 구간입니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_6",
+        "locationName": "경로 C 주요 지점 6",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "unknown",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "횡단보도 연결 무난",
+        "aiSummary": "목발 이용자가 대체로 무난히 이동 가능합니다.",
+        "reason": "횡단보도와 보도 연결부가 보이며 턱낮춤이 있는 형태로 보입니다. 남아 있는 단차 여부는 화면상 불명확하지만 계단은 확인되지 않고, 통행을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_7",
+        "locationName": "경로 C 주요 지점 7",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "큰 교차로도 통과 가능",
+        "aiSummary": "목발 이용자가 안전하게 건널 수 있는 구간입니다.",
+        "reason": "횡단보도와 보도 연결부가 정비되어 있고 턱낮춤이 보입니다. 계단과 통행을 막는 단차가 없으며, 넓은 교차로이지만 보행 공간 자체는 무난합니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_8",
+        "locationName": "경로 C 주요 지점 8",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "상가 거리 구간 무난",
+        "aiSummary": "목발 이용자가 계속 이동하기에 무난합니다.",
+        "reason": "보도와 차도 가장자리 공간이 정리되어 있어 이동이 가능합니다. 계단이나 문제 되는 단차는 보이지 않고, 일반적인 시가지 도로 수준으로 경사로 부담도 크지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_9",
+        "locationName": "경로 C 주요 지점 9",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "후반 보행 구간 양호",
+        "aiSummary": "목발 이용자가 편하게 지나갈 수 있습니다.",
+        "reason": "보도와 차도 가장자리가 분리되어 있고 폭도 확보되어 있습니다. 계단과 단차 문제는 확인되지 않으며, 평탄하거나 일반적인 도로 수준입니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_10",
+        "locationName": "경로 C 주요 지점 10",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "도착지 접근도 가능",
+        "aiSummary": "목발 이용자가 도착지까지 접근 가능합니다.",
+        "reason": "도착지 주변 골목 진입부에 계단은 보이지 않으며, 이동 경로를 막는 단차도 확인되지 않습니다. 일부 진입 면이 경사져 보이지만 일반적인 진입 경사 수준으로, 통행을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      }
+    ]
+  },
+  {
+    "routeId": "route_a",
+    "userType": "crutches",
+    "userTypeLabel": "목발 이용자",
+    "name": "경로 A",
+    "analysisProviders": [
+      "openai"
+    ],
+    "routeSummary": {
+      "recommendation": "위험",
+      "summaryTitle": "도착지 접근 계단으로 위험",
+      "aiSummary": "도착지 접근 계단으로 통행이 어렵습니다.",
+      "mainRiskFactors": [
+        "계단"
+      ],
+      "mainRiskPoints": [
+        "a_7: 계단"
+      ],
+      "reason": "대부분 구간은 보도와 횡단보도 연결이 비교적 무난해 목발 이용자가 이동할 수 있습니다. 다만 마지막 지점에서 도착지 접근 구간에 연속된 계단이 확인되어 보행 안정성이 크게 떨어집니다. 도착지 접근 계단은 목발 이용자에게 실제 진입 장벽이 되어 경로 전체를 위험으로 판단했습니다."
+    },
+    "points": [
+      {
+        "pointId": "a_1",
+        "locationName": "경로 A 주요 지점 1",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "true",
+          "narrowRoad": "false"
+        },
+        "recommendation": "주의",
+        "summaryTitle": "내리막 경사가 있는 구간",
+        "aiSummary": "경사가 있어 목발 보행에 주의가 필요합니다.",
+        "reason": "차도 가장자리로 이동해야 하는 구간이며 경사로가 일반적인 내리막보다 다소 두드러집니다. 계단과 단차는 없지만 목발 이용자는 하향 보행 시 균형을 잃기 쉬워 주의가 필요합니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_2",
+        "locationName": "경로 A 주요 지점 2",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "횡단보도와 보도 연결 양호",
+        "aiSummary": "횡단보도 연결이 비교적 무난합니다.",
+        "reason": "횡단보도와 보도 진입부가 이어져 있으며 턱낮춤이 확인됩니다. 목발 이용자가 통행하기 어렵게 하는 계단, 단차, 경사로, 좁은 길은 두드러지지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_3",
+        "locationName": "경로 A 주요 지점 3",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "교차로 접근이 무난한 구간",
+        "aiSummary": "보도와 횡단 동선이 비교적 안정적입니다.",
+        "reason": "교차로 가장자리 보도와 횡단보도 연결이 비교적 자연스럽고 턱낮춤이 보입니다. 목발 이용자의 이동을 막는 계단이나 단차는 확인되지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_4",
+        "locationName": "경로 A 주요 지점 4",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "상가 거리 보행 가능",
+        "aiSummary": "보행 공간이 비교적 확보된 구간입니다.",
+        "reason": "보도 가장자리를 따라 이동 가능한 공간이 있고 통행 폭도 목발 이용자에게 크게 부담되지 않습니다. 계단, 단차, 경사로 위험이 두드러지지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_5",
+        "locationName": "경로 A 주요 지점 5",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "골목 교차 구간 무난",
+        "aiSummary": "일반적인 골목 구간으로 통행 가능합니다.",
+        "reason": "일반적인 골목 교차 구간으로 보이며 통행을 어렵게 할 정도의 경사로는 아닙니다. 횡단부와 가장자리 연결도 비교적 무난해 계단이나 단차 위험이 크지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_6",
+        "locationName": "경로 A 주요 지점 6",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "좁지 않은 골목 접근",
+        "aiSummary": "골목 접근은 비교적 무난합니다.",
+        "reason": "골목 폭이 목발 이용자 통행을 막을 정도로 좁지 않고, 일반적인 오르막 수준으로 보입니다. 계단이나 문제되는 단차는 확인되지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_7",
+        "locationName": "경로 A 주요 지점 7",
+        "detectedElements": {
+          "stairs": "true",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "위험",
+        "summaryTitle": "도착지 접근 계단 구간",
+        "aiSummary": "도착지 앞 계단으로 접근이 어렵습니다.",
+        "reason": "도착지 접근 구간에 연속된 계단이 확인됩니다. 옆 경사면은 보행로로 보기 어렵고 안정적인 우회 접근도 보이지 않습니다. 목발 이용자는 도착지 접근 계단에서 넘어질 위험이 커 실제 목적지 진입이 어렵습니다.",
+        "analysisProvider": "openai"
+      }
+    ]
+  },
+  {
+    "routeId": "route_b",
+    "userType": "stroller",
+    "userTypeLabel": "유모차 이용자",
+    "name": "경로 B",
+    "analysisProviders": [
+      "openai"
+    ],
+    "routeSummary": {
+      "recommendation": "안전",
+      "summaryTitle": "유모차로 무난한 경로",
+      "aiSummary": "전 구간 유모차로 대체로 무난합니다.",
+      "mainRiskFactors": [],
+      "mainRiskPoints": [],
+      "reason": "전 구간에서 계단이나 진행을 막는 단차는 확인되지 않았습니다. 보도 진입부에는 턱낮춤이 보이고, 골목과 보도 폭도 유모차 통행을 어렵게 할 정도로 좁지 않습니다. 일부 오르막과 내리막은 보이지만 일반적인 골목 경사 수준으로 경사로 위험으로 보기는 어렵고, 도착지 접근 구간도 유모차가 이어서 진입 가능한 모습입니다."
+    },
+    "points": [
+      {
+        "pointId": "b_1",
+        "locationName": "경로 B 주요 지점 1",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "골목 진입 무난",
+        "aiSummary": "유모차로 무난히 지날 수 있습니다.",
+        "reason": "계단은 없고 진행 방향 골목은 유모차가 지날 수 있는 폭입니다. 일반적인 골목 경사가 보이지만 통행을 어렵게 할 정도의 경사로는 아닙니다. 눈에 띄는 단차도 확인되지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_2",
+        "locationName": "경로 B 주요 지점 2",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "보도 연결 양호",
+        "aiSummary": "보도 연결이 비교적 무난합니다.",
+        "reason": "코너 보도 진입부에 턱낮춤이 보여 유모차 진입이 비교적 자연스럽습니다. 계단은 없고, 보도 폭도 유모차 통행이 가능한 수준입니다. 도로 경사는 일반적인 내리막 수준입니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_3",
+        "locationName": "경로 B 주요 지점 3",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "상가 앞 보행 가능",
+        "aiSummary": "유모차 통행이 대체로 원활합니다.",
+        "reason": "상가 앞 보행 공간이 이어져 있고 계단은 보행 경로에 없습니다. 보도와 진입부에 큰 단차가 보이지 않으며, 길 폭도 유모차가 지나가기 가능한 수준입니다. 경사로로 볼 만한 급경사는 확인되지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_4",
+        "locationName": "경로 B 주요 지점 4",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "횡단부 통과 무난",
+        "aiSummary": "횡단부도 유모차로 지날 만합니다.",
+        "reason": "횡단보도와 연결된 보도부에 턱낮춤이 보이며, 진행 방향에 계단은 없습니다. 오르막이 보이지만 일반적인 도로 경사 수준으로 유모차 통행을 막는 경사로는 아닙니다. 보행 폭도 확보되어 있습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_5",
+        "locationName": "경로 B 주요 지점 5",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "골목 구간 안정적",
+        "aiSummary": "유모차로 계속 이동 가능합니다.",
+        "reason": "좌우 보행 가능한 가장자리 공간이 이어지고 계단은 없습니다. 보도 가장자리와 진입부에 큰 단차는 보이지 않으며, 길 폭도 유모차 통행이 가능한 수준입니다. 일반적인 골목 경사로 보이며 급한 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_6",
+        "locationName": "경로 B 주요 지점 6",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "도착지 접근 가능",
+        "aiSummary": "도착지 접근도 유모차로 가능합니다.",
+        "reason": "도착지 접근 골목에 계단은 없고, 진행 경로가 끊기지 않습니다. 일부 경사진 진입면이 보이지만 일반적인 골목 경사 수준이며 유모차 통행을 어렵게 할 정도의 경사로는 아닙니다. 도착지 주변에도 진행을 막는 단차는 뚜렷하지 않습니다.",
+        "analysisProvider": "openai"
+      }
+    ]
+  },
+  {
+    "routeId": "route_c",
+    "userType": "stroller",
+    "userTypeLabel": "유모차 이용자",
+    "name": "경로 C",
+    "analysisProviders": [
+      "openai"
+    ],
+    "routeSummary": {
+      "recommendation": "안전",
+      "summaryTitle": "유모차로 대체로 무리 없는 경로",
+      "aiSummary": "유모차로 전 구간 통행이 대체로 무난합니다.",
+      "mainRiskFactors": [],
+      "mainRiskPoints": [],
+      "reason": "전 구간에서 계단이나 통행을 막는 단차는 확인되지 않았습니다. 골목과 보행 공간, 횡단부의 연결도 대체로 무난하며 턱낮춤이 보이거나 도로와 보행 공간의 연결이 비교적 자연스럽습니다. 일부 구간에 일반적인 오르막과 골목 경사는 있으나 통행을 어렵게 할 정도의 경사로는 아닙니다. 도착지 접근 구간도 유모차로 현실적으로 접근 가능한 수준입니다."
+    },
+    "points": [
+      {
+        "pointId": "c_1",
+        "locationName": "경로 C 주요 지점 1",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "골목 구간 통행 무난",
+        "aiSummary": "유모차로 지나가기 무난한 골목입니다.",
+        "reason": "보행에 필요한 골목 폭은 확보되어 있고 계단이나 문제되는 단차는 보이지 않습니다. 일반적인 골목 경사 수준으로 통행을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_2",
+        "locationName": "경로 C 주요 지점 2",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "연속 이동 가능한 골목",
+        "aiSummary": "유모차로 계속 이동하기 무난합니다.",
+        "reason": "차도 가장자리로 이동 가능한 공간이 이어지고, 유모차 통행을 막는 계단이나 단차는 확인되지 않습니다. 경사는 일반적인 내리막 수준입니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_3",
+        "locationName": "경로 C 주요 지점 3",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "교차로 접근도 무난",
+        "aiSummary": "교차로 접근 구간도 무난합니다.",
+        "reason": "교차로로 이어지는 이동선에 계단은 없고, 보행 공간 연결도 비교적 자연스럽습니다. 일반적인 내리막 구간으로 유모차 통행을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_4",
+        "locationName": "경로 C 주요 지점 4",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "보도 연결 양호",
+        "aiSummary": "보도 쪽으로 이동하기 무난합니다.",
+        "reason": "좌측 보행 공간이 이어져 있고 보행 폭도 무난합니다. 계단이나 뚜렷한 단차가 보이지 않으며 일반적인 시내 도로 수준입니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_5",
+        "locationName": "경로 C 주요 지점 5",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "상가 앞 보행 공간 양호",
+        "aiSummary": "유모차로 지나가기 편한 구간입니다.",
+        "reason": "상가 앞 보행 공간 폭이 비교적 넓고 노면도 안정적입니다. 계단이나 유모차를 막는 단차는 확인되지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_6",
+        "locationName": "경로 C 주요 지점 6",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "횡단부 진입 무난",
+        "aiSummary": "횡단부 접근이 비교적 무난합니다.",
+        "reason": "횡단보도와 연결되는 보행 동선이 확보되어 있고 턱낮춤이 보이거나 연결이 완만합니다. 계단이나 문제되는 단차는 보이지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_7",
+        "locationName": "경로 C 주요 지점 7",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "큰 교차로도 통행 가능",
+        "aiSummary": "유모차로 건너기 무난한 교차로입니다.",
+        "reason": "횡단보도 진입부에 턱낮춤이 보이거나 보행 연결이 자연스럽습니다. 큰 교차로이지만 계단이나 유모차 통행을 막는 단차는 확인되지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_8",
+        "locationName": "경로 C 주요 지점 8",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "이면도로 이동 무난",
+        "aiSummary": "유모차로 이어서 이동하기 좋습니다.",
+        "reason": "보행 공간과 차도 가장자리 이동이 가능하고 폭도 지나치게 좁지 않습니다. 계단과 문제되는 단차는 보이지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_9",
+        "locationName": "경로 C 주요 지점 9",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "도착지 인근 도로 양호",
+        "aiSummary": "도착지 인근도 유모차 이동이 무난합니다.",
+        "reason": "도착지 인근 도로의 보행 공간이 이어지고 계단이나 뚜렷한 단차는 확인되지 않습니다. 일반적인 오르막이 일부 보이지만 통행을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_10",
+        "locationName": "경로 C 주요 지점 10",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "도착지 접근 가능",
+        "aiSummary": "도착지 접근도 유모차로 가능합니다.",
+        "reason": "도착지 접근로가 포장된 진입로 형태로 이어져 있어 계단은 보이지 않습니다. 진입부 연결도 비교적 자연스럽고 문제되는 도착지 접근 단차는 확인되지 않습니다. 경사는 있으나 짧고 일반적인 수준으로 통행을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      }
+    ]
+  },
+  {
+    "routeId": "route_a",
+    "userType": "stroller",
+    "userTypeLabel": "유모차 이용자",
+    "name": "경로 A",
+    "analysisProviders": [
+      "openai"
+    ],
+    "routeSummary": {
+      "recommendation": "위험",
+      "summaryTitle": "도착지 계단으로 위험",
+      "aiSummary": "도착지 접근 계단으로 통행이 어렵습니다.",
+      "mainRiskFactors": [
+        "계단",
+        "경사로",
+        "좁은 길"
+      ],
+      "mainRiskPoints": [
+        "a_1: 경사로",
+        "a_7: 계단",
+        "a_7: 좁은 길"
+      ],
+      "reason": "경로 대부분은 보도와 횡단보도 연결이 비교적 양호해 유모차 이동이 가능합니다. 다만 a_1에는 일반적인 골목 경사보다 더 부담되는 내리막 경사로가 있어 속도 조절에 주의가 필요합니다. 가장 큰 문제는 도착지 접근부인 a_7로, 여러 개의 계단이 이어져 있고 우회 가능한 공간도 좁아 유모차를 밀고 목적지까지 현실적으로 접근하기 어렵습니다."
+    },
+    "points": [
+      {
+        "pointId": "a_1",
+        "locationName": "경로 A 주요 지점 1",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "true",
+          "narrowRoad": "false"
+        },
+        "recommendation": "주의",
+        "summaryTitle": "가파른 내리막 구간",
+        "aiSummary": "내리막 경사로로 주의가 필요합니다.",
+        "reason": "차도 가장자리 이동 공간은 이어지지만 경사가 일반적인 오르내림보다 더 뚜렷합니다. 유모차는 하행 시 속도 조절 부담이 있어 경사로 구간에서 주의가 필요합니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_2",
+        "locationName": "경로 A 주요 지점 2",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "횡단 접근 양호",
+        "aiSummary": "횡단과 보도 진입이 무난합니다.",
+        "reason": "횡단보도와 보도 연결부가 비교적 매끄럽고 턱낮춤이 확인됩니다. 유모차가 지나가기 어려운 계단, 단차, 좁은 길은 보이지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_3",
+        "locationName": "경로 A 주요 지점 3",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "교차로 통행 무난",
+        "aiSummary": "교차로 구간은 비교적 무난합니다.",
+        "reason": "교차로 코너에 턱낮춤이 보이고 횡단 접근이 자연스럽습니다. 유모차 통행을 막는 계단이나 문제 되는 단차는 확인되지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_4",
+        "locationName": "경로 A 주요 지점 4",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "보도 폭 무난",
+        "aiSummary": "보도와 도로 가장자리 통행이 가능합니다.",
+        "reason": "상가 거리의 보행 공간이 이어지고 폭도 유모차 이동에 크게 부족해 보이지 않습니다. 통행을 어렵게 할 정도의 경사로, 계단, 단차는 확인되지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_5",
+        "locationName": "경로 A 주요 지점 5",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "주택가 도로 무난",
+        "aiSummary": "주택가 구간은 비교적 평이합니다.",
+        "reason": "횡단부와 도로 가장자리 이동이 가능하며 폭도 무난합니다. 유모차 통행을 방해하는 계단, 뚜렷한 단차, 부담되는 경사로는 보이지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_6",
+        "locationName": "경로 A 주요 지점 6",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "일반적인 골목 경사",
+        "aiSummary": "일반적인 골목 경사로 통행 가능합니다.",
+        "reason": "오르막이 보이지만 일반적인 골목 경사 수준으로 보이며 통행을 어렵게 할 정도의 경사로는 아닙니다. 유모차가 지나가기 어려운 계단, 단차, 좁은 길은 확인되지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_7",
+        "locationName": "경로 A 주요 지점 7",
+        "detectedElements": {
+          "stairs": "true",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "true"
+        },
+        "recommendation": "위험",
+        "summaryTitle": "도착지 계단 진입 불가",
+        "aiSummary": "도착지 계단으로 접근이 어렵습니다.",
+        "reason": "도착지 접근부에 여러 개의 계단이 이어져 있어 유모차를 밀고 진입하기 어렵습니다. 옆 공간도 좁은 길에 가까워 우회 접근 여유가 부족해 사실상 도착지 접근 계단이 큰 장애물입니다.",
+        "analysisProvider": "openai"
+      }
+    ]
+  },
+  {
+    "routeId": "route_b",
+    "userType": "elderly",
+    "userTypeLabel": "노약자",
+    "name": "경로 B",
+    "analysisProviders": [
+      "openai"
+    ],
+    "routeSummary": {
+      "recommendation": "안전",
+      "summaryTitle": "전반적으로 무난한 경로",
+      "aiSummary": "노약자가 대체로 무리 없이 이동 가능한 경로입니다.",
+      "mainRiskFactors": [],
+      "mainRiskPoints": [],
+      "reason": "전 구간에서 노약자의 통행을 막는 계단이나 큰 단차는 보이지 않습니다. 보도와 골목 연결부에 턱낮춤 또는 완만한 진입부가 확인되며, 일부 일반적인 오르막 구간은 있으나 통행을 어렵게 할 정도의 경사로는 아닙니다. 도착지 접근 구간에서도 계단이나 도착지 접근 단차 같은 뚜렷한 장애 요소는 확인되지 않습니다."
+    },
+    "points": [
+      {
+        "pointId": "b_1",
+        "locationName": "경로 B 주요 지점 1",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "골목 진입이 무난한 지점",
+        "aiSummary": "노약자가 무리 없이 지날 수 있는 구간입니다.",
+        "reason": "계단이나 단차는 보이지 않습니다. 골목 도로 폭도 노약자 보행을 어렵게 할 정도로 좁은 길은 아니며, 일반적인 골목 경사 수준입니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_2",
+        "locationName": "경로 B 주요 지점 2",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "보도 연결이 비교적 원활",
+        "aiSummary": "노약자가 비교적 편하게 지날 수 있는 지점입니다.",
+        "reason": "코너부 보도 연결이 완만하고 턱낮춤이 확인되어 보행 진입이 비교적 자연스럽습니다. 계단은 없고, 주변 경사는 일반적인 내리막 수준으로 통행을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_3",
+        "locationName": "경로 B 주요 지점 3",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "상가 앞 보행이 가능한 구간",
+        "aiSummary": "노약자가 대체로 안정적으로 이동할 수 있습니다.",
+        "reason": "보도 폭이 보행 가능한 수준이며 좁은 길로 보기 어렵습니다. 계단이나 문제 되는 단차는 확인되지 않고, 도로 경사도 일반적인 시가지 경사 수준입니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_4",
+        "locationName": "경로 B 주요 지점 4",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "횡단부와 보도 연결이 무난",
+        "aiSummary": "노약자가 큰 부담 없이 지날 수 있습니다.",
+        "reason": "횡단 구간 주변에 계단은 없고 보도 연결도 비교적 자연스럽습니다. 일부 오르막이 보이지만 일반적인 오르막으로 판단되며, 통행을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_5",
+        "locationName": "경로 B 주요 지점 5",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "주거지 앞 이동이 무난",
+        "aiSummary": "노약자가 대체로 무난하게 이동할 수 있습니다.",
+        "reason": "양측 가장자리를 따라 보행 가능한 공간이 있고 좁은 길 부담은 크지 않습니다. 계단과 단차는 보이지 않으며, 이어지는 구간도 일반적인 오르막 수준입니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "b_6",
+        "locationName": "경로 B 주요 지점 6",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "도착지 접근이 가능한 지점",
+        "aiSummary": "노약자가 도착지까지 접근 가능한 구간입니다.",
+        "reason": "도착지 접근 구간에 계단이나 도착지 접근 단차는 확인되지 않습니다. 진입로는 차량과 함께 쓰는 골목 형태지만 노약자 보행이 불가능할 정도의 좁은 길은 아니며, 경사도 과도한 경사로로 보이지 않습니다.",
+        "analysisProvider": "openai"
+      }
+    ]
+  },
+  {
+    "routeId": "route_c",
+    "userType": "elderly",
+    "userTypeLabel": "노약자",
+    "name": "경로 C",
+    "analysisProviders": [
+      "openai"
+    ],
+    "routeSummary": {
+      "recommendation": "주의",
+      "summaryTitle": "도착 직전 경사 주의",
+      "aiSummary": "대체로 무난하나 도착 직전 경사 주의.",
+      "mainRiskFactors": [
+        "경사로"
+      ],
+      "mainRiskPoints": [
+        "c_10: 경사로"
+      ],
+      "reason": "대부분 구간은 보도와 횡단보도 연결이 비교적 무난하고, 일반적인 골목 경사 수준으로 통행을 어렵게 할 정도의 경사로는 아닙니다. 다만 도착지 접근 구간인 c_10에서 짧지만 눈에 띄는 경사로가 보여 노약자는 보행 속도 조절과 주의가 필요합니다. 계단이나 명확한 도착지 접근 단차는 확인되지 않았습니다."
+    },
+    "points": [
+      {
+        "pointId": "c_1",
+        "locationName": "경로 C 주요 지점 1",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "일반 골목 구간",
+        "aiSummary": "일반적인 골목 경사로 무난합니다.",
+        "reason": "차도 가장자리로 이동 가능한 골목 구간입니다. 일반적인 내리막 형태는 보이지만 통행을 어렵게 할 정도의 경사로는 아닙니다. 계단이나 단차는 확인되지 않았습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_2",
+        "locationName": "경로 C 주요 지점 2",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "보행 가능 골목",
+        "aiSummary": "통행 가능한 일반 골목입니다.",
+        "reason": "골목 가장자리 공간으로 이동이 가능하며 폭도 크게 문제되지 않습니다. 일반적인 골목 경사 수준으로 보이며 계단, 단차, 좁은 길의 부담은 크지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_3",
+        "locationName": "경로 C 주요 지점 3",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "교차로 접근 무난",
+        "aiSummary": "교차로 접근은 대체로 무난합니다.",
+        "reason": "전방 교차로로 이어지는 구간이며 보행 가능한 가장자리 공간이 있습니다. 일반적인 내리막 구간으로 보이며 통행을 어렵게 할 정도의 경사로는 아닙니다. 계단과 단차는 확인되지 않았습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_4",
+        "locationName": "경로 C 주요 지점 4",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "상가 앞 보행 무난",
+        "aiSummary": "상가 앞 구간은 비교적 무난합니다.",
+        "reason": "상가 앞 보도 형태 공간이 이어져 있어 이동이 가능합니다. 경사로 부담은 크지 않고 계단이나 문제 되는 단차도 보이지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_5",
+        "locationName": "경로 C 주요 지점 5",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "넓은 도로 구간",
+        "aiSummary": "보행 공간이 비교적 안정적입니다.",
+        "reason": "보도 폭이 비교적 확보된 상업가 구간입니다. 통행을 어렵게 할 정도의 경사로는 아니며 계단, 단차, 좁은 길 문제도 두드러지지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_6",
+        "locationName": "경로 C 주요 지점 6",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "횡단보도 연결 양호",
+        "aiSummary": "횡단보도 연결이 비교적 무난합니다.",
+        "reason": "횡단보도와 보도 연결이 확인되며 보행 동선이 자연스럽습니다. 턱낮춤이 있는 형태로 보여 단차 부담이 크지 않습니다. 계단과 경사로 위험은 확인되지 않았습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_7",
+        "locationName": "경로 C 주요 지점 7",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "사거리 횡단 가능",
+        "aiSummary": "사거리 횡단은 비교적 안정적입니다.",
+        "reason": "큰 사거리 구간이지만 횡단보도와 보도 연결이 비교적 명확합니다. 턱낮춤이 적용된 보도 진입 형태로 보이며 계단, 단차, 경사로 부담은 크지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_8",
+        "locationName": "경로 C 주요 지점 8",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "골목 진입 무난",
+        "aiSummary": "골목 진입 구간도 무난합니다.",
+        "reason": "횡단보도 이후 골목으로 이어지는 동선입니다. 전방에 약한 오르막이 보이지만 일반적인 골목 경사 수준이며 통행을 어렵게 할 정도의 경사로는 아닙니다. 계단과 단차는 확인되지 않았습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_9",
+        "locationName": "경로 C 주요 지점 9",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "도착 전 도로 양호",
+        "aiSummary": "도착 전 구간은 대체로 평이합니다.",
+        "reason": "보도와 차도 가장자리 공간이 이어져 있어 이동이 가능합니다. 노면은 비교적 평이하며 계단, 단차, 좁은 길, 부담 큰 경사로는 확인되지 않았습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "c_10",
+        "locationName": "경로 C 주요 지점 10",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "true",
+          "narrowRoad": "false"
+        },
+        "recommendation": "주의",
+        "summaryTitle": "도착지 접근 경사 주의",
+        "aiSummary": "도착지 접근 경사로 주의가 필요합니다.",
+        "reason": "도착지 접근 구간에서 짧지만 눈에 띄는 오르막 경사로가 확인됩니다. 계단이나 명확한 도착지 접근 단차는 보이지 않지만, 노약자는 균형 유지와 보행 속도 조절에 주의가 필요합니다.",
+        "analysisProvider": "openai"
+      }
+    ]
+  },
+  {
+    "routeId": "route_a",
+    "userType": "elderly",
+    "userTypeLabel": "노약자",
+    "name": "경로 A",
+    "analysisProviders": [
+      "openai"
+    ],
+    "routeSummary": {
+      "recommendation": "위험",
+      "summaryTitle": "도착지 접근 계단으로 위험",
+      "aiSummary": "도착지 접근 계단으로 통행이 어렵습니다.",
+      "mainRiskFactors": [
+        "경사로",
+        "계단"
+      ],
+      "mainRiskPoints": [
+        "a_1: 경사로",
+        "a_7: 계단"
+      ],
+      "reason": "경로 대부분은 보도와 횡단보도가 정비되어 있어 통행이 가능합니다. 다만 a_1에 일반적인 골목 경사보다 더 부담되는 내리막 경사로가 있어 주의가 필요합니다. 가장 큰 문제는 a_7의 도착지 접근 구간으로, 연속된 계단이 있어 노약자가 목적지까지 안정적으로 이동하기 어렵습니다."
+    },
+    "points": [
+      {
+        "pointId": "a_1",
+        "locationName": "경로 A 주요 지점 1",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "true",
+          "narrowRoad": "false"
+        },
+        "recommendation": "주의",
+        "summaryTitle": "가파른 내리막 구간",
+        "aiSummary": "가파른 내리막으로 주의가 필요합니다.",
+        "reason": "차도 가장자리를 따라 이동해야 하는 구간이며 일반적인 내리막보다 더 부담되는 경사로가 보입니다. 계단이나 단차는 없지만 노약자는 균형을 잃지 않도록 주의가 필요합니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_2",
+        "locationName": "경로 A 주요 지점 2",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "평탄한 보행 구간",
+        "aiSummary": "보도와 횡단부가 무난한 구간입니다.",
+        "reason": "보도 폭이 충분하고 횡단부 주변도 평탄하게 연결되어 있습니다. 턱낮춤이 보이며 통행을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_3",
+        "locationName": "경로 A 주요 지점 3",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "교차로 접근 양호",
+        "aiSummary": "횡단보도 접근이 비교적 무난합니다.",
+        "reason": "교차로 코너부에 보도와 횡단보도가 연결되어 있고 턱낮춤도 확인됩니다. 계단이나 단차로 인한 큰 방해는 보이지 않습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_4",
+        "locationName": "경로 A 주요 지점 4",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "상업가 보도 구간",
+        "aiSummary": "보도 통행이 대체로 무난합니다.",
+        "reason": "양옆 보도가 이어져 있고 실제 이동 공간도 확보되어 있습니다. 일반적인 오르막 수준으로 보이며 통행을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_5",
+        "locationName": "경로 A 주요 지점 5",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "횡단부 연결 양호",
+        "aiSummary": "횡단부와 보도 연결이 무난합니다.",
+        "reason": "횡단보도와 보도 연결이 비교적 평탄하고 폭도 충분합니다. 턱낮춤이 보여 노약자가 지나가기에 큰 방해 요소는 적습니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_6",
+        "locationName": "경로 A 주요 지점 6",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "골목 접근 가능",
+        "aiSummary": "골목길 접근은 대체로 가능합니다.",
+        "reason": "골목길이 다소 오르막이지만 일반적인 골목 경사 수준입니다. 계단이나 단차는 없고 통행을 어렵게 할 정도의 경사로는 아닙니다.",
+        "analysisProvider": "openai"
+      },
+      {
+        "pointId": "a_7",
+        "locationName": "경로 A 주요 지점 7",
+        "detectedElements": {
+          "stairs": "true",
+          "curb": "false",
+          "steepRoad": "true",
+          "narrowRoad": "false"
+        },
+        "recommendation": "위험",
+        "summaryTitle": "도착지 접근 계단",
+        "aiSummary": "도착지 앞 계단으로 접근이 어렵습니다.",
+        "reason": "도착지 접근 구간에 연속된 계단이 있어 노약자에게 큰 부담이 됩니다. 옆 경사로도 가파르고 좁아 보조 없이 안정적으로 오르내리기 어렵습니다. 도착지 접근 계단 때문에 실제 목적지 접근성이 낮습니다.",
+        "analysisProvider": "openai"
+      }
+    ]
   }
 ]

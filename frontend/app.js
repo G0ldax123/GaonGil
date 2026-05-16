@@ -23,6 +23,14 @@
   const routeErrorKey = "gaonGilRouteError";
   const routeDictionaryKey = "gaonGilRouteDictionary";
   const mainRiskFactorsKey = "gaonGilMainRiskFactors";
+  const selectedUserTypeKey = "gaonGilSelectedUserType";
+  const defaultUserType = "wheelchair";
+  const userTypeBySelectionScreen = {
+    "1-1": "wheelchair",
+    "1-2": "crutches",
+    "1-3": "stroller",
+    "1-4": "elderly",
+  };
   const coordinateUrl = "/data/coordinate.json";
   const riskIconBaseUrl = "/icon";
   const riskIconByLabel = {
@@ -67,6 +75,7 @@
   const screen = getScreen();
   if (!screen) return;
 
+  rememberSelectedUserType(screen);
   applyFrame();
   applyUserTypePatch(screen);
   applyReportFormPatch(screen);
@@ -105,6 +114,10 @@
       if (!saved) return;
     }
 
+    if (next.userType) {
+      setSelectedUserType(next.userType);
+    }
+
     goTo(next.screen, next.transition);
   }
 
@@ -123,16 +136,16 @@
 
     if (screen === "1") {
       if (isInside(point, [20, 260, 180, 425])) {
-        return { screen: "1-1", transition: { type: "dissolve", duration: 310 } };
+        return { screen: "1-1", transition: { type: "dissolve", duration: 310 }, userType: "wheelchair" };
       }
       if (isInside(point, [180, 260, 345, 425])) {
-        return { screen: "1-2", transition: { type: "dissolve", duration: 310 } };
+        return { screen: "1-2", transition: { type: "dissolve", duration: 310 }, userType: "crutches" };
       }
       if (isInside(point, [20, 425, 180, 600])) {
-        return { screen: "1-3", transition: { type: "dissolve", duration: 310 } };
+        return { screen: "1-3", transition: { type: "dissolve", duration: 310 }, userType: "stroller" };
       }
       if (isInside(point, [180, 425, 345, 600])) {
-        return { screen: "1-4", transition: { type: "dissolve", duration: 310 } };
+        return { screen: "1-4", transition: { type: "dissolve", duration: 310 }, userType: "elderly" };
       }
       return null;
     }
@@ -236,7 +249,7 @@
     const payload = {
       start: startLabel,
       end: endLabel,
-      userType: "wheelchair",
+      userType: getSelectedUserType(),
     };
 
     sessionStorage.setItem(routeRequestKey, JSON.stringify(payload));
@@ -333,11 +346,29 @@
       return {
         start: String(payload.start),
         end: String(payload.end),
-        userType: "wheelchair",
+        userType: normalizeUserType(payload.userType),
       };
     } catch {
       return null;
     }
+  }
+
+  function rememberSelectedUserType(currentScreen) {
+    const userType = userTypeBySelectionScreen[currentScreen];
+    if (userType) setSelectedUserType(userType);
+  }
+
+  function setSelectedUserType(userType) {
+    sessionStorage.setItem(selectedUserTypeKey, normalizeUserType(userType));
+  }
+
+  function getSelectedUserType() {
+    return normalizeUserType(sessionStorage.getItem(selectedUserTypeKey));
+  }
+
+  function normalizeUserType(userType) {
+    const value = String(userType || "").trim();
+    return Object.values(userTypeBySelectionScreen).includes(value) ? value : defaultUserType;
   }
 
   function saveRouteDictionaries(data) {

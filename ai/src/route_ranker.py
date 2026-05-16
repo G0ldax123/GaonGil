@@ -245,8 +245,8 @@ def _normalize_route_result(raw_result: dict, route: dict, user_type: str, provi
 
     return {
         "routeId": route["routeId"],
-        "userType": raw_result.get("userType", user_type),
-        "userTypeLabel": raw_result.get("userTypeLabel", USER_LABELS.get(user_type, "교통약자")),
+        "userType": user_type,
+        "userTypeLabel": USER_LABELS.get(user_type, "교통약자"),
         "name": route.get("name", route["routeId"]),
         "analysisProviders": raw_result.get("analysisProviders", [provider_name]),
         "routeSummary": {

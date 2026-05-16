@@ -252,7 +252,7 @@ Determine the recommendation based on the "7. User-Type-Specific Rules" and the 
 Set recommendation using the following criteria:
 
 - "위험":
-  - The element acts as a realistic and absolute barrier for the given userType (e.g., stairs for a wheelchair).
+  - The element acts as a realistic and absolute barrier for the given userType.
   - Final destination access is completely blocked.
   - Do not use "위험" for minor inconveniences or normal neighborhood slopes.
 
@@ -356,8 +356,8 @@ Return exactly this structure.
 
 {
   "routeId": "route_a",
-  "userType": "wheelchair",
-  "userTypeLabel": "휠체어 이용자",
+  "userType": "{{input userType}}",
+  "userTypeLabel": "현재 userType에 맞는 한국어 라벨",
   "routeSummary": {
     "recommendation": "안전 | 주의 | 위험",
     "summaryTitle": "짧은 제목",
@@ -412,3 +412,4 @@ userTypeLabel:
 12. For all user types, ordinary uphill/downhill streets should usually be treated as passable.
 13. Minor extra effort is not a risk factor.
 14. Only use "경사로" when the slope is clearly steeper than an ordinary street and practically burdensome.
+15. Use the input userType exactly, and use the matching userTypeLabel from the Fixed Mapping. Never mention wheelchair users unless the input userType is wheelchair.
