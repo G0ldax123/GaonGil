@@ -18,6 +18,11 @@
     "4-3": { folder: "4-3_AnimaPackage-Html-NrmjJ", source: "4-3" },
     "5": { folder: "5_AnimaPackage-Html-6Yoja", source: "5" },
   };
+  const routeRequestKey = "gaonGilRouteRequest";
+  const routeResponseKey = "gaonGilRouteResponse";
+  const routeErrorKey = "gaonGilRouteError";
+  const routeDictionaryKey = "gaonGilRouteDictionary";
+  const mainRiskFactorsKey = "gaonGilMainRiskFactors";
 
   if (typeof window === "undefined") {
     startServer();
@@ -29,6 +34,7 @@
 
   applyFrame();
   applyUserTypePatch(screen);
+  applyResultData(screen);
   applyEnterTransition();
 
   if (screen === "0") {
@@ -36,7 +42,7 @@
   }
 
   if (screen === "3") {
-    window.setTimeout(() => goTo("4", { type: "slide-left", duration: 600 }), 2500);
+    waitForRecommendation();
   }
 
   let lastMoveAt = 0;
@@ -53,6 +59,12 @@
     lastMoveAt = now;
     event.preventDefault();
     event.stopPropagation();
+
+    if (next.prepareRouteRequest) {
+      const saved = saveRouteRequest();
+      if (!saved) return;
+    }
+
     goTo(next.screen, next.transition);
   }
 
@@ -132,7 +144,7 @@
         return { screen: "2", transition: { type: "slide-right", duration: 700 } };
       }
       if (isInside(point, [180, 418, 342, 475])) {
-        return { screen: "3", transition: { type: "dissolve", duration: 600 } };
+        return { screen: "3", transition: { type: "dissolve", duration: 600 }, prepareRouteRequest: true };
       }
     }
 
@@ -170,6 +182,268 @@
     }
 
     return null;
+  }
+
+  function saveRouteRequest() {
+    const startLabel = getText(".element .text-wrapper-5");
+    const endLabel = getText(".element .text-wrapper-6");
+
+    if (!startLabel || !endLabel) {
+      showRequestError("출발지 또는 도착지 입력값을 읽지 못했습니다.");
+      return false;
+    }
+
+    const payload = {
+      start: startLabel,
+      end: endLabel,
+      userType: "wheelchair",
+    };
+
+    sessionStorage.setItem(routeRequestKey, JSON.stringify(payload));
+    sessionStorage.removeItem(routeResponseKey);
+    sessionStorage.removeItem(routeErrorKey);
+    return true;
+  }
+
+  async function waitForRecommendation() {
+    const payload = getStoredRouteRequest();
+    if (!payload) {
+      showRequestError("요청 데이터가 없습니다. 출발지와 도착지를 다시 선택해주세요.");
+      return;
+    }
+
+    try {
+      const data = await requestRecommendation(payload);
+
+      saveRouteDictionaries(data);
+      sessionStorage.setItem(routeResponseKey, JSON.stringify(data));
+      sessionStorage.removeItem(routeErrorKey);
+      goTo("4", { type: "slide-left", duration: 600 });
+    } catch (error) {
+      const message = normalizeRecommendationError(error);
+      sessionStorage.setItem(
+        routeErrorKey,
+        JSON.stringify({
+          message,
+          request: payload,
+        })
+      );
+      showRequestError(`경로 요청 실패: ${message}`);
+      console.error("GaonGil recommendation request failed", error);
+    }
+  }
+
+  async function requestRecommendation(payload) {
+    const result = await postRecommendation(payload);
+    if (!result.response.ok) {
+      throwRecommendationError(result.response, result.data);
+    }
+
+    return validateRecommendationResult(result.data);
+  }
+
+  async function postRecommendation(payload) {
+    const response = await fetch(getRecommendEndpoint(), {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    const data = await readJson(response);
+    return { response, data };
+  }
+
+  function throwRecommendationError(response, data) {
+    const detail = data && data.detail ? data.detail : `HTTP ${response.status}`;
+    throw new Error(detail);
+  }
+
+  function normalizeRecommendationError(error) {
+    if (error instanceof TypeError) {
+      return "백엔드 응답을 받지 못했습니다. 서버 실행 상태와 API 주소를 확인해주세요.";
+    }
+
+    if (error instanceof Error && error.message) {
+      return error.message;
+    }
+
+    return "백엔드 응답을 받지 못했습니다.";
+  }
+
+  function validateRecommendationResult(data) {
+    if (!data || typeof data !== "object") {
+      throw new Error("백엔드 응답을 받지 못했습니다.");
+    }
+
+    if (!Array.isArray(data.routes)) {
+      throw new Error("백엔드 응답 형식이 올바르지 않습니다. routes 배열이 없습니다.");
+    }
+
+    return data;
+  }
+
+  function getStoredRouteRequest() {
+    const raw = sessionStorage.getItem(routeRequestKey);
+    if (!raw) return null;
+
+    try {
+      const payload = JSON.parse(raw);
+      if (!payload || !payload.start || !payload.end) return null;
+      return {
+        start: String(payload.start),
+        end: String(payload.end),
+        userType: "wheelchair",
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  function saveRouteDictionaries(data) {
+    const routeDictionary = buildRouteDictionary(data);
+    const mainRiskFactorsDictionary = {};
+
+    Object.keys(routeDictionary).forEach((routeId) => {
+      const factors = routeDictionary[routeId].mainRiskFactors;
+      mainRiskFactorsDictionary[routeId] = Array.isArray(factors) ? factors : [];
+    });
+
+    sessionStorage.setItem(routeDictionaryKey, JSON.stringify(routeDictionary));
+    sessionStorage.setItem(mainRiskFactorsKey, JSON.stringify(mainRiskFactorsDictionary));
+  }
+
+  function applyResultData(currentScreen) {
+    if (!["4", "4-1", "4-2", "4-3"].includes(currentScreen)) return;
+
+    const response = getStoredJson(routeResponseKey);
+    if (!response) return;
+
+    saveRouteDictionaries(response);
+
+    const routeDictionary = buildRouteDictionary(response);
+    const resultRows = [
+      { routeId: "route_a", durationSelector: ".element .div-2 .span", summarySelector: ".element .text-wrapper-9" },
+      { routeId: "route_b", durationSelector: ".element .div-3 .span", summarySelector: ".element .text-wrapper-10" },
+      { routeId: "route_c", durationSelector: ".element .div-4 .span", summarySelector: ".element .text-wrapper-11" },
+    ];
+
+    if (currentScreen === "4") {
+      resultRows.forEach(applyRouteText);
+      return;
+    }
+
+    const detailRows = {
+      "4-1": { routeId: "route_a", durationSelector: ".element .div-2 .span", summarySelector: ".element > .p" },
+      "4-2": { routeId: "route_b", durationSelector: ".element .group-4 .p .span", summarySelector: ".element .group-4 .text-wrapper-6" },
+      "4-3": { routeId: "route_c", durationSelector: ".element .group-2 .p .span", summarySelector: ".element .group-2 .text-wrapper-6" },
+    };
+
+    applyRouteText(detailRows[currentScreen]);
+
+    function applyRouteText(row) {
+      if (!row) return;
+      const route = routeDictionary[row.routeId];
+      if (!route) return;
+
+      replaceTextIfPresent(row.durationSelector, normalizeDuration(route.duration));
+      replaceText(row.summarySelector, route.summary || route.summaryTitle || "");
+    }
+  }
+
+  function buildRouteDictionary(data) {
+    const dictionary = {};
+    const responseRoutes = data && Array.isArray(data.routes) ? data.routes : [];
+
+    responseRoutes.forEach((route) => {
+      if (route && route.routeId) {
+        dictionary[route.routeId] = route;
+      }
+    });
+
+    return dictionary;
+  }
+
+  function getStoredJson(key) {
+    const raw = sessionStorage.getItem(key);
+    if (!raw) return null;
+
+    try {
+      return JSON.parse(raw);
+    } catch {
+      return null;
+    }
+  }
+
+  function normalizeDuration(duration) {
+    if (duration === null || duration === undefined || duration === "") return "";
+    const numericDuration = Number(duration);
+    return Number.isFinite(numericDuration) ? String(numericDuration) : String(duration);
+  }
+
+  function replaceTextIfPresent(selector, text) {
+    if (text === null || text === undefined || text === "") return;
+    replaceText(selector, text);
+  }
+
+  function replaceText(selector, text) {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.textContent = text;
+    }
+  }
+
+  function getRecommendEndpoint() {
+    const configuredBase =
+      window.GAONGIL_API_BASE_URL ||
+      sessionStorage.getItem("gaonGilApiBaseUrl") ||
+      `http://${window.location.hostname || "127.0.0.1"}:8000`;
+    return `${configuredBase.replace(/\/$/, "")}/recommend`;
+  }
+
+  async function readJson(response) {
+    try {
+      return await response.json();
+    } catch {
+      return null;
+    }
+  }
+
+  function showRequestError(message) {
+    const style = document.createElement("style");
+    style.textContent = `
+      .gg-request-error {
+        position: fixed;
+        left: 50%;
+        top: calc(50% + 105px);
+        z-index: 9999;
+        width: min(280px, calc(100vw - 48px));
+        transform: translateX(-50%);
+        color: #ffffff;
+        background: rgba(35, 45, 65, 0.92);
+        border-radius: 8px;
+        padding: 12px 14px;
+        box-sizing: border-box;
+        font-family: "Pretendard-Regular", Helvetica, sans-serif;
+        font-size: 12px;
+        line-height: 1.45;
+        text-align: center;
+      }
+    `;
+    document.head.appendChild(style);
+
+    const existing = document.querySelector(".gg-request-error");
+    if (existing) existing.remove();
+
+    const errorBox = document.createElement("div");
+    errorBox.className = "gg-request-error";
+    errorBox.textContent = message;
+    document.body.appendChild(errorBox);
+  }
+
+  function getText(selector) {
+    const element = document.querySelector(selector);
+    return element ? element.textContent.trim() : "";
   }
 
   function goTo(alias, transition) {
