@@ -321,11 +321,26 @@
 
     saveRouteDictionaries(response);
 
-    const routeDictionary = buildRouteDictionary(response);
+    const orderedRoutes = getOrderedRoutes(response);
     const resultRows = [
-      { routeId: "route_a", durationSelector: ".element .div-2 .span", summarySelector: ".element .text-wrapper-9" },
-      { routeId: "route_b", durationSelector: ".element .div-3 .span", summarySelector: ".element .text-wrapper-10" },
-      { routeId: "route_c", durationSelector: ".element .div-4 .span", summarySelector: ".element .text-wrapper-11" },
+      {
+        routeIndex: 0,
+        recommendationSelector: ".element .text-wrapper-4",
+        durationSelector: ".element .div-2 .span",
+        summarySelector: ".element .text-wrapper-9",
+      },
+      {
+        routeIndex: 1,
+        recommendationSelector: ".element .text-wrapper-5",
+        durationSelector: ".element .div-3 .span",
+        summarySelector: ".element .text-wrapper-10",
+      },
+      {
+        routeIndex: 2,
+        recommendationSelector: ".element .text-wrapper-6",
+        durationSelector: ".element .div-4 .span",
+        summarySelector: ".element .text-wrapper-11",
+      },
     ];
 
     if (currentScreen === "4") {
@@ -334,21 +349,61 @@
     }
 
     const detailRows = {
-      "4-1": { routeId: "route_a", durationSelector: ".element .div-2 .span", summarySelector: ".element > .p" },
-      "4-2": { routeId: "route_b", durationSelector: ".element .group-4 .p .span", summarySelector: ".element .group-4 .text-wrapper-6" },
-      "4-3": { routeId: "route_c", durationSelector: ".element .group-2 .p .span", summarySelector: ".element .group-2 .text-wrapper-6" },
+      "4-1": {
+        routeIndex: 0,
+        recommendationSelector: ".element .text-wrapper-4",
+        durationSelector: ".element .div-2 .span",
+        summarySelector: ".element > .p",
+        summaryField: "summaryTitle",
+      },
+      "4-2": {
+        routeIndex: 1,
+        recommendationSelector: ".element .group-4 .text-wrapper-4",
+        durationSelector: ".element .group-4 .p .span",
+        summarySelector: ".element .group-4 .text-wrapper-6",
+        summaryField: "summaryTitle",
+      },
+      "4-3": {
+        routeIndex: 2,
+        recommendationSelector: ".element .group-2 .text-wrapper-4",
+        durationSelector: ".element .group-2 .p .span",
+        summarySelector: ".element .group-2 .text-wrapper-6",
+        summaryField: "summaryTitle",
+      },
     };
 
     applyRouteText(detailRows[currentScreen]);
 
     function applyRouteText(row) {
       if (!row) return;
-      const route = routeDictionary[row.routeId];
+      const route = orderedRoutes[row.routeIndex];
       if (!route) return;
 
-      replaceTextIfPresent(row.durationSelector, normalizeDuration(route.duration));
-      replaceText(row.summarySelector, route.summary || route.summaryTitle || "");
+      replaceTextIfPresent(row.recommendationSelector, route.recommendation || "");
+      applyRecommendationColor(row.recommendationSelector, route.recommendation);
+      replaceTextIfPresent(row.durationSelector, getRouteDuration(route));
+      replaceText(row.summarySelector, getRouteSummary(route, row.summaryField));
     }
+  }
+
+  function getRouteSummary(route, preferredField) {
+    if (preferredField && route[preferredField]) return route[preferredField];
+    return route.summary || route.aiSummary || route.summaryTitle || "";
+  }
+
+  function getOrderedRoutes(data) {
+    const recommendationOrder = { 안전: 0, 주의: 1, 위험: 2 };
+    const responseRoutes = data && Array.isArray(data.routes) ? data.routes : [];
+
+    return responseRoutes
+      .filter((route) => route && typeof route === "object")
+      .map((route, index) => ({ route, index }))
+      .sort((left, right) => {
+        const leftOrder = recommendationOrder[left.route.recommendation] ?? 99;
+        const rightOrder = recommendationOrder[right.route.recommendation] ?? 99;
+        return leftOrder - rightOrder || left.index - right.index;
+      })
+      .map((entry) => entry.route);
   }
 
   function buildRouteDictionary(data) {
@@ -379,6 +434,40 @@
     if (duration === null || duration === undefined || duration === "") return "";
     const numericDuration = Number(duration);
     return Number.isFinite(numericDuration) ? String(numericDuration) : String(duration);
+  }
+
+  function getRouteDuration(route) {
+    const candidates = [
+      route.estimatedMinutes,
+      route.duration,
+      route.durationMinutes,
+      route.estimatedTimeText,
+    ];
+
+    for (const candidate of candidates) {
+      const duration = normalizeDuration(candidate);
+      if (!duration) continue;
+
+      const match = duration.match(/\d+/);
+      return match ? match[0] : duration;
+    }
+
+    return "";
+  }
+
+  function applyRecommendationColor(selector, recommendation) {
+    const element = document.querySelector(selector);
+    if (!element) return;
+
+    const colors = {
+      안전: "#3e7c2e",
+      주의: "#edca52",
+      위험: "#d4312a",
+    };
+    const color = colors[recommendation];
+    if (color) {
+      element.style.color = color;
+    }
   }
 
   function replaceTextIfPresent(selector, text) {
