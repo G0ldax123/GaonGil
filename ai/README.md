@@ -69,11 +69,12 @@ python src/main.py --user-type wheelchair
 `docs/routes.json` 구조:
 
 - `routeSetId`
+- `userType`
 - `start.name`, `end.name`
 - `routes[]`
-- `routeId`, `name`, `description`, `duration`, `distance`
+- `routeId`, `name`, `description`
 - `points[]`
-- `pointId`, `locationName`, `lat`, `lng`
+- `pointId`, `locationName`
 - `imageUrl`, `slopePercent`, `slopeLevel`
 
 주의:

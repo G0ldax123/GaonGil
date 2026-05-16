@@ -26,8 +26,6 @@ Do not output explanations, markdown code blocks, or comments.
 - routeName: {route_name}
 - origin: {origin}
 - destination: {destination}
-- duration: {duration}
-- distance: {distance}
 
 points:
 {points_context}
@@ -36,8 +34,6 @@ Each point may include:
 - pointId
 - locationName
 - imageUrl
-- lat
-- lng
 - slopePercent
 - slopeLevel
 

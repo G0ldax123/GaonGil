@@ -17,8 +17,6 @@ def _route_set_payload() -> list[dict]:
                     "routeId": "route_a",
                     "name": "안전 경로",
                     "description": "위험 요소가 적은 경로",
-                    "duration": 14,
-                    "distance": 850,
                     "points": [
                         {
                             "pointId": "a_1",
@@ -41,8 +39,6 @@ def _route_set_payload() -> list[dict]:
                     "routeId": "route_b",
                     "name": "계단 경로",
                     "description": "계단이 있는 경로",
-                    "duration": 11,
-                    "distance": 700,
                     "points": [
                         {
                             "pointId": "b_1",
@@ -65,8 +61,6 @@ def _route_set_payload() -> list[dict]:
                     "routeId": "route_c",
                     "name": "급경사 경로",
                     "description": "경사가 큰 경로",
-                    "duration": 12,
-                    "distance": 760,
                     "points": [
                         {
                             "pointId": "c_1",
@@ -129,8 +123,6 @@ def test_storage_payload_matches_ai_results_contract() -> None:
             "userType": "wheelchair",
             "userTypeLabel": "휠체어 이용자",
             "name": "경로 A",
-            "duration": 14,
-            "distance": 850,
             "totalRiskScore": 40,
             "analysisProviders": ["google"],
             "routeSummary": {"recommendation": "위험"},

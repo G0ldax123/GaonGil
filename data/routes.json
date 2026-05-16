@@ -1,6 +1,7 @@
 [
   {
     "routeSetId": "demo_route_1",
+    "userType": "wheelchair",
     "start": {
       "name": "고려대학교"
     },
@@ -12,8 +13,6 @@
         "routeId": "route_a",
         "name": "경로 A",
         "description": "계단과 급경사를 최대한 피하는 경로",
-        "duration": 14,
-        "distance": 850,
         "points": [
           {
             "pointId": "a_1",
@@ -61,8 +60,6 @@
         "routeId": "route_b",
         "name": "경로 B",
         "description": "소요 시간은 짧지만 위험 요소가 있는 경로",
-        "duration": 9,
-        "distance": 620,
         "points": [
           {
             "pointId": "b_1",
@@ -115,8 +112,6 @@
         "routeId": "route_c",
         "name": "경로 C",
         "description": "이동 시간과 접근성의 균형을 고려한 경로",
-        "duration": 12,
-        "distance": 760,
         "points": []
       }
     ]

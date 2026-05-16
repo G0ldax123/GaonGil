@@ -199,14 +199,13 @@ def _normalize_route_set(route_set: dict) -> dict:
                 "routeId": route["routeId"],
                 "name": route.get("name", route["routeId"]),
                 "description": route.get("description", ""),
-                "duration": int(route.get("duration", 0)),
-                "distance": int(route.get("distance", 0)),
                 "points": _augment_points_with_assets(route),
             }
         )
 
     return {
         "routeSetId": route_set.get("routeSetId", "default_route_set"),
+        "userType": route_set.get("userType", ""),
         "start": route_set.get("start", {}).get("name", route_set.get("origin", "")),
         "end": route_set.get("end", {}).get("name", route_set.get("destination", "")),
         "routes": routes,
@@ -409,8 +408,6 @@ def analyze_route(route: dict, user_type: str, analyzer: BaseAccessibilityAnalyz
         route_result.setdefault("userType", user_type)
         route_result.setdefault("userTypeLabel", USER_LABELS.get(user_type, user_type))
         route_result.setdefault("name", route["name"])
-        route_result.setdefault("duration", route["duration"])
-        route_result.setdefault("distance", route["distance"])
         route_points_by_id = {point["pointId"]: point for point in route.get("points", [])}
         for point_result in route_result.get("points", []):
             route_point = route_points_by_id.get(point_result.get("pointId"), {})
@@ -445,8 +442,6 @@ def analyze_route(route: dict, user_type: str, analyzer: BaseAccessibilityAnalyz
         "userType": user_type,
         "userTypeLabel": USER_LABELS.get(user_type, user_type),
         "name": route["name"],
-        "duration": route["duration"],
-        "distance": route["distance"],
         "points": analyzed_points,
         "totalRiskScore": total_risk_score,
         "analysisProviders": sorted({point["analysisProvider"] for point in analyzed_points}),
@@ -475,7 +470,7 @@ def rank_routes(
         if route.get("points") and (not route_id or route.get("routeId") == route_id)
     ]
     route_results = [analyze_route(route, user_type, analyzer) for route in analyzable_routes]
-    return sorted(route_results, key=lambda item: (item["totalRiskScore"], item["distance"]))
+    return sorted(route_results, key=lambda item: (item["totalRiskScore"], item["routeId"]))
 
 
 def analyze_routes_for_user(

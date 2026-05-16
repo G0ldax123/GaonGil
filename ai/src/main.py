@@ -129,6 +129,8 @@ def main() -> int:
     front_request = load_front_request()
     if not args.user_type and front_request:
         args.user_type = front_request.get("userType", "")
+    if not args.user_type:
+        args.user_type = route_sets[0].get("userType", "")
     if not args.origin:
         if front_request:
             args.origin = front_request.get("start", "")

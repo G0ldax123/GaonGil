@@ -213,8 +213,6 @@ def _render_route_prompt(template: str, route: dict, user_type: str, origin: str
         .replace("{route_name}", str(route.get("name", "")))
         .replace("{origin}", origin)
         .replace("{destination}", destination)
-        .replace("{duration}", str(route.get("duration", "")))
-        .replace("{distance}", str(route.get("distance", "")))
         .replace("{points_context}", points_context)
     )
 

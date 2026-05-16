@@ -70,7 +70,7 @@ def build_recommendation(start: str, end: str, user_type: str) -> dict[str, Any]
     routes.sort(
         key=lambda route: (
             RECOMMENDATION_ORDER.get(route.get("recommendation"), 99),
-            route.get("duration", 999999),
+            route.get("routeId", ""),
         )
     )
 
