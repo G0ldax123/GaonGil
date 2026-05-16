@@ -331,19 +331,19 @@ Mention only the relevant items among the following:
 - 도착지 접근 단차
 - 턱낮춤
 - 좁은 길
-- 가파른 길
+- 경사로
 
 Describe the user type impact in natural Korean sentences, but do not use "사용자 유형별 영향" as a risk factor label.
 
-Do not use "경사로" as a risk factor label when referring to steepRoad.
-Use "가파른 길" for steepRoad risks.
-Use "턱낮춤" or "경사로" only when describing an accessibility feature that helps movement.
+Use "경사로" as the risk factor label when referring to steepRoad.
+Do not use any alternate steep-slope label as a risk factor label.
+Use "턱낮춤" when describing an accessibility feature that helps movement.
 
 For ordinary uphill/downhill streets, use neutral expressions such as:
 - "일반적인 오르막"
 - "일반적인 내리막"
 - "일반적인 골목 경사"
-- "통행을 어렵게 할 정도의 가파른 길은 아닙니다"
+- "통행을 어렵게 할 정도의 경사로는 아닙니다"
 
 Do not write that a slope requires caution unless it is clearly more burdensome than an ordinary street.
 
@@ -361,8 +361,8 @@ Return exactly this structure.
     "recommendation": "안전 | 주의 | 위험",
     "summaryTitle": "짧은 제목",
     "aiSummary": "route 전체 한 줄 요약",
-    "mainRiskFactors": ["계단 | 단차 | 가파른 길 | 좁은 길"],
-    "mainRiskPoints": ["pointId: 계단 | 단차 | 가파른 길 | 좁은 길"],
+    "mainRiskFactors": ["계단 | 단차 | 경사로 | 좁은 길"],
+    "mainRiskPoints": ["pointId: 계단 | 단차 | 경사로 | 좁은 길"],
     "reason": "route 전체 판단 근거"
   },
   "points": [
@@ -402,12 +402,12 @@ userTypeLabel:
 3. Preserve the point order.
 4. Write all user-facing text in Korean.
 5. recommendation must be one of "안전", "주의", or "위험".
-6. mainRiskFactors may include only "계단", "단차", "가파른 길", or "좁은 길".
-7. mainRiskPoints may include only pointId with one of "계단", "단차", "가파른 길", or "좁은 길".
+6. mainRiskFactors may include only "계단", "단차", "경사로", or "좁은 길".
+7. mainRiskPoints may include only pointId with one of "계단", "단차", "경사로", or "좁은 길".
 8. Do not include slopePercent or slopeLevel.
 9. Do not include riskLevel, riskFactors, or accessibilityLevel.
 10. Do not mark ordinary road inclines, ordinary neighborhood uphill/downhill streets, or manageable slopes as "위험".
 11. Do not mark a point as "주의" only because a normal uphill or downhill street is visible.
 12. For all user types, ordinary uphill/downhill streets should usually be treated as passable.
 13. Minor extra effort is not a risk factor.
-14. Only use "가파른 길" when the slope is clearly steeper than an ordinary street and practically burdensome.
+14. Only use "경사로" when the slope is clearly steeper than an ordinary street and practically burdensome.

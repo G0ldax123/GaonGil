@@ -1,0 +1,123 @@
+{
+  "route_a": [
+    {
+      "pointId": "a_1",
+      "left": 154,
+      "top": 531
+    },
+    {
+      "pointId": "a_2",
+      "left": 166,
+      "top": 492
+    },
+    {
+      "pointId": "a_3",
+      "left": 163,
+      "top": 438
+    },
+    {
+      "pointId": "a_4",
+      "left": 163,
+      "top": 403
+    },
+    {
+      "pointId": "a_5",
+      "left": 159,
+      "top": 368
+    },
+    {
+      "pointId": "a_6",
+      "left": 171,
+      "top": 335
+    },
+    {
+      "pointId": "a_7",
+      "left": 182,
+      "top": 302
+    }
+  ],
+  "route_b": [
+    {
+      "pointId": "b_1",
+      "left": 134,
+      "top": 499
+    },
+    {
+      "pointId": "b_2",
+      "left": 150,
+      "top": 469
+    },
+    {
+      "pointId": "b_3",
+      "left": 163,
+      "top": 438
+    },
+    {
+      "pointId": "b_4",
+      "left": 159,
+      "top": 382
+    },
+    {
+      "pointId": "b_5",
+      "left": 159,
+      "top": 327
+    },
+    {
+      "pointId": "b_6",
+      "left": 167,
+      "top": 285
+    }
+  ],
+  "route_c": [
+    {
+      "pointId": "c_1",
+      "left": 140,
+      "top": 552
+    },
+    {
+      "pointId": "c_2",
+      "left": 140,
+      "top": 586
+    },
+    {
+      "pointId": "c_3",
+      "left": 140,
+      "top": 620
+    },
+    {
+      "pointId": "c_4",
+      "left": 163,
+      "top": 645
+    },
+    {
+      "pointId": "c_5",
+      "left": 170,
+      "top": 603
+    },
+    {
+      "pointId": "c_6",
+      "left": 166,
+      "top": 513
+    },
+    {
+      "pointId": "c_7",
+      "left": 163,
+      "top": 446
+    },
+    {
+      "pointId": "c_8",
+      "left": 159,
+      "top": 383
+    },
+    {
+      "pointId": "c_9",
+      "left": 159,
+      "top": 327
+    },
+    {
+      "pointId": "c_10",
+      "left": 167,
+      "top": 285
+    }
+  ]
+}

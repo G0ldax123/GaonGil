@@ -23,6 +23,36 @@
   const routeErrorKey = "gaonGilRouteError";
   const routeDictionaryKey = "gaonGilRouteDictionary";
   const mainRiskFactorsKey = "gaonGilMainRiskFactors";
+  const coordinateUrl = "/data/coordinate.json";
+  const riskIconBaseUrl = "/icon";
+  const riskIconByLabel = {
+    "계단": "계단.png",
+    "단차": "단차.png",
+    "경사로": "경사로.png",
+    "가파른 길": "경사로.png",
+    "좁은 길": "좁은길.png",
+    "좁은길": "좁은길.png",
+  };
+  const detailRouteIndexByScreen = {
+    "4-1": 0,
+    "4-2": 1,
+    "4-3": 2,
+  };
+  const routePinPositions = {
+    route_a: {
+      start: { left: 128, top: 532 },
+      end: { left: 180, top: 270 },
+    },
+    route_b: {
+      start: { left: 128, top: 532 },
+      end: { left: 196, top: 271 },
+    },
+    route_c: {
+      start: { left: 128, top: 532 },
+      end: { left: 196, top: 271 },
+    },
+  };
+  let coordinateMapPromise = null;
 
   if (typeof window === "undefined") {
     startServer();
@@ -35,6 +65,8 @@
   applyFrame();
   applyUserTypePatch(screen);
   applyResultData(screen);
+  applyRoutePins(screen);
+  applyRiskPointIcons(screen);
   applyEnterTransition();
 
   if (screen === "0") {
@@ -350,21 +382,21 @@
 
     const detailRows = {
       "4-1": {
-        routeIndex: 0,
+        routeIndex: detailRouteIndexByScreen["4-1"],
         recommendationSelector: ".element .text-wrapper-4",
         durationSelector: ".element .div-2 .span",
         summarySelector: ".element > .p",
         summaryField: "summaryTitle",
       },
       "4-2": {
-        routeIndex: 1,
+        routeIndex: detailRouteIndexByScreen["4-2"],
         recommendationSelector: ".element .group-4 .text-wrapper-4",
         durationSelector: ".element .group-4 .p .span",
         summarySelector: ".element .group-4 .text-wrapper-6",
         summaryField: "summaryTitle",
       },
       "4-3": {
-        routeIndex: 2,
+        routeIndex: detailRouteIndexByScreen["4-3"],
         recommendationSelector: ".element .group-2 .text-wrapper-4",
         durationSelector: ".element .group-2 .p .span",
         summarySelector: ".element .group-2 .text-wrapper-6",
@@ -384,6 +416,183 @@
       replaceTextIfPresent(row.durationSelector, getRouteDuration(route));
       replaceText(row.summarySelector, getRouteSummary(route, row.summaryField));
     }
+  }
+
+  async function applyRiskPointIcons(currentScreen) {
+    if (!["4-1", "4-2", "4-3"].includes(currentScreen)) return;
+
+    const response = getStoredJson(routeResponseKey);
+    if (!response) return;
+
+    const route = getDetailRoute(response, currentScreen);
+    const riskPoints = route && Array.isArray(route.mainRiskPoints) ? route.mainRiskPoints : [];
+    if (!route || riskPoints.length === 0) return;
+
+    try {
+      const coordinateMap = await getCoordinateMap();
+      renderRiskPointIcons(riskPoints, coordinateMap);
+    } catch (error) {
+      console.warn("GaonGil risk point coordinates unavailable", error);
+    }
+  }
+
+  function getDetailRoute(data, currentScreen) {
+    const routeIndex = detailRouteIndexByScreen[currentScreen];
+    if (routeIndex === undefined) return null;
+    return getOrderedRoutes(data)[routeIndex] || null;
+  }
+
+  function applyRoutePins(currentScreen) {
+    if (!["4-1", "4-2", "4-3"].includes(currentScreen)) return;
+
+    const response = getStoredJson(routeResponseKey);
+    if (!response) return;
+
+    const route = getDetailRoute(response, currentScreen);
+    const positions = route && routePinPositions[route.routeId];
+    if (!positions) return;
+
+    const mapElement = getMapElementForScreen(currentScreen);
+    if (!mapElement) return;
+
+    placeRoutePin(mapElement, ".solid-location", positions.start);
+    placeRoutePin(mapElement, ".fa-solid-location", positions.end);
+  }
+
+  function getMapElementForScreen(currentScreen) {
+    if (currentScreen === "4-3") {
+      return document.querySelector(".element .group-3");
+    }
+
+    return document.querySelector(".element .group-2");
+  }
+
+  function placeRoutePin(mapElement, selector, absolutePosition) {
+    const pin = mapElement.querySelector(selector);
+    if (!pin) return;
+
+    const mapLeft = Number.parseFloat(getComputedStyle(mapElement).left) || 0;
+    const mapTop = Number.parseFloat(getComputedStyle(mapElement).top) || 0;
+
+    pin.style.left = `${absolutePosition.left - mapLeft}px`;
+    pin.style.top = `${absolutePosition.top - mapTop}px`;
+  }
+
+  async function getCoordinateMap() {
+    if (!coordinateMapPromise) {
+      coordinateMapPromise = fetch(coordinateUrl)
+        .then((response) => {
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return response.json();
+        })
+        .then(normalizeCoordinateMap);
+    }
+
+    return coordinateMapPromise;
+  }
+
+  function normalizeCoordinateMap(data) {
+    const map = {};
+
+    function addPoint(point) {
+      if (!point || !point.pointId) return;
+      const left = Number(point.left);
+      const top = Number(point.top);
+      if (!Number.isFinite(left) || !Number.isFinite(top)) return;
+      map[String(point.pointId)] = { left, top };
+    }
+
+    if (Array.isArray(data)) {
+      data.forEach(addPoint);
+      return map;
+    }
+
+    if (data && typeof data === "object") {
+      Object.values(data).forEach((value) => {
+        if (Array.isArray(value)) {
+          value.forEach(addPoint);
+        }
+      });
+    }
+
+    return map;
+  }
+
+  function renderRiskPointIcons(riskPoints, coordinateMap) {
+    const root = document.querySelector(".element") || document.querySelector(".screen") || document.body;
+    if (!root) return;
+
+    root.querySelectorAll(".gg-risk-point").forEach((element) => element.remove());
+    ensureRiskPointStyles();
+
+    parseRiskPoints(riskPoints).forEach((riskPoint) => {
+      const coordinate = coordinateMap[riskPoint.pointId];
+      if (!coordinate) return;
+
+      const icons = riskPoint.labels
+        .map((label) => ({ label, fileName: riskIconByLabel[label] }))
+        .filter((entry) => entry.fileName);
+      if (icons.length === 0) return;
+
+      const marker = document.createElement("div");
+      marker.className = "gg-risk-point";
+      marker.style.left = `${coordinate.left}px`;
+      marker.style.top = `${coordinate.top}px`;
+      marker.setAttribute("aria-label", `${riskPoint.pointId}: ${icons.map((icon) => icon.label).join(", ")}`);
+
+      icons.forEach((icon) => {
+        const image = document.createElement("img");
+        image.className = "gg-risk-point-icon";
+        image.src = `${riskIconBaseUrl}/${encodeURIComponent(icon.fileName)}`;
+        image.alt = icon.label;
+        image.title = icon.label;
+        marker.appendChild(image);
+      });
+
+      root.appendChild(marker);
+    });
+  }
+
+  function parseRiskPoints(riskPoints) {
+    return riskPoints
+      .map((item) => {
+        const text = String(item || "");
+        const parts = text.split(":");
+        const pointId = (parts.shift() || "").trim();
+        const labels = parts
+          .join(":")
+          .split(/[,|/]/)
+          .map((label) => label.trim())
+          .filter(Boolean);
+
+        return { pointId, labels };
+      })
+      .filter((riskPoint) => riskPoint.pointId && riskPoint.labels.length > 0);
+  }
+
+  function ensureRiskPointStyles() {
+    if (document.getElementById("gg-risk-point-style")) return;
+
+    const style = document.createElement("style");
+    style.id = "gg-risk-point-style";
+    style.textContent = `
+      .gg-risk-point {
+        position: absolute;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        pointer-events: none;
+      }
+      .gg-risk-point-icon {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+        border-radius: 13px;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.24));
+      }
+    `;
+    document.head.appendChild(style);
   }
 
   function getRouteSummary(route, preferredField) {
@@ -763,6 +972,7 @@
     const path = require("path");
 
     const port = Number(process.env.PORT || 5173);
+    const projectRoot = path.resolve(__dirname, "..");
     const exportRoot = path.resolve(__dirname, "figma-export");
     const scriptPath = __filename;
 
@@ -779,6 +989,26 @@
         return;
       }
 
+      if (requestUrl.pathname.startsWith("/data/")) {
+        const target = safeResolve(path.join(projectRoot, "data"), decodeURIComponent(requestUrl.pathname.slice(5)));
+        if (!target) {
+          notFound(response);
+          return;
+        }
+        serveStaticTarget(response, target);
+        return;
+      }
+
+      if (requestUrl.pathname.startsWith("/icon/")) {
+        const target = safeResolve(path.join(exportRoot, "icon"), decodeURIComponent(requestUrl.pathname.slice(5)));
+        if (!target) {
+          notFound(response);
+          return;
+        }
+        serveStaticTarget(response, target);
+        return;
+      }
+
       const aliasTarget = resolveAliasPath(requestUrl.pathname);
       const target = aliasTarget || safeResolve(exportRoot, decodeURIComponent(requestUrl.pathname));
       if (!target) {
@@ -786,6 +1016,15 @@
         return;
       }
 
+      serveStaticTarget(response, target);
+    });
+
+    server.listen(port, "127.0.0.1", () => {
+      console.log(`GaonGil prototype: http://127.0.0.1:${port}/`);
+      console.log(`Serving original export files from: ${exportRoot}`);
+    });
+
+    function serveStaticTarget(response, target) {
       fs.stat(target, (statError, stats) => {
         if (statError) {
           notFound(response);
@@ -793,7 +1032,7 @@
         }
 
         const filePath = stats.isDirectory() ? path.join(target, "index.html") : target;
-        if (!filePath.startsWith(exportRoot)) {
+        if (!isAllowedStaticPath(filePath)) {
           notFound(response);
           return;
         }
@@ -806,12 +1045,11 @@
 
         serveFile(response, filePath, type);
       });
-    });
+    }
 
-    server.listen(port, "127.0.0.1", () => {
-      console.log(`GaonGil prototype: http://127.0.0.1:${port}/`);
-      console.log(`Serving original export files from: ${exportRoot}`);
-    });
+    function isAllowedStaticPath(filePath) {
+      return filePath.startsWith(exportRoot) || filePath.startsWith(path.join(projectRoot, "data"));
+    }
 
     function resolveAliasPath(urlPath) {
       const parts = decodeURIComponent(urlPath).split("/").filter(Boolean);
