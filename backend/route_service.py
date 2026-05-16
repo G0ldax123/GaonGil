@@ -10,6 +10,38 @@ RECOMMENDATION_ORDER = {
     "위험": 2,
 }
 
+ROUTE_KEY_ORDER = (
+    "routeId",
+    "name",
+    "description",
+    "recommendation",
+    "riskLevel",
+    "summaryTitle",
+    "summary",
+    "mainRiskFactors",
+    "mainRiskPoints",
+    "points",
+)
+
+POINT_KEY_ORDER = (
+    "pointId",
+    "locationName",
+    "lat",
+    "lng",
+    "imageUrl",
+    "roadviewImagePath",
+    "detectedElements",
+    "accessibilityLevel",
+    "riskLevel",
+    "recommendation",
+    "summaryTitle",
+    "aiSummary",
+    "reason",
+    "analysisProvider",
+    "segmentRiskScore",
+    "aiLocationName",
+)
+
 
 def find_route_set(start: str, end: str) -> dict[str, Any] | None:
     route_sets = load_routes()
@@ -43,6 +75,32 @@ def merge_point_analysis(route_points: list[dict[str, Any]], ai_points: list[dic
     return merged_points
 
 
+def order_point_payload(point: dict[str, Any]) -> dict[str, Any]:
+    """Match the backend example response order for each point payload."""
+
+    ordered_point: dict[str, Any] = {}
+    for key in POINT_KEY_ORDER:
+        if key in point:
+            ordered_point[key] = point[key]
+    for key, value in point.items():
+        if key not in ordered_point:
+            ordered_point[key] = value
+    return ordered_point
+
+
+def order_route_payload(route: dict[str, Any]) -> dict[str, Any]:
+    """Match docs/back_responce.json so frontend receives a stable route shape."""
+
+    ordered_route: dict[str, Any] = {}
+    for key in ROUTE_KEY_ORDER:
+        if key in route:
+            ordered_route[key] = route[key]
+    for key, value in route.items():
+        if key not in ordered_route:
+            ordered_route[key] = value
+    return ordered_route
+
+
 def build_recommendation(start: str, end: str, user_type: str) -> dict[str, Any] | None:
     route_set = find_route_set(start, end)
     if route_set is None:
@@ -53,18 +111,21 @@ def build_recommendation(start: str, end: str, user_type: str) -> dict[str, Any]
         ai_result = analyze_route(route, user_type)
         route_summary = ai_result.get("routeSummary", {}) if ai_result else {}
         ai_points = ai_result.get("points", []) if ai_result else []
-        points = merge_point_analysis(route.get("points", []), ai_points)
+        points = [order_point_payload(point) for point in merge_point_analysis(route.get("points", []), ai_points)]
 
         routes.append(
-            {
-                **route,
-                "points": points,
-                "recommendation": route_summary.get("recommendation", "위험"),
-                "riskLevel": route_summary.get("riskLevel", "unknown"),
-                "summaryTitle": route_summary.get("summaryTitle", "분석 결과 없음"),
-                "summary": route_summary.get("aiSummary", "아직 분석 결과가 없습니다."),
-                "mainRiskFactors": route_summary.get("mainRiskFactors", []),
-            }
+            order_route_payload(
+                {
+                    **route,
+                    "recommendation": route_summary.get("recommendation", "위험"),
+                    "riskLevel": route_summary.get("riskLevel", "unknown"),
+                    "summaryTitle": route_summary.get("summaryTitle", "분석 결과 없음"),
+                    "summary": route_summary.get("aiSummary", "아직 분석 결과가 없습니다."),
+                    "mainRiskFactors": route_summary.get("mainRiskFactors", []),
+                    "mainRiskPoints": route_summary.get("mainRiskPoints", []),
+                    "points": points,
+                }
+            )
         )
 
     routes.sort(

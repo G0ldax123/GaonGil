@@ -8,15 +8,20 @@
       "riskLevel": "medium",
       "summaryTitle": "일부 주의 구간이 있는 경로",
       "aiSummary": "route_a는 계단은 확인되지 않았지만 일부 구간에 단차와 가파른 길이 있어 휠체어 이용자 기준으로 주의가 필요한 경로입니다.",
-      "mainRiskFactors": ["단차", "가파른 길"],
+      "mainRiskFactors": [
+        "단차",
+        "가파른 길"
+      ],
+      "mainRiskPoints": [
+        "a_1: 단차, 가파른 길",
+        "a_2: 좁은 길"
+      ],
       "reason": "주요 지점 분석 결과 계단은 확인되지 않았으나, 보도 진입부 단차와 7.8% 수준의 경사 구간이 포함되어 있습니다."
     },
     "points": [
       {
         "pointId": "a_1",
         "locationName": "정문 앞 보도",
-        "slopePercent": 7.8,
-        "slopeLevel": "주의",
         "detectedElements": {
           "stairs": "false",
           "curb": "true",
@@ -24,22 +29,6 @@
           "narrowRoad": "false",
           "otherObstacle": "unknown"
         },
-        "riskFactors": [
-          {
-            "type": "curb",
-            "label": "단차",
-            "severity": "medium",
-            "displayText": "낮은 단차 있음",
-            "description": "보도 진입부에 낮은 단차가 있어 이동 시 주의가 필요합니다."
-          },
-          {
-            "type": "steepRoad",
-            "label": "가파른 길",
-            "severity": "medium",
-            "displayText": "주의 경사 구간",
-            "description": "경사도가 7.8%로 주의 구간에 해당합니다."
-          }
-        ],
         "accessibilityLevel": "caution",
         "riskLevel": "medium",
         "recommendation": "주의",
@@ -50,8 +39,6 @@
       {
         "pointId": "a_2",
         "locationName": "보도 폭이 좁은 구간",
-        "slopePercent": 3.2,
-        "slopeLevel": "보통",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -59,15 +46,6 @@
           "narrowRoad": "true",
           "otherObstacle": "false"
         },
-        "riskFactors": [
-          {
-            "type": "narrowRoad",
-            "label": "좁은 길",
-            "severity": "medium",
-            "displayText": "보도 폭 좁음",
-            "description": "보도 폭이 좁아 휠체어 이용 시 통행 여유가 부족할 수 있습니다."
-          }
-        ],
         "accessibilityLevel": "caution",
         "riskLevel": "medium",
         "recommendation": "주의",
@@ -78,8 +56,6 @@
       {
         "pointId": "a_3",
         "locationName": "도착지 인근 보도",
-        "slopePercent": 1.5,
-        "slopeLevel": "완만",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -87,7 +63,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [],
         "accessibilityLevel": "good",
         "riskLevel": "low",
         "recommendation": "안전",

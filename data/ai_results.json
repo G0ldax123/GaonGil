@@ -12,14 +12,17 @@
         "가파른 길",
         "계단"
       ],
+      "mainRiskPoints": [
+        "a_1: 가파른 길",
+        "a_7: 가파른 길",
+        "a_8: 계단"
+      ],
       "reason": "경로에 긴 가파른 경사 구간이 반복되며, 도착지 접근 계단이 있어 휠체어 이용자의 이동이 위험합니다."
     },
     "points": [
       {
         "pointId": "a_1",
         "locationName": "경로 A 첫 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -27,15 +30,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [
-          {
-            "type": "steepRoad",
-            "label": "가파른 길",
-            "severity": "high",
-            "displayText": "긴 내리막 경사",
-            "description": "실제 이동 라인이 길게 가파르게 이어져 휠체어 이용자는 제동이나 자력 이동이 어려울 수 있습니다."
-          }
-        ],
         "accessibilityLevel": "bad",
         "riskLevel": "high",
         "recommendation": "위험",
@@ -46,8 +40,6 @@
       {
         "pointId": "a_2",
         "locationName": "경로 A 두 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -55,7 +47,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [],
         "accessibilityLevel": "good",
         "riskLevel": "low",
         "recommendation": "안전",
@@ -66,8 +57,6 @@
       {
         "pointId": "a_3",
         "locationName": "경로 A 세 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -75,7 +64,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [],
         "accessibilityLevel": "good",
         "riskLevel": "low",
         "recommendation": "안전",
@@ -86,8 +74,6 @@
       {
         "pointId": "a_4",
         "locationName": "경로 A 네 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -95,7 +81,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [],
         "accessibilityLevel": "good",
         "riskLevel": "low",
         "recommendation": "안전",
@@ -106,8 +91,6 @@
       {
         "pointId": "a_5",
         "locationName": "경로 A 다섯 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -115,7 +98,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [],
         "accessibilityLevel": "good",
         "riskLevel": "low",
         "recommendation": "안전",
@@ -126,8 +108,6 @@
       {
         "pointId": "a_6",
         "locationName": "경로 A 여섯 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -135,7 +115,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [],
         "accessibilityLevel": "good",
         "riskLevel": "low",
         "recommendation": "안전",
@@ -146,8 +125,6 @@
       {
         "pointId": "a_7",
         "locationName": "경로 A 일곱 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -155,15 +132,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [
-          {
-            "type": "steepRoad",
-            "label": "가파른 길",
-            "severity": "high",
-            "displayText": "긴 오르막 경사",
-            "description": "실제 이동 라인이 길게 가파르게 이어져 휠체어 이용자는 자력 이동이 어려울 수 있습니다."
-          }
-        ],
         "accessibilityLevel": "bad",
         "riskLevel": "high",
         "recommendation": "위험",
@@ -174,8 +142,6 @@
       {
         "pointId": "a_8",
         "locationName": "경로 A 여덟 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "true",
           "curb": "false",
@@ -183,15 +149,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [
-          {
-            "type": "stairs",
-            "label": "계단",
-            "severity": "high",
-            "displayText": "도착지 접근 계단",
-            "description": "도착지로 접근하는 마지막 구간에 계단이 있어 휠체어 이용자는 통과가 어렵습니다."
-          }
-        ],
         "accessibilityLevel": "bad",
         "riskLevel": "high",
         "recommendation": "위험",
@@ -213,14 +170,18 @@
       "mainRiskFactors": [
         "가파른 길"
       ],
+      "mainRiskPoints": [
+        "b_3: 가파른 길",
+        "b_4: 가파른 길",
+        "b_8: 가파른 길",
+        "b_9: 가파른 길"
+      ],
       "reason": "가파른 길이 여러 지점에서 반복되고, 도착지 접근 구간에도 오르막이 이어져 휠체어 이용자의 안정적인 이동에 부담이 큽니다."
     },
     "points": [
       {
         "pointId": "b_1",
         "locationName": "경로 B 첫 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -228,7 +189,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [],
         "accessibilityLevel": "good",
         "riskLevel": "low",
         "recommendation": "안전",
@@ -239,8 +199,6 @@
       {
         "pointId": "b_2",
         "locationName": "경로 B 두 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -248,7 +206,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [],
         "accessibilityLevel": "good",
         "riskLevel": "low",
         "recommendation": "안전",
@@ -259,8 +216,6 @@
       {
         "pointId": "b_3",
         "locationName": "경로 B 세 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -268,15 +223,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [
-          {
-            "type": "steepRoad",
-            "label": "가파른 길",
-            "severity": "high",
-            "displayText": "내리막 급경사 구간",
-            "description": "실제 이동 라인이 교차로 방향으로 뚜렷하게 내려가 있어 휠체어 이용자는 제동과 방향 조절에 부담을 느낄 수 있습니다."
-          }
-        ],
         "accessibilityLevel": "bad",
         "riskLevel": "high",
         "recommendation": "위험",
@@ -287,8 +233,6 @@
       {
         "pointId": "b_4",
         "locationName": "경로 B 네 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -296,15 +240,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [
-          {
-            "type": "steepRoad",
-            "label": "가파른 길",
-            "severity": "high",
-            "displayText": "보도 경사 구간",
-            "description": "보도 진행 방향이 아래쪽 교차로로 기울어 있어 휠체어 이용자는 안정적으로 이동하기 어려울 수 있습니다."
-          }
-        ],
         "accessibilityLevel": "bad",
         "riskLevel": "high",
         "recommendation": "위험",
@@ -315,8 +250,6 @@
       {
         "pointId": "b_5",
         "locationName": "경로 B 다섯 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -324,7 +257,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [],
         "accessibilityLevel": "good",
         "riskLevel": "low",
         "recommendation": "안전",
@@ -335,8 +267,6 @@
       {
         "pointId": "b_6",
         "locationName": "경로 B 여섯 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -344,7 +274,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [],
         "accessibilityLevel": "good",
         "riskLevel": "low",
         "recommendation": "안전",
@@ -355,8 +284,6 @@
       {
         "pointId": "b_7",
         "locationName": "경로 B 일곱 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -364,7 +291,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [],
         "accessibilityLevel": "good",
         "riskLevel": "low",
         "recommendation": "안전",
@@ -375,8 +301,6 @@
       {
         "pointId": "b_8",
         "locationName": "경로 B 여덟 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -384,15 +308,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [
-          {
-            "type": "steepRoad",
-            "label": "가파른 길",
-            "severity": "high",
-            "displayText": "오르막 진입 구간",
-            "description": "실제 이동선이 골목 안쪽으로 뚜렷하게 올라가 있어 휠체어 이용자는 자력 추진이 어렵고 도움이 필요할 수 있습니다."
-          }
-        ],
         "accessibilityLevel": "bad",
         "riskLevel": "high",
         "recommendation": "위험",
@@ -403,8 +318,6 @@
       {
         "pointId": "b_9",
         "locationName": "경로 B 아홉 번째 주요 지점",
-        "slopePercent": null,
-        "slopeLevel": null,
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
@@ -412,15 +325,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "riskFactors": [
-          {
-            "type": "steepRoad",
-            "label": "가파른 길",
-            "severity": "high",
-            "displayText": "도착지 접근 오르막",
-            "description": "도착지에 가까운 마지막 접근 구간이 계속 오르막으로 이어져 휠체어 이용자는 목적지까지 자력으로 접근하기 어려울 수 있습니다."
-          }
-        ],
         "accessibilityLevel": "bad",
         "riskLevel": "high",
         "recommendation": "위험",
