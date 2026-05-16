@@ -2,6 +2,7 @@
 
 import json
 
+from ai.src.main import build_storage_payload
 from ai.src.route_ranker import load_route_sets, rank_routes
 
 
@@ -109,3 +110,46 @@ def test_recommended_route_matches_lowest_risk_route(tmp_path) -> None:
     ranked = rank_routes(route_sets[0]["routes"], "wheelchair")
     lowest_risk_route = min(ranked, key=lambda route: route["totalRiskScore"])
     assert ranked[0]["routeId"] == lowest_risk_route["routeId"]
+
+
+def test_rank_routes_can_filter_single_route(tmp_path) -> None:
+    payload = _route_set_payload()
+    seed_path = tmp_path / "routes.json"
+    seed_path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+
+    route_sets = load_route_sets(seed_path)
+    ranked = rank_routes(route_sets[0]["routes"], "wheelchair", route_id="route_a")
+    assert [route["routeId"] for route in ranked] == ["route_a"]
+
+
+def test_storage_payload_matches_ai_results_contract() -> None:
+    payload = [
+        {
+            "routeId": "route_a",
+            "userType": "wheelchair",
+            "userTypeLabel": "휠체어 이용자",
+            "name": "경로 A",
+            "duration": 14,
+            "distance": 850,
+            "totalRiskScore": 40,
+            "analysisProviders": ["google"],
+            "routeSummary": {"recommendation": "위험"},
+            "points": [
+                {
+                    "pointId": "a_1",
+                    "locationName": "지점 A1",
+                    "imageUrl": "/assets/roadview/route_a/route_a_1.jpg",
+                    "roadviewImagePath": "assets/roadview/route_a/route_a_1.jpg",
+                    "analysisProvider": "google",
+                    "segmentRiskScore": 10,
+                    "detectedElements": {},
+                    "riskFactors": [],
+                }
+            ],
+        }
+    ]
+
+    stored = build_storage_payload(payload)
+    assert set(stored[0]) == {"routeId", "userType", "userTypeLabel", "routeSummary", "points"}
+    assert "imageUrl" not in stored[0]["points"][0]
+    assert "segmentRiskScore" not in stored[0]["points"][0]

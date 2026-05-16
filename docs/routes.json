@@ -18,42 +18,42 @@
           {
             "pointId": "a_1",
             "locationName": "경로 A 첫 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_1.png"
+            "imageUrl": "/assets/roadview/route_a/route_a_1.jpg"
           },
           {
             "pointId": "a_2",
             "locationName": "경로 A 두 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_2.png"
+            "imageUrl": "/assets/roadview/route_a/route_a_2.jpg"
           },
           {
             "pointId": "a_3",
             "locationName": "경로 A 세 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_3.png"
+            "imageUrl": "/assets/roadview/route_a/route_a_3.jpg"
           },
           {
             "pointId": "a_4",
             "locationName": "경로 A 네 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_4.png"
+            "imageUrl": "/assets/roadview/route_a/route_a_4.jpg"
           },
           {
             "pointId": "a_5",
             "locationName": "경로 A 다섯 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_5.png"
+            "imageUrl": "/assets/roadview/route_a/route_a_5.jpg"
           },
           {
             "pointId": "a_6",
             "locationName": "경로 A 여섯 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_6.png"
+            "imageUrl": "/assets/roadview/route_a/route_a_6.jpg"
           },
           {
             "pointId": "a_7",
             "locationName": "경로 A 일곱 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_7.png"
+            "imageUrl": "/assets/roadview/route_a/route_a_7.jpg"
           },
           {
             "pointId": "a_8",
             "locationName": "경로 A 여덟 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_8.png"
+            "imageUrl": "/assets/roadview/route_a/route_a_8.jpg"
           }
         ]
       },
@@ -67,47 +67,47 @@
           {
             "pointId": "b_1",
             "locationName": "경로 B 첫 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_1.png"
+            "imageUrl": "/assets/roadview/route_b/route_b_1.jpg"
           },
           {
             "pointId": "b_2",
             "locationName": "경로 B 두 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_2.png"
+            "imageUrl": "/assets/roadview/route_b/route_b_2.jpg"
           },
           {
             "pointId": "b_3",
             "locationName": "경로 B 세 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_3.png"
+            "imageUrl": "/assets/roadview/route_b/route_b_3.jpg"
           },
           {
             "pointId": "b_4",
             "locationName": "경로 B 네 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_4.png"
+            "imageUrl": "/assets/roadview/route_b/route_b_4.jpg"
           },
           {
             "pointId": "b_5",
             "locationName": "경로 B 다섯 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_5.png"
+            "imageUrl": "/assets/roadview/route_b/route_b_5.jpg"
           },
           {
             "pointId": "b_6",
             "locationName": "경로 B 여섯 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_6.png"
+            "imageUrl": "/assets/roadview/route_b/route_b_6.jpg"
           },
           {
             "pointId": "b_7",
             "locationName": "경로 B 일곱 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_7.png"
+            "imageUrl": "/assets/roadview/route_b/route_b_7.jpg"
           },
           {
             "pointId": "b_8",
             "locationName": "경로 B 여덟 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_8.png"
+            "imageUrl": "/assets/roadview/route_b/route_b_8.jpg"
           },
           {
             "pointId": "b_9",
             "locationName": "경로 B 아홉 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_9.png"
+            "imageUrl": "/assets/roadview/route_b/route_b_9.jpg"
           }
         ]
       },

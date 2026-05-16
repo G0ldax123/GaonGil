@@ -41,6 +41,12 @@ export AI_ANALYZER_PROVIDER=google
 python -m ai.src.main --user-type wheelchair
 ```
 
+특정 route만 테스트하려면:
+
+```bash
+python -m ai.src.main --user-type wheelchair --route-id route_a
+```
+
 또는:
 
 ```bash
@@ -63,8 +69,8 @@ python src/main.py --user-type wheelchair
 
 주의:
 
-- 로컬 자산은 `assets/roadview/<route_id>/route_a_*.png`처럼 route 하위 폴더로 관리한다.
-- 입력 JSON의 `imageUrl`이 `.jpg`여도, 코드가 동일한 stem의 `.png` 자산으로 매핑한다.
+- 로컬 자산은 `assets/roadview/<route_id>/route_a_*.jpg`처럼 route 하위 폴더로 관리한다.
+- 입력 JSON의 `imageUrl`과 동일한 stem의 `.jpg`, `.jpeg`, `.png` 자산을 순서대로 매핑한다.
 
 ## 최종 출력 JSON 예시
 

@@ -17,7 +17,7 @@ else:
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_FRONT_REQUEST_PATH = PROJECT_ROOT / "data" / "front_request.json"
-DATA_AI_RESULTS_PATH = PROJECT_ROOT / "data" / "ai_results_runtime.json"
+DATA_AI_RESULTS_PATH = PROJECT_ROOT / "data" / "ai_results.json"
 
 
 def load_dotenv(dotenv_path: Path | None = None) -> None:
@@ -46,6 +46,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--user-type", choices=["wheelchair", "stroller", "elderly", "crutches"])
     parser.add_argument("--origin", default="")
     parser.add_argument("--destination", default="")
+    parser.add_argument("--route-id", default="", help="Analyze only one route, for example route_a.")
     parser.add_argument("--output", default="", help="Optional JSON output path. Defaults to stdout only.")
     return parser
 
@@ -56,6 +57,60 @@ def load_front_request(path: Path = DATA_FRONT_REQUEST_PATH) -> dict | None:
     if not path.exists():
         return None
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _stored_point_result(point: dict) -> dict:
+    return {
+        "pointId": point.get("pointId", ""),
+        "locationName": point.get("locationName", ""),
+        "slopePercent": point.get("slopePercent"),
+        "slopeLevel": point.get("slopeLevel"),
+        "detectedElements": point.get("detectedElements", {}),
+        "riskFactors": point.get("riskFactors", []),
+        "accessibilityLevel": point.get("accessibilityLevel", ""),
+        "riskLevel": point.get("riskLevel", ""),
+        "recommendation": point.get("recommendation", ""),
+        "summaryTitle": point.get("summaryTitle", ""),
+        "aiSummary": point.get("aiSummary", ""),
+        "reason": point.get("reason", ""),
+    }
+
+
+def _stored_route_result(route: dict) -> dict:
+    return {
+        "routeId": route.get("routeId", ""),
+        "userType": route.get("userType", ""),
+        "userTypeLabel": route.get("userTypeLabel", ""),
+        "routeSummary": route.get("routeSummary", {}),
+        "points": [_stored_point_result(point) for point in route.get("points", [])],
+    }
+
+
+def build_storage_payload(payload: list[dict]) -> list[dict]:
+    """Keep data/ai_results.json aligned with docs/ai_results.json."""
+
+    return [_stored_route_result(route) for route in payload]
+
+
+def load_existing_ai_results(path: Path = DATA_AI_RESULTS_PATH) -> list[dict]:
+    if not path.exists():
+        return []
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def merge_ai_results(existing: list[dict], updates: list[dict]) -> list[dict]:
+    merged = list(existing)
+    update_keys = {
+        (route.get("routeId"), route.get("userType"))
+        for route in updates
+    }
+    merged = [
+        route
+        for route in merged
+        if (route.get("routeId"), route.get("userType")) not in update_keys
+    ]
+    merged.extend(updates)
+    return merged
 
 
 def main() -> int:
@@ -91,14 +146,19 @@ def main() -> int:
         user_type=args.user_type,
         origin=args.origin,
         destination=args.destination,
+        route_id=args.route_id,
     )
+    if args.route_id and not payload:
+        raise SystemExit(f"No analyzable route found for route id: {args.route_id}")
+    storage_payload = build_storage_payload(payload)
     if args.output:
         output_path = Path(args.output)
-        output_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        output_path.write_text(json.dumps(storage_payload, ensure_ascii=False, indent=2), encoding="utf-8")
     elif DATA_AI_RESULTS_PATH.parent.exists():
-        # Keep a runtime artifact in data/ so backend developers can inspect the latest AI output.
-        DATA_AI_RESULTS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps(payload, ensure_ascii=False, indent=2))
+        if args.route_id:
+            storage_payload = merge_ai_results(load_existing_ai_results(), storage_payload)
+        DATA_AI_RESULTS_PATH.write_text(json.dumps(storage_payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(json.dumps(storage_payload, ensure_ascii=False, indent=2))
     return 0
 
 

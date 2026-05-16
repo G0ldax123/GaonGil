@@ -107,16 +107,18 @@ def _normalize_route_set_payload(payload: dict | list) -> list[dict]:
 
 
 def _resolve_asset_path(image_url: str) -> str:
-    """Match JSON imageUrl to the renamed local roadview asset path."""
+    """Match JSON imageUrl to the local roadview asset path."""
 
     if not image_url:
         return ""
     image_name = Path(image_url).stem
     # Group images by route id so roadview captures stay organized as more demo routes are added.
     route_folder = "_".join(image_name.split("_")[:2]) if "_" in image_name else ""
-    png_path = BASE_DIR.parent / "assets" / "roadview" / route_folder / f"{image_name}.png"
-    if png_path.exists():
-        return f"assets/roadview/{route_folder}/{png_path.name}"
+    route_dir = BASE_DIR.parent / "assets" / "roadview" / route_folder
+    for extension in (".jpg", ".jpeg", ".png"):
+        asset_path = route_dir / f"{image_name}{extension}"
+        if asset_path.exists():
+            return f"assets/roadview/{route_folder}/{asset_path.name}"
     return image_url.lstrip("/")
 
 
@@ -273,6 +275,22 @@ def _build_point_detected_elements(analysis: dict) -> dict:
     }
 
 
+def _analysis_from_point_result(point_result: dict) -> dict:
+    """Map ai_results-style point detections back into the scoring input shape."""
+
+    detected_elements = point_result.get("detectedElements", {})
+    return {
+        "detected": {
+            "stairs": detected_elements.get("stairs", "unknown"),
+            "curb": detected_elements.get("curb", "unknown"),
+            "steep_slope": detected_elements.get("steepRoad", "unknown"),
+            "narrow_path": detected_elements.get("narrowRoad", "unknown"),
+            "uneven_surface": detected_elements.get("otherObstacle", "unknown"),
+            "obstacle": detected_elements.get("otherObstacle", "unknown"),
+        }
+    }
+
+
 def _build_point_risk_factors(point_analysis: dict) -> list[dict]:
     risk_factors = []
     detected_elements = point_analysis["detectedElements"]
@@ -387,6 +405,24 @@ def analyze_route(route: dict, user_type: str, analyzer: BaseAccessibilityAnalyz
         route_payload["origin"] = route.get("origin", "")
         route_payload["destination"] = route.get("destination", "")
         route_result = provider.analyze_route(route_payload, user_type)
+        route_result.setdefault("routeId", route["routeId"])
+        route_result.setdefault("userType", user_type)
+        route_result.setdefault("userTypeLabel", USER_LABELS.get(user_type, user_type))
+        route_result.setdefault("name", route["name"])
+        route_result.setdefault("duration", route["duration"])
+        route_result.setdefault("distance", route["distance"])
+        route_points_by_id = {point["pointId"]: point for point in route.get("points", [])}
+        for point_result in route_result.get("points", []):
+            route_point = route_points_by_id.get(point_result.get("pointId"), {})
+            point_result.setdefault("imageUrl", route_point.get("imageUrl", ""))
+            point_result.setdefault("roadviewImagePath", route_point.get("roadviewImagePath", ""))
+            point_result.setdefault("analysisProvider", "google")
+            if "segmentRiskScore" not in point_result:
+                point_result["segmentRiskScore"] = calculate_segment_risk(
+                    _analysis_from_point_result(point_result),
+                    user_type,
+                    route_point,
+                )
         route_result["totalRiskScore"] = sum(point.get("segmentRiskScore", 0) for point in route_result.get("points", []))
         return route_result
 
@@ -424,11 +460,20 @@ def analyze_route(route: dict, user_type: str, analyzer: BaseAccessibilityAnalyz
     return route_result
 
 
-def rank_routes(routes: Iterable[dict], user_type: str, analyzer: BaseAccessibilityAnalyzer | None = None) -> list[dict]:
+def rank_routes(
+    routes: Iterable[dict],
+    user_type: str,
+    analyzer: BaseAccessibilityAnalyzer | None = None,
+    route_id: str = "",
+) -> list[dict]:
     """Analyze and sort candidate routes by total risk score."""
 
     # Ignore placeholder routes that have no captured points yet.
-    analyzable_routes = [route for route in routes if route.get("points")]
+    analyzable_routes = [
+        route
+        for route in routes
+        if route.get("points") and (not route_id or route.get("routeId") == route_id)
+    ]
     route_results = [analyze_route(route, user_type, analyzer) for route in analyzable_routes]
     return sorted(route_results, key=lambda item: (item["totalRiskScore"], item["distance"]))
 
@@ -438,9 +483,10 @@ def analyze_routes_for_user(
     origin: str,
     destination: str,
     analyzer: BaseAccessibilityAnalyzer | None = None,
+    route_id: str = "",
 ) -> list[dict]:
     """Return the ai_results-style route array consumed by backend/data_loader.py."""
 
     route_sets = load_route_sets()
     route_set = _choose_route_set(route_sets, origin, destination)
-    return rank_routes(route_set["routes"], user_type, analyzer)
+    return rank_routes(route_set["routes"], user_type, analyzer, route_id)

@@ -49,7 +49,7 @@
           "summaryTitle": "주의가 필요한 구간",
           "aiSummary": "휠체어 이용자 기준으로 단차와 가파른 길로 인해 주의가 필요한 구간입니다.",
           "reason": "계단은 보이지 않지만 보도 진입부 단차와 7.8% 경사도가 있어 이동 시 보조가 필요할 수 있습니다.",
-          "imageUrl": "/assets/roadview/route_a/route_a_1.png",
+          "imageUrl": "/assets/roadview/route_a/route_a_1.jpg",
           "aiLocationName": "정문 앞 보도"
         },
         {
@@ -79,7 +79,7 @@
           "summaryTitle": "좁은 길 주의",
           "aiSummary": "휠체어 이용자 기준으로 보도 폭이 좁아 주의가 필요한 구간입니다.",
           "reason": "계단이나 급경사는 확인되지 않았지만, 보도 폭이 좁아 이동 중 회피 공간이 부족할 수 있습니다.",
-          "imageUrl": "/assets/roadview/route_a/route_a_2.png",
+          "imageUrl": "/assets/roadview/route_a/route_a_2.jpg",
           "aiLocationName": "보도 폭이 좁은 구간"
         },
         {
@@ -101,33 +101,33 @@
           "summaryTitle": "이동 가능 구간",
           "aiSummary": "휠체어 이용자 기준으로 특별한 위험 요소가 적어 이동 가능성이 높은 구간입니다.",
           "reason": "계단, 단차, 가파른 길, 좁은 길이 확인되지 않았고 경사도도 완만합니다.",
-          "imageUrl": "/assets/roadview/route_a/route_a_3.png",
+          "imageUrl": "/assets/roadview/route_a/route_a_3.jpg",
           "aiLocationName": "도착지 인근 보도"
         },
         {
           "pointId": "a_4",
           "locationName": "경로 A 네 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_a/route_a_4.png"
+          "imageUrl": "/assets/roadview/route_a/route_a_4.jpg"
         },
         {
           "pointId": "a_5",
           "locationName": "경로 A 다섯 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_a/route_a_5.png"
+          "imageUrl": "/assets/roadview/route_a/route_a_5.jpg"
         },
         {
           "pointId": "a_6",
           "locationName": "경로 A 여섯 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_a/route_a_6.png"
+          "imageUrl": "/assets/roadview/route_a/route_a_6.jpg"
         },
         {
           "pointId": "a_7",
           "locationName": "경로 A 일곱 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_a/route_a_7.png"
+          "imageUrl": "/assets/roadview/route_a/route_a_7.jpg"
         },
         {
           "pointId": "a_8",
           "locationName": "경로 A 여덟 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_a/route_a_8.png"
+          "imageUrl": "/assets/roadview/route_a/route_a_8.jpg"
         }
       ],
       "recommendation": "주의",
@@ -149,47 +149,47 @@
         {
           "pointId": "b_1",
           "locationName": "경로 B 첫 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_b/route_b_1.png"
+          "imageUrl": "/assets/roadview/route_b/route_b_1.jpg"
         },
         {
           "pointId": "b_2",
           "locationName": "경로 B 두 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_b/route_b_2.png"
+          "imageUrl": "/assets/roadview/route_b/route_b_2.jpg"
         },
         {
           "pointId": "b_3",
           "locationName": "경로 B 세 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_b/route_b_3.png"
+          "imageUrl": "/assets/roadview/route_b/route_b_3.jpg"
         },
         {
           "pointId": "b_4",
           "locationName": "경로 B 네 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_b/route_b_4.png"
+          "imageUrl": "/assets/roadview/route_b/route_b_4.jpg"
         },
         {
           "pointId": "b_5",
           "locationName": "경로 B 다섯 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_b/route_b_5.png"
+          "imageUrl": "/assets/roadview/route_b/route_b_5.jpg"
         },
         {
           "pointId": "b_6",
           "locationName": "경로 B 여섯 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_b/route_b_6.png"
+          "imageUrl": "/assets/roadview/route_b/route_b_6.jpg"
         },
         {
           "pointId": "b_7",
           "locationName": "경로 B 일곱 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_b/route_b_7.png"
+          "imageUrl": "/assets/roadview/route_b/route_b_7.jpg"
         },
         {
           "pointId": "b_8",
           "locationName": "경로 B 여덟 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_b/route_b_8.png"
+          "imageUrl": "/assets/roadview/route_b/route_b_8.jpg"
         },
         {
           "pointId": "b_9",
           "locationName": "경로 B 아홉 번째 주요 지점",
-          "imageUrl": "/assets/roadview/route_b/route_b_9.png"
+          "imageUrl": "/assets/roadview/route_b/route_b_9.jpg"
         }
       ],
       "recommendation": "위험",
