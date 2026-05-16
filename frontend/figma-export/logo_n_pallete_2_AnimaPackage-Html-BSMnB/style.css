@@ -1,0 +1,264 @@
+.screen {
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #000000;
+  width: 100%;
+  min-width: 611px;
+  min-height: 281px;
+  position: relative;
+}
+
+.screen .img {
+  position: absolute;
+  top: 100px;
+  left: 233px;
+  width: 51px;
+  height: 50px;
+  aspect-ratio: 1.02;
+}
+
+.screen .img-2 {
+  position: absolute;
+  top: 100px;
+  left: 168px;
+  width: 50px;
+  height: 50px;
+  aspect-ratio: 1;
+}
+
+.screen .img-3 {
+  position: absolute;
+  top: 100px;
+  left: 102px;
+  width: 51px;
+  height: 50px;
+  aspect-ratio: 1.02;
+}
+
+.screen .x {
+  position: absolute;
+  top: 105px;
+  left: 41px;
+  width: 41px;
+  height: 39px;
+  aspect-ratio: 1.05;
+}
+
+.screen .element {
+  position: absolute;
+  top: 167px;
+  left: 133px;
+  width: 49px;
+  height: 49px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.screen .element-2 {
+  position: absolute;
+  top: 167px;
+  left: 84px;
+  width: 49px;
+  height: 49px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.screen .element-3 {
+  position: absolute;
+  top: 167px;
+  left: 32px;
+  width: 49px;
+  height: 49px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.screen .div {
+  position: absolute;
+  top: 42px;
+  left: 202px;
+  width: 42px;
+  height: 41px;
+  background-color: #3665fc;
+  border-radius: 10px;
+}
+
+.screen .element-4 {
+  position: absolute;
+  top: 42px;
+  left: 151px;
+  width: 42px;
+  height: 41px;
+  background-color: #111111;
+  border-radius: 10px;
+}
+
+.screen .element-5 {
+  position: absolute;
+  top: 42px;
+  left: 95px;
+  width: 43px;
+  height: 41px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.screen .element-6 {
+  position: absolute;
+  top: 42px;
+  left: 40px;
+  width: 42px;
+  height: 41px;
+  background-color: #9ab3eb;
+  border-radius: 10px;
+}
+
+.screen .rectangle {
+  position: absolute;
+  top: 48px;
+  left: 409px;
+  width: 51px;
+  height: 30px;
+  background-color: #3e7c2e;
+  border-radius: 10px;
+}
+
+.screen .rectangle-2 {
+  position: absolute;
+  top: 48px;
+  left: 465px;
+  width: 52px;
+  height: 30px;
+  background-color: #edca52;
+  border-radius: 10px;
+}
+
+.screen .rectangle-3 {
+  position: absolute;
+  top: 48px;
+  left: 522px;
+  width: 51px;
+  height: 30px;
+  background-color: #d4312a;
+  border-radius: 10px;
+}
+
+.screen .ellipse {
+  top: 73px;
+  left: 326px;
+  position: absolute;
+  width: 33px;
+  height: 33px;
+  background-color: #1e1e1e;
+  border-radius: 16.5px;
+  box-shadow: 0px 4px 4px #0000001a;
+}
+
+.screen .ellipse-2 {
+  top: 120px;
+  left: 324px;
+  position: absolute;
+  width: 33px;
+  height: 33px;
+  background-color: #1e1e1e;
+  border-radius: 16.5px;
+  box-shadow: 0px 4px 4px #0000001a;
+}
+
+.screen .ellipse-3 {
+  top: 161px;
+  left: 324px;
+  position: absolute;
+  width: 33px;
+  height: 33px;
+  background-color: #1e1e1e;
+  border-radius: 16.5px;
+  box-shadow: 0px 4px 4px #0000001a;
+}
+
+.screen .solid-stairs {
+  position: absolute;
+  top: 82px;
+  left: 334px;
+  width: 18px;
+  height: 16px;
+  display: flex;
+  aspect-ratio: 1.12;
+}
+
+.screen .vector {
+  flex: 1;
+  width: 18px;
+}
+
+.screen .teenyicons-up-solid {
+  position: absolute;
+  top: 169px;
+  left: 331px;
+  width: 18px;
+  height: 16px;
+  aspect-ratio: 1;
+}
+
+.screen .ellipse-4 {
+  top: 202px;
+  left: 324px;
+  position: absolute;
+  width: 33px;
+  height: 33px;
+  background-color: #1e1e1e;
+  border-radius: 16.5px;
+  box-shadow: 0px 4px 4px #0000001a;
+}
+
+.screen .group {
+  position: absolute;
+  top: 208px;
+  left: 334px;
+  width: 12px;
+  height: 20px;
+  display: flex;
+  gap: 3px;
+}
+
+.screen .vector-2 {
+  margin-left: -1.2px;
+  margin-top: -1.2px;
+  width: 6px;
+  height: 22.5px;
+}
+
+.screen .vector-3 {
+  margin-top: -1.2px;
+  width: 6px;
+  height: 22.5px;
+}
+
+.screen .group-2 {
+  position: absolute;
+  top: 134px;
+  left: 329px;
+  width: 25px;
+  height: 6px;
+}
+
+.screen .rectangle-4 {
+  position: absolute;
+  top: 0;
+  left: 11px;
+  width: 14px;
+  height: 6px;
+  background-color: #e6e6e6;
+  border-radius: 1px;
+}
+
+.screen .rectangle-5 {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 25px;
+  height: 3px;
+  background-color: #e6e6e6;
+  border-radius: 1px;
+}
