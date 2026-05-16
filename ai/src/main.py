@@ -63,12 +63,7 @@ def _stored_point_result(point: dict) -> dict:
     return {
         "pointId": point.get("pointId", ""),
         "locationName": point.get("locationName", ""),
-        "slopePercent": point.get("slopePercent"),
-        "slopeLevel": point.get("slopeLevel"),
         "detectedElements": point.get("detectedElements", {}),
-        "riskFactors": point.get("riskFactors", []),
-        "accessibilityLevel": point.get("accessibilityLevel", ""),
-        "riskLevel": point.get("riskLevel", ""),
         "recommendation": point.get("recommendation", ""),
         "summaryTitle": point.get("summaryTitle", ""),
         "aiSummary": point.get("aiSummary", ""),
@@ -77,11 +72,19 @@ def _stored_point_result(point: dict) -> dict:
 
 
 def _stored_route_result(route: dict) -> dict:
+    route_summary = route.get("routeSummary", {})
     return {
         "routeId": route.get("routeId", ""),
         "userType": route.get("userType", ""),
         "userTypeLabel": route.get("userTypeLabel", ""),
-        "routeSummary": route.get("routeSummary", {}),
+        "routeSummary": {
+            "recommendation": route_summary.get("recommendation", ""),
+            "summaryTitle": route_summary.get("summaryTitle", ""),
+            "aiSummary": route_summary.get("aiSummary", ""),
+            "mainRiskFactors": route_summary.get("mainRiskFactors", []),
+            "mainRiskPoints": route_summary.get("mainRiskPoints", []),
+            "reason": route_summary.get("reason", ""),
+        },
         "points": [_stored_point_result(point) for point in route.get("points", [])],
     }
 

@@ -290,9 +290,8 @@ def _analysis_from_point_result(point_result: dict) -> dict:
     }
 
 
-def _build_point_risk_factors(point_analysis: dict) -> list[dict]:
+def _build_point_risk_factors(detected_elements: dict, severity: str) -> list[dict]:
     risk_factors = []
-    detected_elements = point_analysis["detectedElements"]
 
     for risk_type, value in detected_elements.items():
         if value != "true":
@@ -303,7 +302,7 @@ def _build_point_risk_factors(point_analysis: dict) -> list[dict]:
             {
                 "type": risk_type,
                 "label": meta["label"],
-                "severity": point_analysis["riskLevel"],
+                "severity": severity,
                 "displayText": meta["displayText"],
                 "description": meta["description"],
             }
@@ -311,10 +310,9 @@ def _build_point_risk_factors(point_analysis: dict) -> list[dict]:
     return risk_factors
 
 
-def _build_point_summary(point_analysis: dict, user_type: str) -> tuple[str, str, str]:
+def _build_point_summary(risk_factors: list[dict], accessibility_level: str, user_type: str) -> tuple[str, str, str]:
     user_label = USER_LABELS.get(user_type, user_type)
-    risk_labels = [factor["label"] for factor in point_analysis["riskFactors"]]
-    accessibility_level = point_analysis["accessibilityLevel"]
+    risk_labels = [factor["label"] for factor in risk_factors]
     joined = ", ".join(risk_labels) if risk_labels else "일부 위험 요소"
 
     if accessibility_level == "good":
@@ -337,6 +335,7 @@ def _build_route_summary(route_result: dict, user_type: str) -> dict:
     user_label = USER_LABELS.get(user_type, user_type)
     main_risk_factors = route_result["routeSummary"]["mainRiskFactors"]
     accessibility_level = route_result["routeSummary"]["accessibilityLevel"]
+    main_risk_points = route_result["routeSummary"]["mainRiskPoints"]
     risk_text = ", ".join(main_risk_factors) if main_risk_factors else "특별한 위험 요소"
 
     if accessibility_level == "good":
@@ -351,12 +350,11 @@ def _build_route_summary(route_result: dict, user_type: str) -> dict:
 
     return {
         "recommendation": ROUTE_RECOMMENDATION_MAP[accessibility_level],
-        "riskLevel": route_result["routeSummary"]["riskLevel"],
         "summaryTitle": ROUTE_SUMMARY_TITLE_MAP[accessibility_level],
         "aiSummary": ai_summary,
         "mainRiskFactors": main_risk_factors,
+        "mainRiskPoints": main_risk_points,
         "reason": reason,
-        "accessibilityLevel": accessibility_level,
     }
 
 
@@ -374,18 +372,14 @@ def analyze_point(point: dict, user_type: str, analyzer: BaseAccessibilityAnalyz
         "locationName": point["locationName"],
         "imageUrl": point.get("imageUrl", ""),
         "roadviewImagePath": point.get("roadviewImagePath", ""),
-        "slopePercent": point.get("slopePercent"),
-        "slopeLevel": point.get("slopeLevel"),
         "detectedElements": _build_point_detected_elements(analysis),
-        "riskFactors": [],
-        "accessibilityLevel": accessibility_level,
-        "riskLevel": risk_level,
         "recommendation": ROUTE_RECOMMENDATION_MAP[accessibility_level],
         "analysisProvider": analysis.get("provider", "unknown"),
     }
-    # Build the exact point payload the backend and frontend sample files already expect.
-    point_result["riskFactors"] = _build_point_risk_factors(point_result)
-    summary_title, ai_summary, reason = _build_point_summary(point_result, user_type)
+    risk_factors = _build_point_risk_factors(point_result["detectedElements"], risk_level)
+    summary_title, ai_summary, reason = _build_point_summary(
+        risk_factors, accessibility_level, user_type
+    )
     point_result["summaryTitle"] = summary_title
     point_result["aiSummary"] = ai_summary
     point_result["reason"] = reason
@@ -414,6 +408,11 @@ def analyze_route(route: dict, user_type: str, analyzer: BaseAccessibilityAnalyz
             point_result.setdefault("imageUrl", route_point.get("imageUrl", ""))
             point_result.setdefault("roadviewImagePath", route_point.get("roadviewImagePath", ""))
             point_result.setdefault("analysisProvider", "google")
+            point_result.pop("riskFactors", None)
+            point_result.pop("accessibilityLevel", None)
+            point_result.pop("riskLevel", None)
+            point_result.pop("slopePercent", None)
+            point_result.pop("slopeLevel", None)
             if "segmentRiskScore" not in point_result:
                 point_result["segmentRiskScore"] = calculate_segment_risk(
                     _analysis_from_point_result(point_result),
@@ -426,13 +425,19 @@ def analyze_route(route: dict, user_type: str, analyzer: BaseAccessibilityAnalyz
     analyzed_points = []
     total_risk_score = 0
     main_risk_factors: list[str] = []
+    main_risk_points: list[str] = []
 
     # Analyze every point, including synthetic points derived from locally captured roadview assets.
     for point in route.get("points", []):
         point_result, point_risk_score = analyze_point(point, user_type, provider)
         analyzed_points.append(point_result)
         total_risk_score += point_risk_score
-        for factor in point_result["riskFactors"]:
+        point_risk_factors = _build_point_risk_factors(point_result["detectedElements"], _route_risk_level(point_risk_score))
+        if point_risk_factors:
+            main_risk_points.append(
+                f"{point_result['pointId']}: {', '.join(factor['label'] for factor in point_risk_factors)}"
+            )
+        for factor in point_risk_factors:
             if factor["label"] not in main_risk_factors:
                 main_risk_factors.append(factor["label"])
 
@@ -446,8 +451,8 @@ def analyze_route(route: dict, user_type: str, analyzer: BaseAccessibilityAnalyz
         "totalRiskScore": total_risk_score,
         "analysisProviders": sorted({point["analysisProvider"] for point in analyzed_points}),
         "routeSummary": {
-            "riskLevel": _route_risk_level(total_risk_score),
             "mainRiskFactors": main_risk_factors,
+            "mainRiskPoints": main_risk_points,
             "accessibilityLevel": accessibility_level,
         },
     }

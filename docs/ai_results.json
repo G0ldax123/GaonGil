@@ -5,7 +5,6 @@
     "userTypeLabel": "휠체어 이용자",
     "routeSummary": {
       "recommendation": "주의",
-      "riskLevel": "medium",
       "summaryTitle": "일부 주의 구간이 있는 경로",
       "aiSummary": "route_a는 계단은 확인되지 않았지만 일부 구간에 단차와 가파른 길이 있어 휠체어 이용자 기준으로 주의가 필요한 경로입니다.",
       "mainRiskFactors": [
@@ -29,8 +28,6 @@
           "narrowRoad": "false",
           "otherObstacle": "unknown"
         },
-        "accessibilityLevel": "caution",
-        "riskLevel": "medium",
         "recommendation": "주의",
         "summaryTitle": "주의가 필요한 구간",
         "aiSummary": "휠체어 이용자 기준으로 단차와 가파른 길로 인해 주의가 필요한 구간입니다.",
@@ -46,8 +43,6 @@
           "narrowRoad": "true",
           "otherObstacle": "false"
         },
-        "accessibilityLevel": "caution",
-        "riskLevel": "medium",
         "recommendation": "주의",
         "summaryTitle": "좁은 길 주의",
         "aiSummary": "휠체어 이용자 기준으로 보도 폭이 좁아 주의가 필요한 구간입니다.",
@@ -63,8 +58,6 @@
           "narrowRoad": "false",
           "otherObstacle": "false"
         },
-        "accessibilityLevel": "good",
-        "riskLevel": "low",
         "recommendation": "안전",
         "summaryTitle": "이동 가능 구간",
         "aiSummary": "휠체어 이용자 기준으로 특별한 위험 요소가 적어 이동 가능성이 높은 구간입니다.",

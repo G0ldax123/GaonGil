@@ -105,8 +105,6 @@ def _route_json_schema() -> dict:
         "properties": {
             "pointId": {"type": "string"},
             "locationName": {"type": "string"},
-            "slopePercent": {"type": ["number", "null"]},
-            "slopeLevel": {"type": ["string", "null"]},
             "detectedElements": {
                 "type": "object",
                 "properties": {
@@ -118,22 +116,6 @@ def _route_json_schema() -> dict:
                 },
                 "required": ["stairs", "curb", "steepRoad", "narrowRoad", "otherObstacle"],
             },
-            "riskFactors": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "type": {"type": "string"},
-                        "label": {"type": "string"},
-                        "severity": {"type": "string"},
-                        "displayText": {"type": "string"},
-                        "description": {"type": "string"},
-                    },
-                    "required": ["type", "label", "severity", "displayText", "description"],
-                },
-            },
-            "accessibilityLevel": {"type": "string"},
-            "riskLevel": {"type": "string"},
             "recommendation": {"type": "string"},
             "summaryTitle": {"type": "string"},
             "aiSummary": {"type": "string"},
@@ -142,12 +124,7 @@ def _route_json_schema() -> dict:
         "required": [
             "pointId",
             "locationName",
-            "slopePercent",
-            "slopeLevel",
             "detectedElements",
-            "riskFactors",
-            "accessibilityLevel",
-            "riskLevel",
             "recommendation",
             "summaryTitle",
             "aiSummary",
@@ -164,13 +141,13 @@ def _route_json_schema() -> dict:
                 "type": "object",
                 "properties": {
                     "recommendation": {"type": "string"},
-                    "riskLevel": {"type": "string"},
                     "summaryTitle": {"type": "string"},
                     "aiSummary": {"type": "string"},
                     "mainRiskFactors": {"type": "array", "items": {"type": "string"}},
+                    "mainRiskPoints": {"type": "array", "items": {"type": "string"}},
                     "reason": {"type": "string"},
                 },
-                "required": ["recommendation", "riskLevel", "summaryTitle", "aiSummary", "mainRiskFactors", "reason"],
+                "required": ["recommendation", "summaryTitle", "aiSummary", "mainRiskFactors", "mainRiskPoints", "reason"],
             },
             "points": {"type": "array", "items": point_schema},
         },
