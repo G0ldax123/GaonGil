@@ -1,0 +1,67 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+/* @FONTWARNING[{"type": "restricted", "family": "Pretendard-Bold", "weight": "700", "style": "normal", "allowsCrossOrigin": true}] */
+
+@font-face {
+  font-family: "Pretendard-Bold";
+  src: url("https://anima-uploads.s3.amazonaws.com/projects/5f06a5517739f30d3a8fc967/fonts/pretendard-bold.otf")
+    format("opentype");
+}
+/* @FONTWARNING[{"type": "restricted", "family": "SF Pro Display-Medium", "weight": "500", "style": "normal", "allowsCrossOrigin": true}] */
+
+@font-face {
+  font-family: "SF Pro Display-Medium";
+  src: url("https://anima-uploads.s3.amazonaws.com/projects/64f7ed1586d1fc0125de8d9c/fonts/sf-pro-display-medium.otf")
+    format("opentype");
+}
+/* @FONTWARNING[{"type": "restricted", "family": "Pretendard-Medium", "weight": "500", "style": "normal", "allowsCrossOrigin": true}] */
+
+@font-face {
+  font-family: "Pretendard-Medium";
+  src: url("https://anima-uploads.s3.amazonaws.com/projects/6733f3b89c04f21c988716b9/fonts/pretendard-medium.otf")
+    format("opentype");
+}
+/* @FONTWARNING[{"type": "restricted", "family": "Pretendard-SemiBold", "weight": "600", "style": "normal", "allowsCrossOrigin": true}] */
+
+@font-face {
+  font-family: "Pretendard-SemiBold";
+  src: url("https://anima-uploads.s3.amazonaws.com/projects/67616c3af382bd2c4698df42/fonts/pretendard-semibold.otf")
+    format("opentype");
+}
+/* @FONTWARNING[{"type": "restricted", "family": "Pretendard-ExtraBold", "weight": "800", "style": "normal", "allowsCrossOrigin": true}] */
+
+@font-face {
+  font-family: "Pretendard-ExtraBold";
+  src: url("https://anima-uploads.s3.amazonaws.com/projects/6733f3b89c04f21c988716b9/fonts/pretendard-extrabold.otf")
+    format("opentype");
+}
+/* @FONTWARNING[{"type": "restricted", "family": "Pretendard-Black", "weight": "400", "style": "normal", "allowsCrossOrigin": true}] */
+
+@font-face {
+  font-family: "Pretendard-Black";
+  src: url("https://anima-uploads.s3.amazonaws.com/projects/6207938bad4cbb51c8d150e8/fonts/pretendard-black.ttf")
+    format("truetype");
+}
+/* @FONTWARNING[{"type": "restricted", "family": "Pretendard-Regular", "weight": "400", "style": "normal", "allowsCrossOrigin": true}] */
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://anima-uploads.s3.amazonaws.com/projects/681c02510381d3a49b99eb95/fonts/pretendard-regular.otf")
+    format("opentype");
+}

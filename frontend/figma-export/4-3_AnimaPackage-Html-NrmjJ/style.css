@@ -1,0 +1,456 @@
+.element {
+  background-color: #ffffff;
+  width: 100%;
+  min-width: 360px;
+  min-height: 780px;
+  position: relative;
+}
+
+.element .status-bar-ios {
+  display: flex;
+  width: 360px;
+  height: 46px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 16px 35px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+}
+
+.element .time {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -1.5px;
+  margin-bottom: -1.5px;
+}
+
+.element .clock {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.element .text-wrapper {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "SF Pro Display-Medium", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .icons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8.5px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.element .cellular-signal {
+  position: relative;
+  width: 18px;
+  height: 10px;
+}
+
+.element .bar {
+  position: absolute;
+  width: 100%;
+  height: 40.00%;
+  top: 60.00%;
+  left: 0;
+}
+
+.element .img {
+  position: absolute;
+  width: 72.22%;
+  height: 60.00%;
+  top: 40.00%;
+  left: 27.78%;
+}
+
+.element .bar-2 {
+  position: absolute;
+  width: 44.44%;
+  height: 80.00%;
+  top: 20.00%;
+  left: 55.56%;
+}
+
+.element .bar-3 {
+  position: absolute;
+  width: 16.67%;
+  height: 100%;
+  top: 0;
+  left: 83.33%;
+}
+
+.element .wifi {
+  position: relative;
+  width: 16px;
+  height: 11.62px;
+}
+
+.element .bar-4 {
+  position: absolute;
+  width: 65.68%;
+  height: 30.16%;
+  top: 69.84%;
+  left: 34.32%;
+}
+
+.element .bar-5 {
+  position: absolute;
+  width: 81.25%;
+  height: 66.27%;
+  top: 33.73%;
+  left: 18.75%;
+}
+
+.element .bar-6 {
+  position: absolute;
+  width: 100%;
+  height: 99.99%;
+  top: 0;
+  left: 0;
+}
+
+.element .battery {
+  position: relative;
+  width: 24px;
+  height: 12px;
+}
+
+.element .border {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.element .indicator {
+  position: absolute;
+  width: 70.83%;
+  height: 66.67%;
+  top: 16.67%;
+  left: 8.33%;
+  background-color: #000000;
+  border-radius: 1px;
+}
+
+.element .cap {
+  position: absolute;
+  width: 8.33%;
+  height: 66.67%;
+  top: 33.33%;
+  left: 91.67%;
+}
+
+.element .nav-bar-gesture {
+  position: absolute;
+  top: 759px;
+  left: 0;
+  width: 360px;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.element .si {
+  margin-top: 1px;
+  height: 6px;
+  width: 52px;
+  background-color: #c4c4c480;
+  border-radius: 100px;
+}
+
+.element .div {
+  position: absolute;
+  top: 86px;
+  left: 256px;
+  font-family: "Pretendard-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #3665fc;
+  font-size: 11px;
+  text-align: right;
+  line-height: 10px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.element .codex-etc-horisontal {
+  position: absolute;
+  top: 79px;
+  left: 48px;
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1;
+}
+
+.element .ellipse {
+  left: 74px;
+  position: absolute;
+  top: 80px;
+  width: 22px;
+  height: 22px;
+  background-color: #3665fc;
+  border-radius: 11px;
+}
+
+.element .ellipse-2 {
+  left: 126px;
+  position: absolute;
+  top: 80px;
+  width: 22px;
+  height: 22px;
+  background-color: #3665fc;
+  border-radius: 11px;
+}
+
+.element .text-wrapper-2 {
+  position: absolute;
+  top: 85px;
+  left: 134px;
+  width: 6px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.element .img-2 {
+  position: absolute;
+  top: 79px;
+  left: 100px;
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1;
+}
+
+.element .text-wrapper-3 {
+  position: absolute;
+  top: 109px;
+  left: 120px;
+  font-family: "Pretendard-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #3665fc;
+  font-size: 9px;
+  text-align: center;
+  line-height: 10px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.element .group {
+  position: absolute;
+  top: 80px;
+  left: 24px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  background-color: #9ab3eb;
+  border-radius: 11px;
+}
+
+.element .bi-check {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  margin-left: 3px;
+  aspect-ratio: 1;
+}
+
+.element .bi-check-wrapper {
+  position: absolute;
+  top: 80px;
+  left: 74px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  background-color: #9ab3eb;
+  border-radius: 11px;
+}
+
+.element .rectangle {
+  position: absolute;
+  top: 136px;
+  left: 24px;
+  width: 314px;
+  height: 36px;
+}
+
+.element .group-2 {
+  position: absolute;
+  top: 141px;
+  left: 65px;
+  width: 239px;
+  height: 26px;
+  display: flex;
+}
+
+.element .text-wrapper-4 {
+  margin-top: 4px;
+  width: 26px;
+  height: 18px;
+  font-family: "Pretendard-ExtraBold", Helvetica;
+  font-weight: 800;
+  color: #d4312a;
+  font-size: 15px;
+  line-height: normal;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.element .vector {
+  margin-top: 3.8px;
+  width: 1px;
+  height: 18.5px;
+  margin-left: 9.8px;
+}
+
+.element .p {
+  display: flex;
+  align-items: center;
+  width: 36px;
+  height: 26px;
+  margin-left: 9.2px;
+  font-family: "Pretendard-Black", Helvetica;
+  font-weight: 400;
+  color: #42454d;
+  font-size: 22px;
+  line-height: normal;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.element .span {
+  font-weight: 900;
+}
+
+.element .text-wrapper-5 {
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.element .vector-2 {
+  margin-top: 3.8px;
+  width: 1px;
+  height: 18.5px;
+  margin-left: 10.8px;
+}
+
+.element .text-wrapper-6 {
+  margin-top: 5px;
+  width: 130px;
+  height: 16px;
+  margin-left: 9.2px;
+  font-family: "Pretendard-Regular", Helvetica;
+  font-weight: 400;
+  color: #42454d;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .group-3 {
+  position: absolute;
+  top: 193px;
+  left: 0;
+  width: 360px;
+  height: 515px;
+  background-image: url(./img/map-seongbuk-gu-seoul-south-korea.png);
+  background-size: 100% 100%;
+}
+
+.element .solid-location {
+  position: absolute;
+  top: 168px;
+  left: 209px;
+  width: 23px;
+  height: 31px;
+  aspect-ratio: 0.75;
+  background-image: url(./img/vector.svg);
+  background-size: 100% 100%;
+}
+
+.element .fa-solid-location {
+  position: absolute;
+  top: 304px;
+  left: 180px;
+  width: 23px;
+  height: 30px;
+  aspect-ratio: 0.75;
+  background-image: url(./img/vector-1.svg);
+  background-size: 100% 100%;
+}
+
+.element .vector-3 {
+  position: absolute;
+  top: 330px;
+  left: 195px;
+  width: 7px;
+  height: 43px;
+}
+
+.element .vector-4 {
+  position: absolute;
+  top: 286px;
+  left: 213px;
+  width: 9px;
+  height: 86px;
+}
+
+.element .vector-5 {
+  position: absolute;
+  top: 252px;
+  left: 212px;
+  width: 23px;
+  height: 40px;
+}
+
+.element .vector-6 {
+  position: absolute;
+  top: 225px;
+  left: 229px;
+  width: 6px;
+  height: 32px;
+}
+
+.element .vector-7 {
+  position: absolute;
+  top: 200px;
+  left: 221px;
+  width: 13px;
+  height: 30px;
+}
+
+.element .vector-8 {
+  position: absolute;
+  top: 368px;
+  left: 198px;
+  width: 24px;
+  height: 5px;
+}
