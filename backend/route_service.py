@@ -35,7 +35,6 @@ POINT_KEY_ORDER = (
     "aiSummary",
     "reason",
     "analysisProvider",
-    "segmentRiskScore",
     "aiLocationName",
 )
 

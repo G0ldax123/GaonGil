@@ -47,7 +47,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--origin", default="")
     parser.add_argument("--destination", default="")
     parser.add_argument("--route-id", default="", help="Analyze only one route, for example route_a.")
-    parser.add_argument("--output", default="", help="Optional JSON output path. Defaults to stdout only.")
+    parser.add_argument("--output", default="", help="Optional JSON output path. Defaults to data/ai_results.json.")
     return parser
 
 
@@ -90,7 +90,7 @@ def _stored_route_result(route: dict) -> dict:
 
 
 def build_storage_payload(payload: list[dict]) -> list[dict]:
-    """Keep data/ai_results.json aligned with docs/ai_results.json."""
+    """Keep data/ai_results.json on the backend-facing route result shape."""
 
     return [_stored_route_result(route) for route in payload]
 

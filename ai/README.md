@@ -1,35 +1,31 @@
 # AI/Data MVP
 
-가온길의 AI/데이터 파트는 `docs/routes.json`의 route/point 정보를 읽고, 로드뷰 이미지를 기준으로 접근성 분석 결과 JSON을 생성한다.
+가온길의 AI 파트는 `data/routes.json`의 route/point 정보를 읽고, route 단위로 `ai/prompt.md`와 로드뷰 이미지를 AI 모델에 전달해서 `data/ai_results.json` 형태의 분석 결과를 생성한다.
 
 ## 역할
 
-- static route data 로드
+- route data 로드
 - 로드뷰 이미지 경로 매핑
-- `ai/prompt.md` 기반 Google Gemini 이미지 분석
-- API 키가 없거나 실패하면 mock analyzer fallback
-- point 위험도 계산
-- route 위험도 집계 및 추천 순위 산출
-- 프론트/백엔드가 바로 쓰는 JSON 출력
+- `ai/prompt.md` 기반 route 단위 이미지 분석
+- OpenAI 또는 Google Gemini API 호출
+- 프론트/백엔드가 바로 쓰는 `ai_results.json` 출력
 
 ## 파이프라인
 
-1. `docs/routes.json`이 있으면 그 파일을 우선 읽고, 없으면 `ai/data/routes_seed.json`을 fallback으로 읽는다.
-2. 입력 `routes[].points[]`를 point 단위로 분석하고, 각 지점의 `slopePercent`, `imageUrl`, `mockDetected`를 불러온다.
-3. `GOOGLE_API_KEY`가 있으면 Gemini REST API로 이미지와 `ai/prompt.md`를 보내 JSON 분석 결과를 받는다.
-4. API 키가 없거나 호출이 실패하면 `MockAccessibilityAnalyzer`가 fallback 분석을 수행한다.
-5. 규칙 기반 점수 계산기로 user type 별 point risk score를 계산한다.
-6. route 단위로 점수를 합산하고 `routeSummary`를 만든다.
-7. 최종 결과를 `docs/ai_results.json` 형태의 route 리스트로 stdout 또는 함수 반환값으로 제공한다.
+1. `data/routes.json`을 우선 읽고, 없으면 `docs/routes.json`을 읽는다.
+2. 각 route의 point 목록과 `assets/roadview/<route_id>/` 이미지를 매핑한다.
+3. route 하나당 `ai/prompt.md`, route metadata, route 이미지 전체를 한 번에 AI 모델로 보낸다.
+4. AI 모델이 `ai_results.json`과 호환되는 route JSON 하나를 반환한다.
+5. CLI가 route 결과들을 합쳐 `data/ai_results.json`에 저장한다.
 
 ## 실행 방법
 
 저장소 루트에서:
 
 ```bash
-cd /home/ubuntu/GaonGil
+cd /home/user/GaonGil
 nvm use
-source ai/.venv/bin/activate
+source .venv/bin/activate
 python -m ai.src.main --user-type wheelchair
 ```
 
@@ -59,14 +55,14 @@ python -m ai.src.main --user-type wheelchair --route-id route_a
 또는:
 
 ```bash
-cd /home/ubuntu/GaonGil/ai
-source .venv/bin/activate
+cd /home/user/GaonGil/ai
+source ../.venv/bin/activate
 python src/main.py --user-type wheelchair
 ```
 
 ## Input Data 구조
 
-`docs/routes.json` 구조:
+`data/routes.json` 구조:
 
 - `routeSetId`
 - `userType`
@@ -75,7 +71,7 @@ python src/main.py --user-type wheelchair
 - `routeId`, `name`, `description`
 - `points[]`
 - `pointId`, `locationName`
-- `imageUrl`, `slopePercent`, `slopeLevel`
+- `imageUrl`
 
 주의:
 
@@ -84,7 +80,7 @@ python src/main.py --user-type wheelchair
 
 ## 최종 출력 JSON 예시
 
-최종 스키마 예시는 [docs/ai_results.json](/home/ubuntu/GaonGil/docs/ai_results.json:1)에 있다.
+최종 스키마 예시는 `docs/ai_results.json`에 있다.
 
 주요 필드:
 
@@ -93,16 +89,17 @@ python src/main.py --user-type wheelchair
 - `userTypeLabel`
 - `routeSummary`
 - `routeSummary.recommendation`
-- `routeSummary.riskLevel`
 - `routeSummary.aiSummary`
+- `routeSummary.mainRiskFactors`
+- `routeSummary.mainRiskPoints`
 - `points[]`
 - `points[].detectedElements`
-- `points[].riskFactors[]`
+- `points[].recommendation`
 - `points[].aiSummary`
 
 ## 백엔드/프론트 연동
 
-백엔드가 Python이면 다음 함수를 직접 호출하면 된다.
+백엔드 또는 로컬 스크립트에서 직접 호출할 수도 있다.
 
 ```python
 from ai.src.route_ranker import analyze_routes_for_user
@@ -120,10 +117,8 @@ Node.js 백엔드 또는 프론트 시연에서는 CLI 결과 JSON을 읽으면 
 python -m ai.src.main --user-type stroller > ai_result.json
 ```
 
-## 향후 TODO
+## 현재 범위
 
-- 실제 Google/Gemini 응답을 기반으로 prompt 튜닝
-- route_b, route_c 지점/이미지 추가
-- 로드뷰 이미지와 point 설명 동기화
-- 커뮤니티 제보 데이터 반영
-- 지하철 엘리베이터 실시간 운행 상태 반영
+- Python 코드는 접근성 판단 룰을 직접 계산하지 않는다.
+- 계단/단차/가파른 길/좁은 길 판단 기준은 `ai/prompt.md`에 고정한다.
+- 코드의 역할은 route 로드, 이미지 첨부, AI 호출, 결과 저장으로 제한한다.

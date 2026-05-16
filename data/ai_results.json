@@ -1,300 +1,208 @@
 [
   {
-    "routeId": "route_a",
+    "routeId": "route_c",
     "userType": "wheelchair",
     "userTypeLabel": "휠체어 이용자",
     "routeSummary": {
       "recommendation": "위험",
-      "summaryTitle": "가파른 길과 계단이 있는 위험 경로",
-      "aiSummary": "이 경로는 휠체어 이용자에게 매우 위험합니다. 경로 초입과 중반에 긴 가파른 경사 구간이 있으며, 특히 도착지로 접근하는 마지막 구간에 계단이 있어 목적지까지 이동이 어렵습니다.",
+      "summaryTitle": "가파른 구간이 반복되는 경로",
+      "aiSummary": "휠체어 이용자 기준으로 이 경로는 초반과 후반에 경사가 반복되고 마지막 구간에 좁고 가파른 오르막이 있어 목적지까지 안정적으로 이동하기 어려운 편입니다.",
       "mainRiskFactors": [
-        "가파른 길",
-        "계단"
+        "경사로",
+        "좁은 길"
       ],
       "mainRiskPoints": [
-        "a_1: 가파른 길",
-        "a_7: 가파른 길",
-        "a_8: 계단"
+        "c_1: 경사로",
+        "c_2: 경사로",
+        "c_3: 경사로",
+        "c_4: 경사로",
+        "c_13: 경사로",
+        "c_13: 좁은 길"
       ],
-      "reason": "경로에 긴 가파른 경사 구간이 반복되며, 도착지 접근 계단이 있어 휠체어 이용자의 이동이 위험합니다."
+      "reason": "초반 여러 지점에서 경사로가 반복되어 휠체어로 이동 부담이 크고, 마지막 접근 구간은 좁은 길과 가파른 경사로가 함께 보여 안전하게 통과하기 어렵습니다."
     },
     "points": [
       {
-        "pointId": "a_1",
-        "locationName": "경로 A 첫 번째 주요 지점",
+        "pointId": "c_1",
+        "locationName": "경로 C 주요 지점 1",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
           "steepRoad": "true",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
+          "narrowRoad": "false"
         },
         "recommendation": "위험",
-        "summaryTitle": "긴 내리막 경사 구간",
-        "aiSummary": "경로 초입부터 긴 내리막 경사 구간이 있어 휠체어 이용자의 이동에 어려움이 예상됩니다.",
-        "reason": "가파른 길 (긴 내리막 경사)이 있어 휠체어 이용자의 이동이 위험합니다."
+        "summaryTitle": "초반 내리막 경사 주의",
+        "aiSummary": "차도 가장자리를 따라 이동 가능해 보이지만 경사가 뚜렷한 내리막이라 휠체어 이용자에게 위험합니다.",
+        "reason": "경사로가 분명하게 보여 휠체어로 제어하며 내려가기 부담이 큽니다."
       },
       {
-        "pointId": "a_2",
-        "locationName": "경로 A 두 번째 주요 지점",
-        "detectedElements": {
-          "stairs": "false",
-          "curb": "false",
-          "steepRoad": "false",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
-        },
-        "recommendation": "안전",
-        "summaryTitle": "평탄하고 넓은 길",
-        "aiSummary": "평탄하고 넓은 길로 휠체어 이용자가 안전하게 이동할 수 있습니다.",
-        "reason": "특이사항 없음."
-      },
-      {
-        "pointId": "a_3",
-        "locationName": "경로 A 세 번째 주요 지점",
-        "detectedElements": {
-          "stairs": "false",
-          "curb": "false",
-          "steepRoad": "false",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
-        },
-        "recommendation": "안전",
-        "summaryTitle": "넓고 평탄한 교차로",
-        "aiSummary": "넓고 평탄한 교차로로 휠체어 이용자가 안전하게 이동할 수 있습니다.",
-        "reason": "특이사항 없음."
-      },
-      {
-        "pointId": "a_4",
-        "locationName": "경로 A 네 번째 주요 지점",
-        "detectedElements": {
-          "stairs": "false",
-          "curb": "false",
-          "steepRoad": "false",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
-        },
-        "recommendation": "안전",
-        "summaryTitle": "평탄한 도로 구간",
-        "aiSummary": "평탄한 도로 구간으로 휠체어 이용자가 안전하게 이동할 수 있습니다.",
-        "reason": "특이사항 없음."
-      },
-      {
-        "pointId": "a_5",
-        "locationName": "경로 A 다섯 번째 주요 지점",
-        "detectedElements": {
-          "stairs": "false",
-          "curb": "false",
-          "steepRoad": "false",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
-        },
-        "recommendation": "안전",
-        "summaryTitle": "평탄한 횡단보도",
-        "aiSummary": "평탄한 횡단보도 구간으로 휠체어 이용자가 안전하게 이동할 수 있습니다.",
-        "reason": "특이사항 없음."
-      },
-      {
-        "pointId": "a_6",
-        "locationName": "경로 A 여섯 번째 주요 지점",
-        "detectedElements": {
-          "stairs": "false",
-          "curb": "false",
-          "steepRoad": "false",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
-        },
-        "recommendation": "안전",
-        "summaryTitle": "일반적인 골목길",
-        "aiSummary": "일반적인 골목길로 휠체어 이용자가 안전하게 이동할 수 있습니다.",
-        "reason": "특이사항 없음."
-      },
-      {
-        "pointId": "a_7",
-        "locationName": "경로 A 일곱 번째 주요 지점",
+        "pointId": "c_2",
+        "locationName": "경로 C 주요 지점 2",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
           "steepRoad": "true",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
+          "narrowRoad": "false"
         },
         "recommendation": "위험",
-        "summaryTitle": "긴 오르막 경사 구간",
-        "aiSummary": "긴 오르막 경사 구간이 있어 휠체어 이용자의 이동에 어려움이 예상됩니다.",
-        "reason": "가파른 길 (긴 오르막 경사)이 있어 휠체어 이용자의 이동이 위험합니다."
+        "summaryTitle": "내리막이 계속되는 구간",
+        "aiSummary": "보행 가능한 가장자리 공간은 있으나 내리막이 계속 이어져 휠체어 이용자에게 부담이 큽니다.",
+        "reason": "경사로가 계속 이어져 휠체어 이동 안정성이 떨어집니다."
       },
       {
-        "pointId": "a_8",
-        "locationName": "경로 A 여덟 번째 주요 지점",
-        "detectedElements": {
-          "stairs": "true",
-          "curb": "false",
-          "steepRoad": "false",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
-        },
-        "recommendation": "위험",
-        "summaryTitle": "도착지 접근 계단",
-        "aiSummary": "도착지로 접근하는 마지막 구간에 계단이 있어 휠체어 이용자는 목적지에 도달하기 어렵습니다.",
-        "reason": "도착지 접근 계단이 있어 휠체어 이용자의 이동이 위험합니다."
-      }
-    ]
-  },
-  {
-    "routeId": "route_b",
-    "userType": "wheelchair",
-    "userTypeLabel": "휠체어 이용자",
-    "routeSummary": {
-      "recommendation": "위험",
-      "summaryTitle": "급경사 구간이 반복되는 경로",
-      "aiSummary": "휠체어 이용자 기준으로 경로 B는 중간과 마지막 접근 구간에 가파른 길이 반복되어 자력 이동과 제동이 어려울 수 있어 전체적으로 위험한 경로입니다.",
-      "mainRiskFactors": [
-        "가파른 길"
-      ],
-      "mainRiskPoints": [
-        "b_3: 가파른 길",
-        "b_4: 가파른 길",
-        "b_8: 가파른 길",
-        "b_9: 가파른 길"
-      ],
-      "reason": "가파른 길이 여러 지점에서 반복되고, 도착지 접근 구간에도 오르막이 이어져 휠체어 이용자의 안정적인 이동에 부담이 큽니다."
-    },
-    "points": [
-      {
-        "pointId": "b_1",
-        "locationName": "경로 B 첫 번째 주요 지점",
-        "detectedElements": {
-          "stairs": "false",
-          "curb": "false",
-          "steepRoad": "false",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
-        },
-        "recommendation": "안전",
-        "summaryTitle": "완만한 골목 진입",
-        "aiSummary": "차도 중심 이동선은 비교적 평탄하고 큰 단차나 계단이 보이지 않아 휠체어 이동이 가능한 지점입니다.",
-        "reason": "계단과 단차가 보이지 않고 가파른 길로 판단될 정도의 경사는 확인되지 않습니다."
-      },
-      {
-        "pointId": "b_2",
-        "locationName": "경로 B 두 번째 주요 지점",
-        "detectedElements": {
-          "stairs": "false",
-          "curb": "false",
-          "steepRoad": "false",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
-        },
-        "recommendation": "안전",
-        "summaryTitle": "통과 가능한 주택가 도로",
-        "aiSummary": "이동선 전방 도로 폭과 노면 상태는 대체로 무난하며 휠체어가 계속 진행할 수 있는 지점입니다.",
-        "reason": "계단과 단차가 없고 좁은 길이나 가파른 길 위험이 크지 않습니다."
-      },
-      {
-        "pointId": "b_3",
-        "locationName": "경로 B 세 번째 주요 지점",
+        "pointId": "c_3",
+        "locationName": "경로 C 주요 지점 3",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
           "steepRoad": "true",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
+          "narrowRoad": "false"
         },
         "recommendation": "위험",
-        "summaryTitle": "급한 내리막 접근",
-        "aiSummary": "전방 교차로 방향으로 경사가 뚜렷해 휠체어 이용자는 속도 제어가 어려울 수 있는 위험 지점입니다.",
-        "reason": "가파른 길이 실제 이동선에 나타나 휠체어 이용자의 제동 부담이 큽니다."
+        "summaryTitle": "경사진 이면도로",
+        "aiSummary": "공간 폭은 지나갈 수 있으나 경사진 도로가 이어져 휠체어 이용자에게 위험한 편입니다.",
+        "reason": "경사로가 분명해 휠체어로 이동 시 속도 조절과 방향 유지가 어렵습니다."
       },
       {
-        "pointId": "b_4",
-        "locationName": "경로 B 네 번째 주요 지점",
+        "pointId": "c_4",
+        "locationName": "경로 C 주요 지점 4",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
           "steepRoad": "true",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
+          "narrowRoad": "false"
         },
         "recommendation": "위험",
-        "summaryTitle": "내리막 보도 구간",
-        "aiSummary": "보도 이동선이 뚜렷한 내리막으로 이어져 휠체어 이용자에게 부담이 큰 지점입니다.",
-        "reason": "가파른 길이 계속 이어져 휠체어 이용자의 안정적인 이동이 어렵습니다."
+        "summaryTitle": "교차로 전 경사 구간",
+        "aiSummary": "교차로 접근 전까지 내리막 경사가 남아 있어 휠체어 이용자는 주의가 아니라 위험으로 보는 것이 적절합니다.",
+        "reason": "경사로가 교차로 직전까지 이어져 휠체어 이동 부담이 큽니다."
       },
       {
-        "pointId": "b_5",
-        "locationName": "경로 B 다섯 번째 주요 지점",
+        "pointId": "c_5",
+        "locationName": "경로 C 주요 지점 5",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
           "steepRoad": "false",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
+          "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "상대적으로 평탄한 상가 구간",
-        "aiSummary": "상가 앞 도로와 보도는 비교적 평탄해 휠체어가 무리 없이 통과할 수 있는 지점입니다.",
-        "reason": "계단, 단차, 가파른 길, 좁은 길 위험이 두드러지지 않습니다."
+        "summaryTitle": "완만한 보행 공간",
+        "aiSummary": "보도 가장자리가 비교적 평탄하고 연결이 자연스러워 휠체어 이동이 무난해 보입니다.",
+        "reason": "단차나 계단이 두드러지지 않고 경사로 부담도 크지 않습니다."
       },
       {
-        "pointId": "b_6",
-        "locationName": "경로 B 여섯 번째 주요 지점",
+        "pointId": "c_6",
+        "locationName": "경로 C 주요 지점 6",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
           "steepRoad": "false",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
+          "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "완만한 직선 도로",
-        "aiSummary": "전방 도로는 비교적 곧고 완만하여 휠체어 이동에 큰 장애가 보이지 않는 지점입니다.",
-        "reason": "가파른 길이나 단차, 계단이 확인되지 않아 통과 가능성이 높습니다."
+        "summaryTitle": "상가 앞 직선 구간",
+        "aiSummary": "보행로 폭이 비교적 확보되어 있고 평탄해 휠체어로 지나가기 무난한 구간입니다.",
+        "reason": "단차와 계단이 보이지 않고 좁은 길도 아닙니다."
       },
       {
-        "pointId": "b_7",
-        "locationName": "경로 B 일곱 번째 주요 지점",
+        "pointId": "c_7",
+        "locationName": "경로 C 주요 지점 7",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
           "steepRoad": "false",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
+          "narrowRoad": "false"
         },
         "recommendation": "안전",
-        "summaryTitle": "무난한 도로 진행 구간",
-        "aiSummary": "차도 중심 이동선은 비교적 안정적이며 휠체어가 계속 진행할 수 있는 구간입니다.",
-        "reason": "계단과 단차가 없고 가파른 길이나 좁은 길 위험도 크지 않습니다."
+        "summaryTitle": "보도 정비된 상권 구간",
+        "aiSummary": "정비된 보도와 차도 가장자리 공간이 보여 휠체어 이용자가 비교적 안정적으로 이동할 수 있습니다.",
+        "reason": "단차가 크게 보이지 않고 경사로 부담도 크지 않습니다."
       },
       {
-        "pointId": "b_8",
-        "locationName": "경로 B 여덟 번째 주요 지점",
+        "pointId": "c_8",
+        "locationName": "경로 C 주요 지점 8",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "횡단보도 접근 양호",
+        "aiSummary": "횡단보도와 연결되는 보행 동선이 비교적 평탄해 휠체어 이동이 가능한 지점입니다.",
+        "reason": "턱낮춤 형태로 연결되어 단차 위험이 크지 않습니다."
+      },
+      {
+        "pointId": "c_9",
+        "locationName": "경로 C 주요 지점 9",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "대로 교차로 통과 가능",
+        "aiSummary": "교차로 주변 보행 공간과 횡단부 연결이 비교적 양호해 휠체어로 통과 가능해 보입니다.",
+        "reason": "턱낮춤이 보이고 계단이나 큰 단차는 확인되지 않습니다."
+      },
+      {
+        "pointId": "c_10",
+        "locationName": "경로 C 주요 지점 10",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "평탄한 이면도로 연결",
+        "aiSummary": "횡단 후 이어지는 도로는 비교적 평탄하고 보행 가능한 가장자리 공간이 있습니다.",
+        "reason": "단차와 계단이 두드러지지 않고 경사로 부담도 크지 않습니다."
+      },
+      {
+        "pointId": "c_11",
+        "locationName": "경로 C 주요 지점 11",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "false",
+          "narrowRoad": "false"
+        },
+        "recommendation": "안전",
+        "summaryTitle": "보도 분리 구간",
+        "aiSummary": "볼라드가 있는 보도 구간으로 폭이 유지되어 휠체어 이동이 비교적 무난해 보입니다.",
+        "reason": "좁은 길이나 큰 단차가 보이지 않습니다."
+      },
+      {
+        "pointId": "c_12",
+        "locationName": "경로 C 주요 지점 12",
+        "detectedElements": {
+          "stairs": "false",
+          "curb": "false",
+          "steepRoad": "unknown",
+          "narrowRoad": "false"
+        },
+        "recommendation": "주의",
+        "summaryTitle": "오르막 진입부",
+        "aiSummary": "오르막으로 접어드는 구간이라 휠체어 이용자는 속도를 줄이고 진행 여부를 살펴야 합니다.",
+        "reason": "경사로가 시작되어 휠체어로 오르기 부담이 생길 수 있습니다."
+      },
+      {
+        "pointId": "c_13",
+        "locationName": "경로 C 주요 지점 13",
         "detectedElements": {
           "stairs": "false",
           "curb": "false",
           "steepRoad": "true",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
+          "narrowRoad": "true"
         },
         "recommendation": "위험",
-        "summaryTitle": "가파른 오르막 시작",
-        "aiSummary": "전방 골목 진입부가 뚜렷한 오르막이라 휠체어 이용자에게 매우 부담되는 지점입니다.",
-        "reason": "가파른 길이 실제 이동선에 직접 연결되어 휠체어 이용자의 자력 이동이 어렵습니다."
-      },
-      {
-        "pointId": "b_9",
-        "locationName": "경로 B 아홉 번째 주요 지점",
-        "detectedElements": {
-          "stairs": "false",
-          "curb": "false",
-          "steepRoad": "true",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
-        },
-        "recommendation": "위험",
-        "summaryTitle": "도착지 접근 급경사",
-        "aiSummary": "마지막 접근 구간이 오르막으로 이어져 휠체어 이용자는 도착지까지 안정적으로 접근하기 어려운 지점입니다.",
-        "reason": "도착지 접근 구간의 가파른 길이 휠체어 이용자에게 큰 부담을 줍니다."
+        "summaryTitle": "좁고 가파른 마지막 구간",
+        "aiSummary": "마지막 접근 구간은 폭이 좁고 오르막 경사가 뚜렷해 휠체어 이용자가 독립적으로 통과하기 어려워 보입니다.",
+        "reason": "좁은 길과 경사로가 함께 나타나 휠체어 이동이 매우 부담스럽습니다."
       }
     ]
   }

@@ -46,9 +46,6 @@ Use only the following four factors for evaluation:
 - narrowRoad: a path that is too narrow for the given user type
 - steepRoad: a visually clear slope that is burdensome for the given user type
 
-otherObstacle exists only for schema compatibility.
-Do not use parked cars, moving vehicles, temporary congestion, weather, lighting, image quality, or temporary objects as major risk factors.
-
 ---
 
 ## 4. Actual Movement Path Standard
@@ -150,9 +147,6 @@ Each detectedElements value must be one of the strings "true", "false", or "unkn
 Set narrowRoad to "true" only when the actual path width is burdensome for the given user type.
 Do not mark it as true based only on camera perspective.
 
-### otherObstacle
-Use "true" only when there is a clear fixed obstacle on the actual movement path.
-
 ---
 
 ## 10. Point and Route Judgment
@@ -221,14 +215,47 @@ Mention only the relevant items among the following:
 - 도착지 접근 단차
 - 턱낮춤
 - 좁은 길
-- 가파른 길
-- 사용자 유형별 영향
+- 경사로
+
+Describe the user type impact in natural Korean sentences, but do not use "사용자 유형별 영향" as a risk factor label.
 
 ---
 
 ## 12. Output Schema
 
-Write routeSummary by aggregating the point-level recommendation results, and make the overall structure follow the ai_results.json format.
+Return exactly this structure.
+Do not include slopePercent or slopeLevel.
+Do not include riskLevel, riskFactors, or accessibilityLevel.
+
+{
+  "routeId": "route_a",
+  "userType": "wheelchair",
+  "userTypeLabel": "휠체어 이용자",
+  "routeSummary": {
+    "recommendation": "안전 | 주의 | 위험",
+    "summaryTitle": "짧은 제목",
+    "aiSummary": "route 전체 한 줄 요약",
+    "mainRiskFactors": ["계단 | 단차 | 경사로 | 좁은 길"],
+    "mainRiskPoints": ["pointId: 계단 | 단차 | 경사로 | 좁은 길"],
+    "reason": "route 전체 판단 근거"
+  },
+  "points": [
+    {
+      "pointId": "a_1",
+      "locationName": "지점 이름",
+      "detectedElements": {
+        "stairs": "true | false | unknown",
+        "curb": "true | false | unknown",
+        "steepRoad": "true | false | unknown",
+        "narrowRoad": "true | false | unknown"
+      },
+      "recommendation": "안전 | 주의 | 위험",
+      "summaryTitle": "짧은 제목",
+      "aiSummary": "point 한 줄 요약",
+      "reason": "point 판단 근거"
+    }
+  ]
+}
 
 ---
 
@@ -250,3 +277,6 @@ userTypeLabel:
 3. Preserve the point order.
 4. Write all user-facing text in Korean.
 5. recommendation must be one of "안전", "주의", or "위험".
+6. mainRiskFactors may include only "계단", "단차", "경사로", or "좁은 길".
+7. Do not include slopePercent or slopeLevel.
+8. Do not include riskLevel, riskFactors, or accessibilityLevel.

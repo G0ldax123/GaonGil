@@ -6,13 +6,13 @@
     "routeSummary": {
       "recommendation": "주의",
       "summaryTitle": "일부 주의 구간이 있는 경로",
-      "aiSummary": "route_a는 계단은 확인되지 않았지만 일부 구간에 단차와 가파른 길이 있어 휠체어 이용자 기준으로 주의가 필요한 경로입니다.",
+      "aiSummary": "route_a는 계단은 확인되지 않았지만 일부 구간에 단차와 경사로이 있어 휠체어 이용자 기준으로 주의가 필요한 경로입니다.",
       "mainRiskFactors": [
         "단차",
-        "가파른 길"
+        "경사로"
       ],
       "mainRiskPoints": [
-        "a_1: 단차, 가파른 길",
+        "a_1: 단차, 경사로",
         "a_2: 좁은 길"
       ],
       "reason": "주요 지점 분석 결과 계단은 확인되지 않았으나, 보도 진입부 단차와 7.8% 수준의 경사 구간이 포함되어 있습니다."
@@ -25,12 +25,11 @@
           "stairs": "false",
           "curb": "true",
           "steepRoad": "true",
-          "narrowRoad": "false",
-          "otherObstacle": "unknown"
+          "narrowRoad": "false"
         },
         "recommendation": "주의",
         "summaryTitle": "주의가 필요한 구간",
-        "aiSummary": "휠체어 이용자 기준으로 단차와 가파른 길로 인해 주의가 필요한 구간입니다.",
+        "aiSummary": "휠체어 이용자 기준으로 단차와 경사로로 인해 주의가 필요한 구간입니다.",
         "reason": "계단은 보이지 않지만 보도 진입부 단차와 7.8% 경사도가 있어 이동 시 보조가 필요할 수 있습니다."
       },
       {
@@ -40,8 +39,7 @@
           "stairs": "false",
           "curb": "false",
           "steepRoad": "false",
-          "narrowRoad": "true",
-          "otherObstacle": "false"
+          "narrowRoad": "true"
         },
         "recommendation": "주의",
         "summaryTitle": "좁은 길 주의",
@@ -55,13 +53,12 @@
           "stairs": "false",
           "curb": "false",
           "steepRoad": "false",
-          "narrowRoad": "false",
-          "otherObstacle": "false"
+          "narrowRoad": "false"
         },
         "recommendation": "안전",
         "summaryTitle": "이동 가능 구간",
         "aiSummary": "휠체어 이용자 기준으로 특별한 위험 요소가 적어 이동 가능성이 높은 구간입니다.",
-        "reason": "계단, 단차, 가파른 길, 좁은 길이 확인되지 않았고 경사도도 완만합니다."
+        "reason": "계단, 단차, 경사로, 좁은 길이 확인되지 않았고 경사도도 완만합니다."
       }
     ]
   }
