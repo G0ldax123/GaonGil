@@ -3,10 +3,10 @@
     "routeSetId": "demo_route_1",
     "userType": "wheelchair",
     "start": {
-      "name": "고려대학교"
+      "name": "메디트"
     },
     "end": {
-      "name": "안암역"
+      "name": "드림하우스"
     },
     "routes": [
       {

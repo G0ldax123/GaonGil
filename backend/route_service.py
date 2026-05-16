@@ -1,7 +1,7 @@
 from typing import Any
 
-from backend.ai_service import analyze_route
-from backend.data_loader import load_routes
+from ai.src.route_ranker import load_route_sets
+from backend.ai_service import generate_ai_results
 
 
 RECOMMENDATION_ORDER = {
@@ -40,10 +40,10 @@ POINT_KEY_ORDER = (
 
 
 def find_route_set(start: str, end: str) -> dict[str, Any] | None:
-    route_sets = load_routes()
+    route_sets = load_route_sets()
 
     for route_set in route_sets:
-        if route_set.get("start", {}).get("name") == start and route_set.get("end", {}).get("name") == end:
+        if route_set.get("start") == start and route_set.get("end") == end:
             return route_set
 
     return None
@@ -102,9 +102,17 @@ def build_recommendation(start: str, end: str, user_type: str) -> dict[str, Any]
     if route_set is None:
         return None
 
+    route_payloads = route_set.get("routes", [])
+    ai_results = generate_ai_results(route_payloads=route_payloads, user_type=user_type)
+    ai_results_by_route_id = {
+        result.get("routeId"): result
+        for result in ai_results
+        if result.get("userType") == user_type
+    }
+
     routes = []
-    for route in route_set.get("routes", []):
-        ai_result = analyze_route(route, user_type)
+    for route in route_payloads:
+        ai_result = ai_results_by_route_id.get(route.get("routeId"))
         route_summary = ai_result.get("routeSummary", {}) if ai_result else {}
         ai_points = ai_result.get("points", []) if ai_result else []
         points = [order_point_payload(point) for point in merge_point_analysis(route.get("points", []), ai_points)]
@@ -132,8 +140,8 @@ def build_recommendation(start: str, end: str, user_type: str) -> dict[str, Any]
 
     return {
         "routeSetId": route_set.get("routeSetId"),
-        "start": route_set.get("start"),
-        "end": route_set.get("end"),
+        "start": {"name": route_set.get("start")},
+        "end": {"name": route_set.get("end")},
         "userType": user_type,
         "routes": routes,
     }
