@@ -46,7 +46,7 @@ Use only the following four factors for evaluation:
 - narrowRoad: a path that is too narrow for the given user type
 - steepRoad: a slope that is noticeably steeper than an ordinary neighborhood street, sustained enough to affect movement, braking, or stability, and likely to create a real mobility burden for the given user type
 
-Do not treat flat roads, very mild inclines, normal sidewalk ramps, or slopes that only require slightly more effort as steepRoad.
+Do not treat ordinary uphill/downhill streets, mild inclines, normal neighborhood alleys, normal sidewalk ramps, or slopes that only require slightly more effort as steepRoad.
 
 Minor extra effort is not a risk factor.
 
@@ -108,15 +108,14 @@ If only one height difference is visible, classify it as curb, not stairs.
 General slope rule for all user types:
 
 An ordinary uphill or downhill street should usually be considered passable for all user types.
-The current MVP primarily judges slope visually from road-view images.
-If slopePercent is provided as metadata, use it only as supporting context, not as the sole reason for risk.
 
 Do not set steepRoad to "true" only because:
-- the road goes slightly uphill,
-- the road goes slightly downhill,
+- the road goes uphill,
+- the road goes downhill,
 - the route continues along an alley,
 - the user may need slightly more effort,
-- the road looks long but the slope is visually mild.
+- the slope is visible but appears like a normal neighborhood street,
+- the road looks long but not clearly steep.
 
 Minor extra effort is not a risk factor.
 
@@ -124,21 +123,14 @@ For all user types:
 - ordinary uphill/downhill street: steepRoad "false", recommendation "안전"
 - mild slope requiring slightly more effort: steepRoad "false", recommendation "안전"
 - noticeable but manageable slope: steepRoad "unknown" or "true", recommendation "주의" when it affects the current user type
-- visually clear borderline slope: steepRoad "true" if it is sustained or appears on the final approach, recommendation "주의"
-- clearly steep, sustained, and practically burdensome slope: steepRoad "true", recommendation "주의"
-- slope-only cases should become "위험" when the slope is clearly severe, repeated, or makes final access unsafe or realistically difficult
-
-If slopePercent is provided:
-- 0% to 5%: usually steepRoad "false" unless the image clearly shows a steeper actual movement path
-- over 5% to 8%: treat as borderline; set steepRoad to "unknown" or "true" when the image shows a noticeable sustained slope
-- over 8% to 12%: strongly consider steepRoad "true" when the image does not clearly contradict it
-- over 12%: usually set steepRoad "true" unless the image clearly shows the slope is not on the actual movement path
+- clearly steep, sustained, and practically burdensome slope: steepRoad "true", recommendation "주의" or "위험" depending on user type and severity
+- if steepRoad is "true", the point recommendation must be at least "주의" for every userType
 
 Set steepRoad to "true" when the slope appears noticeably steeper than an ordinary street and would likely create a real mobility burden, not just additional effort.
 
 Visual steepRoad judgment:
 
-- "false": flat, gently sloped, mildly inclined, normal sidewalk ramp, or short manageable slope that appears passable
+- "false": flat, gently sloped, mildly inclined, ordinary street-level incline, normal sidewalk ramp, ordinary neighborhood uphill/downhill street, or short manageable slope that appears passable
 - "unknown": slope may exist, but the steepness is unclear due to perspective, camera angle, or insufficient visual evidence
 - "true": the actual movement path is noticeably steeper than an ordinary street, sustained enough to affect movement, braking, or stability, and burdensome for the given user type
 
@@ -153,93 +145,52 @@ Do not set steepRoad to "true" for:
 - a short curb ramp,
 - a normal sidewalk ramp,
 - a mild uphill or downhill,
-- a very mild street-level incline,
-- a mild neighborhood alley slope,
+- an ordinary street-level incline,
+- an ordinary neighborhood alley slope,
 - a short slope that still appears manageable,
 - a slope that is unclear due to perspective,
 - a road that looks long but not clearly steep.
 
-If the slope is visible but mild, set steepRoad to "false".
-If the slope may be steep but the visual evidence is uncertain, set steepRoad to "unknown"; if it is on the final approach or appears sustained, use it as a caution-level route risk.
+If the slope is visible but mild or ordinary, set steepRoad to "false".
+If the slope may be steep but the visual evidence is uncertain, set steepRoad to "unknown".
 
 A road should not be judged as steepRoad only because it continues for a long distance.
-Length alone is not enough, but a long visible uphill/downhill that is also noticeably inclined should be treated as a stronger slope risk.
+Length alone is not enough.
 
 A short ramp should not be treated as steepRoad unless it appears unusually steep, broken, or unsafe.
 
 ---
+## 7. User-Type-Specific Rules (Weighted Guidelines)
 
-## 7. User-Type-Specific Rules
+Apply different severity weights based on the userType. What is "주의" for one user might be "위험" for another. However, evaluate the *actual realistic passability* rather than blindly failing a route.
 
 ### wheelchair
-
-Wheelchair users are sensitive to stairs, blocking curbs, very narrow paths, and noticeably steep sustained slopes.
-
-However, very mild uphill/downhill streets should not automatically be treated as dangerous.
-A slope should be considered risky for wheelchair users when it is noticeably steeper than an ordinary street and likely to make independent movement, braking, or stability difficult.
-
-For wheelchair users:
-- very mild uphill/downhill street: usually "안전"
-- mild or manageable slope: usually "안전" or "주의"
-- noticeably steep and sustained slope: "주의"
-- severe sustained slope, repeated steepRoad, or final-access steepRoad that realistically blocks access: "위험"
-- stairs on the actual movement path: "위험"
-- stairs blocking the final approach to the destination: "위험"
-- large vertical curb or threshold blocking wheeled movement: "위험"
-
-Do not judge a wheelchair route as "위험" only because a mild neighborhood uphill/downhill street is visible, but use "주의" when the slope is noticeable, sustained, and on the actual movement path.
+- stairs == "true": Evaluate as "위험". (Absolute barrier)
+- curb == "true": Evaluate as "위험" if it clearly blocks wheels. If it's a borderline low curb or partially lowered, evaluate as "주의".
+- narrowRoad == "true": Evaluate as "주의" or "위험" depending on severity.
+- steepRoad == "true": Evaluate as "주의". Only mark as "위험" if it is severe, sustained, or completely blocks final access.
+* Normal uphill/downhill MUST be "안전".
 
 ### stroller
-
-Stroller users are sensitive to stairs, problematic curbs, steep slopes, and narrow paths.
-
-However, very mild uphill/downhill streets should usually be considered passable.
-A slope should be considered risky for stroller users when it is noticeably steep, sustained, and difficult to push or control safely.
-
-For stroller users:
-- very mild uphill/downhill street: usually "안전"
-- mild or manageable slope: usually "안전" or "주의"
-- noticeably steep and sustained slope: "주의"
-- severe sustained slope combined with stairs, repeated curbs, or a very narrow path: "위험"
-- short stairs or low problematic curbs: usually "주의"
-- long stairs, repeated curbs, or cases where the stroller must be lifted: "위험"
-
-Do not judge stroller routes as "위험" only because a mild neighborhood uphill/downhill street is visible, but use "주의" when the slope is noticeable, sustained, and on the actual movement path.
+- stairs == "true": Evaluate as "위험". (Lifting is dangerous)
+- curb == "true": Evaluate as "주의" (Can lift front wheels). If continuous or unusually high, evaluate as "위험".
+- narrowRoad == "true": Evaluate as "주의".
+- steepRoad == "true": Evaluate as "주의".
+* Normal uphill/downhill MUST be "안전".
 
 ### elderly
-
-Older adults are sensitive to stairs, curbs, long walking burden, and noticeably steep slopes.
-
-However, very mild uphill/downhill streets should not automatically be treated as risk factors.
-A slope should affect the recommendation when it is noticeably steeper than an ordinary street, sustained, or likely to affect balance and fatigue.
-
-For elderly users:
-- very mild uphill/downhill street: usually "안전"
-- mild or manageable slope: usually "안전" or "주의"
-- noticeably steep and sustained slope: "주의"
-- severe slope, repeated steep sections, or final-access difficulty: "위험"
-- short stairs or low curbs: usually "주의"
-- long or repeated stairs: high risk
-
-Do not judge an elderly route as "위험" only because a mild neighborhood uphill/downhill street is visible, but use "주의" when the slope is noticeable, sustained, and on the actual movement path.
+- stairs == "true": Evaluate as "주의" (Painful but possible). If very long/continuous, "위험".
+- curb == "true": Evaluate as "주의" (Tripping hazard).
+- steepRoad == "true": Evaluate as "주의". If extremely severe, "위험".
+- narrowRoad == "true": Usually "안전" or mild "주의".
+* Normal uphill/downhill MUST be "안전".
 
 ### crutches
-
-Crutch users are sensitive to curbs, narrow paths, stairs, and noticeably steep slopes.
-
-However, ordinary neighborhood uphill/downhill streets should usually be considered passable.
-A slope should be considered risky only when it clearly affects balance, crutch placement, braking, or stability.
-
-For crutch users:
-- very mild uphill/downhill street: usually "안전"
-- mild or manageable slope: usually "안전" or "주의"
-- noticeably steep and sustained slope: "주의"
-- severe downhill or unstable steep slope: "위험"
-- short stairs: usually "주의"
-- long or steep stairs: high risk
-- problematic curbs: at least "주의"
-
-Do not judge a crutches route as "위험" only because a mild neighborhood uphill/downhill street is visible, but use "주의" when the slope is noticeable, sustained, and on the actual movement path.
+- stairs == "true": Evaluate as "주의" (Fall risk).
+- curb == "true": Usually "안전" or mild "주의" (Can step over).
+- narrowRoad == "true": Evaluate as "주의" (Needs lateral space). If severely restricted, "위험".
+- steepRoad == "true": Evaluate as "주의" or "위험" (Slip/fall risk).
+* Normal uphill/downhill MUST be "안전".
 
 ---
 
@@ -270,8 +221,8 @@ Set steepRoad to "true" when the actual movement path is noticeably steeper than
 
 Do not set steepRoad to "true" for:
 - mild uphill/downhill sections,
-- very mild road inclines,
-- mild neighborhood alley slopes,
+- ordinary road inclines,
+- normal neighborhood alley slopes,
 - short manageable slopes,
 - normal sidewalk ramps,
 - unclear slopes caused by camera angle or perspective.
@@ -280,7 +231,7 @@ For all user types, be moderately strict when marking steepRoad as "true".
 A visible uphill or downhill street is not enough.
 The slope must be noticeably steeper than an ordinary street and practically burdensome.
 
-If the only issue is a very mild neighborhood slope and there are no stairs, blocking curbs, or narrow paths, set:
+If the only issue is a normal neighborhood slope and there are no stairs, blocking curbs, or narrow paths, set:
 - steepRoad: "false"
 - recommendation: "안전"
 
@@ -296,43 +247,25 @@ Do not mark it as true based only on camera perspective.
 ### Point recommendation
 
 recommendation is the final movement-possibility judgment for that point.
-Decide it after applying all of the detectedElements rules, user-type-specific rules, and curb/stairs/slope judgment rules defined above.
-
-Do not judge a point as "위험" just because a detectedElement is "true".
-Judge how much of an actual barrier that element is for the current userType.
-
-For all user types, do not mark a point as "주의" only because a very mild uphill or downhill street is visible.
-
-If the only issue is a very mild neighborhood slope and there are no stairs, blocking curbs, or narrow paths, set:
-- steepRoad: "false"
-- recommendation: "안전"
-
-A slope should affect the point recommendation when it is noticeably steeper than an ordinary street and creates a practical mobility burden.
+Determine the recommendation based on the "7. User-Type-Specific Rules" and the actual barrier level.
 
 Set recommendation using the following criteria:
 
-- "안전":
-  - There are no major risk factors on the actual movement path
-  - Most core detectedElements are "false"
-  - The path appears passable through a lowered curb, curb ramp, etc.
-  - The given user type appears able to pass without difficulty
-  - A visible slope is very mild or manageable
-  - The only visible slope is a very mild neighborhood uphill/downhill street
+- "위험":
+  - The element acts as a realistic and absolute barrier for the given userType (e.g., stairs for a wheelchair).
+  - Final destination access is completely blocked.
+  - Do not use "위험" for minor inconveniences or normal neighborhood slopes.
 
 - "주의":
-  - There is a risk factor, but passing still appears possible
-  - There is a low curb, short stairs, noticeably burdensome slope, or somewhat narrow path
-  - Some detectedElements are "unknown" and related to the actual movement path, so caution is needed
-  - Assistance or slow movement may be needed
-  - The slope is noticeably more burdensome than an ordinary street but does not block movement
-  - Do not use "주의" for a slope that is only very mildly uphill/downhill or visually ambiguous
+  - Passing is possible, but with significant physical strain, caution, assistance needed, or risk of injury.
+  - The slope or curb is burdensome but does not entirely block movement.
+  - If steepRoad is "true", use at least "주의" even when the route remains passable.
 
-- "위험":
-  - The point appears difficult or unsafe for the given user type
-  - There is an element that should be judged as "위험" according to the user-type-specific rules above
-  - There is a large curb, stairs on the actual movement path, a noticeably steep and sustained slope, or a path too narrow to pass
-  - Multiple risk factors appear together
-  - Final destination access is blocked by stairs, a large curb, a narrow entrance, etc.
+- "안전":
+  - No major risk factors for that specific userType.
+  - A visible slope is mild, ordinary, or manageable (normal neighborhood uphill/downhill street).
+  - Minor curbs with ramps, lowered edges, or smooth transitions.
+  - Do not use "안전" when steepRoad is "true".
 
 ### Route recommendation
 
@@ -341,25 +274,27 @@ Route recommendation should be determined by combining the recommendation values
 Use the following criteria:
 
 - "안전":
-  - danger count is 0
-  - caution points are 20% or less of all points
-  - there are no final-access barriers
-  - there are no stairs, blocking curbs, or impassable narrow paths
-  - ordinary uphill/downhill streets are not counted as caution points
+  - danger count is 0
+  - caution points are 20% or less of all points
+  - there are no final-access barriers
+  - there are no stairs, blocking curbs, or impassable narrow paths
+  - ordinary uphill/downhill streets are not counted as caution points
 
 - "주의":
-  - danger count is 0 and caution points are more than 20% and 40% or less of all points
-  - or the route contains one or two noticeably burdensome but passable slope points and no stairs, blocking curbs, or impassable narrow paths
-  - or the route contains a noticeably steep but passable slope that may require slower movement or assistance
+  - danger count is 0 and caution points are more than 20% and 40% or less of all points
+  - or there is a single weak danger point caused by a slope that is not clearly severe or not strongly related to the actual movement path
+  - or there is at least one point where steepRoad is "true" and the route remains passable
+  - or the route contains one or two noticeably burdensome but passable slope points and no stairs, blocking curbs, or impassable narrow paths
+  - or the route contains a clearly noticeable but passable slope that may require slower movement or assistance
 
 - "위험":
-  - there is at least 1 danger point caused by stairs, a blocking curb, or an impassable narrow path
-  - or steepRoad danger points appear repeatedly and are severe, sustained, and more difficult than ordinary street slopes
-  - or a steepRoad danger point appears in the final approach to the destination and makes destination access realistically unsafe or difficult
-  - or caution points exceed 40% of all points
-  - or 3 or more caution points appear consecutively due to actual barriers, not ordinary road incline
+  - there is at least 1 danger point caused by stairs, a blocking curb, or an impassable narrow path
+  - or steepRoad danger points appear repeatedly and are clearly more severe than ordinary street slopes
+  - or a steepRoad danger point appears in the final approach to the destination and clearly makes destination access difficult
+  - or caution points exceed 40% of all points
+  - or 3 or more caution points appear consecutively due to actual barriers, not ordinary road incline
 
-A single steepRoad point should not automatically make the entire route "위험" unless it is severe, sustained, or located in the final approach to the destination and realistically makes access difficult.
+A single steepRoad point should not automatically make the entire route "위험" unless it is clearly severe, sustained, or located in the final approach to the destination and realistically makes access difficult.
 
 For all user types, ordinary uphill or downhill streets must not increase the route recommendation from "안전" to "주의".
 
@@ -367,7 +302,7 @@ A route should not become "주의" only because the final approach is an ordinar
 
 Use "주의" for slopes when at least one point has a noticeably steep and practically burdensome slope.
 
-Use "위험" for slope-only cases when the slope is severe, sustained, repeated, or realistically unsafe to pass safely.
+Use "위험" for slope-only cases only when the slope is clearly severe, sustained, and difficult to control or pass safely.
 
 However, if a danger point is weakly related to the actual movement path or the judgment is uncertain, the route may be lowered to "주의".
 
@@ -386,14 +321,6 @@ aiSummary rules:
 - Do not include detailed reasoning in aiSummary.
 - Put detailed reasoning only in the reason field.
 
-routeSummary.aiSummary:
-- summarize the entire route,
-- include the user type,
-- mention final-access stairs, final-access problematic curbs, or clearly steep and sustained slopes if relevant,
-- do not describe curb ramps or lowered curbs as risks if they are not actually problematic,
-- do not describe mild, ordinary, or normal neighborhood slopes as if they block access,
-- do not describe a normal uphill street as "경사로".
-
 point.aiSummary:
 - summarize only that point.
 
@@ -411,7 +338,7 @@ Describe the user type impact in natural Korean sentences, but do not use "사�
 
 Use "경사로" as the risk factor label when referring to steepRoad.
 Do not use any alternate steep-slope label as a risk factor label.
-Use "턱낮춤" or "경사로" only when describing an accessibility feature that helps movement.
+Use "턱낮춤" when describing an accessibility feature that helps movement.
 
 For ordinary uphill/downhill streets, use neutral expressions such as:
 - "일반적인 오르막"
@@ -426,37 +353,35 @@ Do not write that a slope requires caution unless it is clearly more burdensome 
 ## 11. Output Schema
 
 Return exactly this structure.
-Do not include slopePercent or slopeLevel.
-Do not include riskLevel, riskFactors, or accessibilityLevel.
 
 {
-  "routeId": "route_a",
-  "userType": "wheelchair",
-  "userTypeLabel": "휠체어 이용자",
-  "routeSummary": {
-    "recommendation": "안전 | 주의 | 위험",
-    "summaryTitle": "짧은 제목",
-    "aiSummary": "route 전체 한 줄 요약",
-    "mainRiskFactors": ["계단 | 단차 | 경사로 | 좁은 길"],
-    "mainRiskPoints": ["pointId: 계단 | 단차 | 경사로 | 좁은 길"],
-    "reason": "route 전체 판단 근거"
-  },
-  "points": [
-    {
-      "pointId": "a_1",
-      "locationName": "지점 이름",
-      "detectedElements": {
-        "stairs": "true | false | unknown",
-        "curb": "true | false | unknown",
-        "steepRoad": "true | false | unknown",
-        "narrowRoad": "true | false | unknown"
-      },
-      "recommendation": "안전 | 주의 | 위험",
-      "summaryTitle": "짧은 제목",
-      "aiSummary": "point 한 줄 요약",
-      "reason": "point 판단 근거"
-    }
-  ]
+  "routeId": "route_a",
+  "userType": "wheelchair",
+  "userTypeLabel": "휠체어 이용자",
+  "routeSummary": {
+    "recommendation": "안전 | 주의 | 위험",
+    "summaryTitle": "짧은 제목",
+    "aiSummary": "route 전체 한 줄 요약",
+    "mainRiskFactors": ["계단 | 단차 | 경사로 | 좁은 길"],
+    "mainRiskPoints": ["pointId: 계단 | 단차 | 경사로 | 좁은 길"],
+    "reason": "route 전체 판단 근거"
+  },
+  "points": [
+    {
+      "pointId": "a_1",
+      "locationName": "지점 이름",
+      "detectedElements": {
+        "stairs": "true | false | unknown",
+        "curb": "true | false | unknown",
+        "steepRoad": "true | false | unknown",
+        "narrowRoad": "true | false | unknown"
+      },
+      "recommendation": "안전 | 주의 | 위험",
+      "summaryTitle": "짧은 제목",
+      "aiSummary": "point 한 줄 요약",
+      "reason": "point 판단 근거"
+    }
+  ]
 }
 
 ---
@@ -468,7 +393,6 @@ userTypeLabel:
 - stroller: "유모차 이용자"
 - elderly: "노약자"
 - crutches: "목발 이용자"
-- unknown: "교통약자"
 
 ---
 

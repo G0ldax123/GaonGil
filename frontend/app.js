@@ -52,6 +52,11 @@
       end: { left: 196, top: 271 },
     },
   };
+  const routeMapImageById = {
+    route_a: "/4-3/img/map3.png",
+    route_b: "/4-2/img/map2.png",
+    route_c: "/4-1/img/map1.png",
+  };
   let coordinateMapPromise = null;
 
   if (typeof window === "undefined") {
@@ -67,6 +72,7 @@
   applyReportFormPatch(screen);
   applyRouteDetailLayoutPatch(screen);
   applyResultData(screen);
+  applyRouteMapImage(screen);
   applyRoutePins(screen);
   applyRiskPointIcons(screen);
   applyEnterTransition();
@@ -459,6 +465,25 @@
 
     placeRoutePin(mapElement, ".solid-location", positions.start);
     placeRoutePin(mapElement, ".fa-solid-location", positions.end);
+  }
+
+  function applyRouteMapImage(currentScreen) {
+    if (!["4-1", "4-2", "4-3"].includes(currentScreen)) return;
+
+    const response = getStoredJson(routeResponseKey);
+    if (!response) return;
+
+    const route = getDetailRoute(response, currentScreen);
+    const imageUrl = route && routeMapImageById[route.routeId];
+    if (!imageUrl) return;
+
+    const mapElement = getMapElementForScreen(currentScreen);
+    if (!mapElement) return;
+
+    mapElement.style.backgroundImage = `url("${imageUrl}")`;
+    mapElement.style.backgroundSize = "100% 100%";
+    mapElement.style.backgroundPosition = "center";
+    mapElement.style.backgroundRepeat = "no-repeat";
   }
 
   function getMapElementForScreen(currentScreen) {
