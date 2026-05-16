@@ -1,4 +1,4 @@
-"""Segment analyzers for mock/static MVP execution and Google LLM extension."""
+"""Segment analyzers for mock/static MVP execution and LLM provider extensions."""
 
 from __future__ import annotations
 
@@ -42,6 +42,8 @@ ASSET_MOCK_DETECTIONS = {
 PROMPT_PATH = Path(__file__).resolve().parents[1] / "prompt.md"
 DEFAULT_GOOGLE_MODEL = "gemini-2.0-flash"
 GOOGLE_API_URL_TEMPLATE = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+DEFAULT_OPENAI_MODEL = "gpt-5.4"
+OPENAI_RESPONSES_API_URL = "https://api.openai.com/v1/responses"
 
 
 class BaseAccessibilityAnalyzer(ABC):
@@ -215,6 +217,25 @@ def _render_route_prompt(template: str, route: dict, user_type: str, origin: str
         .replace("{distance}", str(route.get("distance", "")))
         .replace("{points_context}", points_context)
     )
+
+
+def _image_data_url(image_path: Path, mime_type: str | None = None) -> str:
+    detected_mime_type = mime_type or mimetypes.guess_type(image_path.name)[0] or "image/jpeg"
+    image_base64 = base64.b64encode(image_path.read_bytes()).decode("utf-8")
+    return f"data:{detected_mime_type};base64,{image_base64}"
+
+
+def _extract_openai_output_text(payload: dict) -> str:
+    if isinstance(payload.get("output_text"), str):
+        return payload["output_text"].strip()
+
+    text_parts: list[str] = []
+    for item in payload.get("output", []):
+        for content in item.get("content", []):
+            if content.get("type") in {"output_text", "text"} and isinstance(content.get("text"), str):
+                text_parts.append(content["text"])
+
+    return "".join(text_parts).strip()
 
 
 class MockAccessibilityAnalyzer(BaseAccessibilityAnalyzer):
@@ -443,6 +464,108 @@ class GoogleAccessibilityAnalyzer(BaseAccessibilityAnalyzer):
         return route_result
 
 
+class OpenAIAccessibilityAnalyzer(BaseAccessibilityAnalyzer):
+    """Use OpenAI Responses API with route-level image inputs."""
+
+    provider_name = "openai"
+
+    def analyze(self, segment: dict, user_type: str) -> SegmentAnalysisSchema:
+        raise NotImplementedError("OpenAI provider is implemented for route-level analysis only")
+
+    def analyze_route(self, route: dict, user_type: str) -> dict:
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            raise RuntimeError("OPENAI_API_KEY is not set")
+
+        content = [
+            {
+                "type": "input_text",
+                "text": _render_route_prompt(
+                    _load_prompt_template(),
+                    route,
+                    user_type,
+                    route.get("origin", ""),
+                    route.get("destination", ""),
+                ),
+            }
+        ]
+
+        for point in route.get("points", []):
+            image_path = point.get("roadviewImagePath")
+            if not image_path:
+                continue
+            full_image_path = Path(__file__).resolve().parents[2] / image_path
+            if not full_image_path.exists():
+                continue
+            content.append(
+                {
+                    "type": "input_image",
+                    "image_url": _image_data_url(full_image_path),
+                    "detail": os.getenv("OPENAI_IMAGE_DETAIL", "low"),
+                }
+            )
+
+        model = os.getenv("OPENAI_MODEL", DEFAULT_OPENAI_MODEL)
+        request_payload = {
+            "model": model,
+            "input": [
+                {
+                    "role": "user",
+                    "content": content,
+                }
+            ],
+            "text": {
+                "format": {
+                    "type": "json_schema",
+                    "name": "route_accessibility_analysis",
+                    "schema": _route_json_schema(),
+                    "strict": False,
+                }
+            },
+            "store": False,
+        }
+
+        reasoning_effort = os.getenv("OPENAI_REASONING_EFFORT", "low")
+        if reasoning_effort:
+            request_payload["reasoning"] = {"effort": reasoning_effort}
+
+        req = request.Request(
+            url=OPENAI_RESPONSES_API_URL,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {api_key}",
+            },
+            data=json.dumps(request_payload).encode("utf-8"),
+            method="POST",
+        )
+
+        try:
+            with request.urlopen(req, timeout=120) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+        except error.HTTPError as exc:
+            error_body = exc.read().decode("utf-8", errors="replace")
+            raise RuntimeError(f"OpenAI route analysis failed: HTTP {exc.code}: {error_body}") from exc
+        except (error.URLError, TimeoutError) as exc:
+            raise RuntimeError(f"OpenAI route analysis failed: {exc}") from exc
+
+        if payload.get("status") not in {None, "completed"}:
+            raise RuntimeError(f"OpenAI route analysis returned status {payload.get('status')}: {payload}")
+
+        text = _extract_openai_output_text(payload)
+        if not text:
+            raise RuntimeError("OpenAI route analysis returned empty text")
+
+        try:
+            route_result = json.loads(text)
+        except json.JSONDecodeError as exc:
+            raise RuntimeError(f"OpenAI route analysis returned invalid JSON: {text}") from exc
+
+        route_result["analysisProviders"] = ["openai"]
+        for point in route_result.get("points", []):
+            point["analysisProvider"] = "openai"
+        return route_result
+
+
 def create_accessibility_analyzer() -> BaseAccessibilityAnalyzer:
     """Choose the runtime analyzer provider, with automatic Google fallback."""
 
@@ -451,6 +574,10 @@ def create_accessibility_analyzer() -> BaseAccessibilityAnalyzer:
         return MockAccessibilityAnalyzer()
     if provider == "google":
         return GoogleAccessibilityAnalyzer()
+    if provider == "openai":
+        return OpenAIAccessibilityAnalyzer()
+    if os.getenv("OPENAI_API_KEY") and os.getenv("OPENAI_MODEL", "").startswith("gpt"):
+        return OpenAIAccessibilityAnalyzer()
     if os.getenv("GOOGLE_API_KEY"):
         return ResilientGoogleAccessibilityAnalyzer()
     return MockAccessibilityAnalyzer()

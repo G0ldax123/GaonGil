@@ -41,6 +41,15 @@ export AI_ANALYZER_PROVIDER=google
 python -m ai.src.main --user-type wheelchair
 ```
 
+OpenAI GPT 모델을 쓰려면:
+
+```bash
+export OPENAI_API_KEY=your_key
+export OPENAI_MODEL=gpt-5.4
+export AI_ANALYZER_PROVIDER=openai
+python -m ai.src.main --user-type wheelchair --route-id route_b
+```
+
 특정 route만 테스트하려면:
 
 ```bash

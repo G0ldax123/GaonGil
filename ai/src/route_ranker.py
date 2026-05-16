@@ -399,8 +399,8 @@ def analyze_route(route: dict, user_type: str, analyzer: BaseAccessibilityAnalyz
 
     provider = analyzer or create_accessibility_analyzer()
 
-    # In google mode, ask the model for the full ai_results-style route object in one shot.
-    if hasattr(provider, "analyze_route") and provider.provider_name == "google":
+    # In route-level provider mode, ask the model for the full ai_results-style route object in one shot.
+    if hasattr(provider, "analyze_route") and provider.provider_name in {"google", "openai"}:
         route_payload = dict(route)
         route_payload["origin"] = route.get("origin", "")
         route_payload["destination"] = route.get("destination", "")
