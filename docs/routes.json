@@ -18,55 +18,71 @@
           {
             "pointId": "a_1",
             "locationName": "경로 A 첫 번째 주요 지점",
-            "lat": 37.5861,
-            "lng": 127.0291,
+            "lat": 37.585249,
+            "lng": 127.028920,
             "imageUrl": "/assets/roadview/route_a/route_a_1.png"
           },
           {
             "pointId": "a_2",
             "locationName": "경로 A 두 번째 주요 지점",
-            "lat": 37.5865,
-            "lng": 127.0300,
+            "lat": 37.585327,
+            "lng": 127.029394,
             "imageUrl": "/assets/roadview/route_a/route_a_2.png"
           },
           {
             "pointId": "a_3",
             "locationName": "경로 A 세 번째 주요 지점",
+            "lat": 37.586012,
+            "lng": 127.029367,
             "imageUrl": "/assets/roadview/route_a/route_a_3.png"
           },
           {
             "pointId": "a_4",
             "locationName": "경로 A 네 번째 주요 지점",
+            "lat": 37.586407,
+            "lng": 127.029351,
             "imageUrl": "/assets/roadview/route_a/route_a_4.png"
           },
           {
             "pointId": "a_5",
             "locationName": "경로 A 다섯 번째 주요 지점",
+            "lat": 37.587368,
+            "lng": 127.029281,
             "imageUrl": "/assets/roadview/route_a/route_a_5.png"
           },
           {
             "pointId": "a_6",
             "locationName": "경로 A 여섯 번째 주요 지점",
+            "lat": 37.588197,
+            "lng": 127.029263,
             "imageUrl": "/assets/roadview/route_a/route_a_6.png"
           },
           {
             "pointId": "a_7",
             "locationName": "경로 A 일곱 번째 주요 지점",
+            "lat": 37.588276,
+            "lng": 127.028993,
             "imageUrl": "/assets/roadview/route_a/route_a_7.png"
           },
           {
             "pointId": "a_8",
             "locationName": "경로 A 여덟 번째 주요 지점",
+            "lat": 37.588290,
+            "lng": 127.029656,
             "imageUrl": "/assets/roadview/route_a/route_a_8.png"
           },
           {
             "pointId": "a_9",
             "locationName": "경로 A 아홉 번째 주요 지점",
+            "lat": 37.588376,
+            "lng": 127.029737,
             "imageUrl": "/assets/roadview/route_a/route_a_9.png"
           },
           {
             "pointId": "a_10",
             "locationName": "경로 A 열 번째 주요 지점",
+            "lat": 37.588437,
+            "lng": 127.029724,
             "imageUrl": "/assets/roadview/route_a/route_a_10.png"
           }
         ]
@@ -77,7 +93,58 @@
         "description": "소요 시간은 짧지만 위험 요소가 있는 경로",
         "duration": 9,
         "distance": 620,
-        "points": []
+        "points": [
+          {
+            "pointId": "b_1",
+            "locationName": "경로 B 첫 번째 주요 지점",
+            "imageUrl": "/assets/roadview/route_b/route_b_1.png"
+          },
+          {
+            "pointId": "b_2",
+            "locationName": "경로 B 두 번째 주요 지점",
+            "imageUrl": "/assets/roadview/route_b/route_b_2.png"
+          },
+          {
+            "pointId": "b_3",
+            "locationName": "경로 B 세 번째 주요 지점",
+            "imageUrl": "/assets/roadview/route_b/route_b_3.png"
+          },
+          {
+            "pointId": "b_4",
+            "locationName": "경로 B 네 번째 주요 지점",
+            "imageUrl": "/assets/roadview/route_b/route_b_4.png"
+          },
+          {
+            "pointId": "b_5",
+            "locationName": "경로 B 다섯 번째 주요 지점",
+            "imageUrl": "/assets/roadview/route_b/route_b_5.png"
+          },
+          {
+            "pointId": "b_6",
+            "locationName": "경로 B 여섯 번째 주요 지점",
+            "imageUrl": "/assets/roadview/route_b/route_b_6.png"
+          },
+          {
+            "pointId": "b_7",
+            "locationName": "경로 B 일곱 번째 주요 지점",
+            "imageUrl": "/assets/roadview/route_b/route_b_7.png"
+          },
+          {
+            "pointId": "b_8",
+            "locationName": "경로 B 여덟 번째 주요 지점",
+            "imageUrl": "/assets/roadview/route_b/route_b_8.png"
+          },
+          {
+            "pointId": "b_9",
+            "locationName": "경로 B 아홉 번째 주요 지점",
+            "imageUrl": "/assets/roadview/route_b/route_b_9.png"
+          },
+          {
+            "pointId": "b_10",
+            "locationName": "경로 B 열 번째 주요 지점",
+            "imageUrl": "/assets/roadview/route_b/route_b_10.png"
+          }
+        ]
       },
       {
         "routeId": "route_c",
