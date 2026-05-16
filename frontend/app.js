@@ -354,18 +354,21 @@
         recommendationSelector: ".element .text-wrapper-4",
         durationSelector: ".element .div-2 .span",
         summarySelector: ".element > .p",
+        summaryField: "summaryTitle",
       },
       "4-2": {
         routeIndex: 1,
         recommendationSelector: ".element .group-4 .text-wrapper-4",
         durationSelector: ".element .group-4 .p .span",
         summarySelector: ".element .group-4 .text-wrapper-6",
+        summaryField: "summaryTitle",
       },
       "4-3": {
         routeIndex: 2,
         recommendationSelector: ".element .group-2 .text-wrapper-4",
         durationSelector: ".element .group-2 .p .span",
         summarySelector: ".element .group-2 .text-wrapper-6",
+        summaryField: "summaryTitle",
       },
     };
 
@@ -379,8 +382,13 @@
       replaceTextIfPresent(row.recommendationSelector, route.recommendation || "");
       applyRecommendationColor(row.recommendationSelector, route.recommendation);
       replaceTextIfPresent(row.durationSelector, getRouteDuration(route));
-      replaceText(row.summarySelector, route.summary || route.summaryTitle || "");
+      replaceText(row.summarySelector, getRouteSummary(route, row.summaryField));
     }
+  }
+
+  function getRouteSummary(route, preferredField) {
+    if (preferredField && route[preferredField]) return route[preferredField];
+    return route.summary || route.aiSummary || route.summaryTitle || "";
   }
 
   function getOrderedRoutes(data) {
