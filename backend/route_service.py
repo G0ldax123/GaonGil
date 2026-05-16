@@ -45,6 +45,20 @@ def find_route_set(start: str, end: str) -> dict[str, Any] | None:
     for route_set in route_sets:
         if route_set.get("start") == start and route_set.get("end") == end:
             return route_set
+        if not route_set.get("start") and not route_set.get("end"):
+            return {
+                **route_set,
+                "start": start,
+                "end": end,
+                "routes": [
+                    {
+                        **route,
+                        "origin": start,
+                        "destination": end,
+                    }
+                    for route in route_set.get("routes", [])
+                ],
+            }
 
     return None
 

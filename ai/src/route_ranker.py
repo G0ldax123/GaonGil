@@ -109,6 +109,11 @@ def _point_id_from_asset(route_id: str, asset_name: str) -> str:
     return f"{route_suffix}_{suffix}"
 
 
+def _default_route_name(route_id: str) -> str:
+    suffix = route_id.split("_")[-1].upper()
+    return f"경로 {suffix}" if suffix else route_id
+
+
 def _augment_points_with_assets(route: dict) -> list[dict]:
     points = [_normalize_point(point) for point in route.get("points", [])]
     known_point_ids = {point["pointId"] for point in points}
@@ -129,7 +134,7 @@ def _augment_points_with_assets(route: dict) -> list[dict]:
         points.append(
             {
                 "pointId": point_id,
-                "locationName": f"{route.get('name', route['routeId'])} 주요 지점 {asset_path.stem.split('_')[-1]}",
+                "locationName": f"{route.get('name', _default_route_name(route['routeId']))} 주요 지점 {asset_path.stem.split('_')[-1]}",
                 "imageUrl": _image_url_from_asset(route["routeId"], asset_path.name),
                 "roadviewImagePath": f"assets/roadview/{route['routeId']}/{asset_path.name}",
             }
@@ -148,7 +153,7 @@ def _normalize_route_set(route_set: dict) -> dict:
         routes.append(
             {
                 "routeId": route["routeId"],
-                "name": route.get("name", route["routeId"]),
+                "name": route.get("name", _default_route_name(route["routeId"])),
                 "description": route.get("description", ""),
                 "origin": start,
                 "destination": end,
@@ -183,6 +188,20 @@ def _choose_route_set(route_sets: list[dict], origin: str, destination: str) -> 
         for route_set in route_sets:
             if route_set["start"] == origin and route_set["end"] == destination:
                 return route_set
+            if not route_set["start"] and not route_set["end"]:
+                return {
+                    **route_set,
+                    "start": origin,
+                    "end": destination,
+                    "routes": [
+                        {
+                            **route,
+                            "origin": origin,
+                            "destination": destination,
+                        }
+                        for route in route_set.get("routes", [])
+                    ],
+                }
     return route_sets[0]
 
 

@@ -1,118 +1,17 @@
 [
   {
     "routeSetId": "demo_route_1",
-    "userType": "wheelchair",
-    "start": {
-      "name": "메디트"
-    },
-    "end": {
-      "name": "드림하우스"
-    },
+    "start": {},
+    "end": {},
     "routes": [
       {
-        "routeId": "route_a",
-        "name": "경로 A",
-        "description": "계단과 급경사를 최대한 피하는 경로",
-        "points": [
-          {
-            "pointId": "a_1",
-            "locationName": "경로 A 첫 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_1.jpg"
-          },
-          {
-            "pointId": "a_2",
-            "locationName": "경로 A 두 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_2.jpg"
-          },
-          {
-            "pointId": "a_3",
-            "locationName": "경로 A 세 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_3.jpg"
-          },
-          {
-            "pointId": "a_4",
-            "locationName": "경로 A 네 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_4.jpg"
-          },
-          {
-            "pointId": "a_5",
-            "locationName": "경로 A 다섯 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_5.jpg"
-          },
-          {
-            "pointId": "a_6",
-            "locationName": "경로 A 여섯 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_6.jpg"
-          },
-          {
-            "pointId": "a_7",
-            "locationName": "경로 A 일곱 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_7.jpg"
-          },
-          {
-            "pointId": "a_8",
-            "locationName": "경로 A 여덟 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_a/route_a_8.jpg"
-          }
-        ]
+        "routeId": "route_a"
       },
       {
-        "routeId": "route_b",
-        "name": "경로 B",
-        "description": "소요 시간은 짧지만 위험 요소가 있는 경로",
-        "points": [
-          {
-            "pointId": "b_1",
-            "locationName": "경로 B 첫 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_1.jpg"
-          },
-          {
-            "pointId": "b_2",
-            "locationName": "경로 B 두 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_2.jpg"
-          },
-          {
-            "pointId": "b_3",
-            "locationName": "경로 B 세 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_3.jpg"
-          },
-          {
-            "pointId": "b_4",
-            "locationName": "경로 B 네 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_4.jpg"
-          },
-          {
-            "pointId": "b_5",
-            "locationName": "경로 B 다섯 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_5.jpg"
-          },
-          {
-            "pointId": "b_6",
-            "locationName": "경로 B 여섯 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_6.jpg"
-          },
-          {
-            "pointId": "b_7",
-            "locationName": "경로 B 일곱 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_7.jpg"
-          },
-          {
-            "pointId": "b_8",
-            "locationName": "경로 B 여덟 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_8.jpg"
-          },
-          {
-            "pointId": "b_9",
-            "locationName": "경로 B 아홉 번째 주요 지점",
-            "imageUrl": "/assets/roadview/route_b/route_b_9.jpg"
-          }
-        ]
+        "routeId": "route_b"
       },
       {
-        "routeId": "route_c",
-        "name": "경로 C",
-        "description": "이동 시간과 접근성의 균형을 고려한 경로",
-        "points": []
+        "routeId": "route_c"
       }
     ]
   }
