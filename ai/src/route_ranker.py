@@ -126,8 +126,6 @@ def _normalize_point(point: dict) -> dict:
     return {
         "pointId": point["pointId"],
         "locationName": point.get("locationName", point["pointId"]),
-        "lat": point.get("lat"),
-        "lng": point.get("lng"),
         "imageUrl": point.get("imageUrl", ""),
         # Keep the original imageUrl for clients, but resolve a local asset path for analysis.
         "roadviewImagePath": _resolve_asset_path(point.get("imageUrl", "")),
@@ -176,8 +174,6 @@ def _augment_points_with_assets(route: dict) -> list[dict]:
             {
                 "pointId": point_id,
                 "locationName": f"{route['name']} 추가 지점 {suffix}",
-                "lat": None,
-                "lng": None,
                 "imageUrl": _infer_image_url_from_asset(route["routeId"], asset_path.name),
                 "roadviewImagePath": f"assets/roadview/{route['routeId']}/{asset_path.name}",
                 "slopePercent": None,
@@ -359,8 +355,6 @@ def analyze_point(point: dict, user_type: str, analyzer: BaseAccessibilityAnalyz
     point_result = {
         "pointId": point["pointId"],
         "locationName": point["locationName"],
-        "lat": point.get("lat"),
-        "lng": point.get("lng"),
         "imageUrl": point.get("imageUrl", ""),
         "roadviewImagePath": point.get("roadviewImagePath", ""),
         "slopePercent": point.get("slopePercent"),

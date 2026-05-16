@@ -22,8 +22,6 @@ def _route_set_payload() -> list[dict]:
                         {
                             "pointId": "a_1",
                             "locationName": "지점 A1",
-                            "lat": 0,
-                            "lng": 0,
                             "imageUrl": "/images/roadview/route_a_1.jpg",
                             "slopePercent": 2.0,
                             "slopeLevel": "완만",
@@ -48,8 +46,6 @@ def _route_set_payload() -> list[dict]:
                         {
                             "pointId": "b_1",
                             "locationName": "지점 B1",
-                            "lat": 0,
-                            "lng": 0,
                             "imageUrl": "/images/roadview/route_b_1.jpg",
                             "slopePercent": 3.0,
                             "slopeLevel": "완만",
@@ -74,8 +70,6 @@ def _route_set_payload() -> list[dict]:
                         {
                             "pointId": "c_1",
                             "locationName": "지점 C1",
-                            "lat": 0,
-                            "lng": 0,
                             "imageUrl": "/images/roadview/route_c_1.jpg",
                             "slopePercent": 9.0,
                             "slopeLevel": "급경사",

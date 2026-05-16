@@ -12,8 +12,6 @@
         {
           "pointId": "a_1",
           "locationName": "메디트 출발 지점",
-          "lat": 37.5861,
-          "lng": 127.0291,
           "imageUrl": "/images/roadview/route_a_1.jpg",
           "slopePercent": 2.4,
           "slopeLevel": "완만",
@@ -29,8 +27,6 @@
         {
           "pointId": "a_2",
           "locationName": "첫 번째 꺾이는 지점",
-          "lat": 37.5865,
-          "lng": 127.03,
           "imageUrl": "/images/roadview/route_a_2.jpg",
           "slopePercent": 7.8,
           "slopeLevel": "주의",
@@ -46,8 +42,6 @@
         {
           "pointId": "a_3",
           "locationName": "계단 인접 구간",
-          "lat": 37.5869,
-          "lng": 127.0307,
           "imageUrl": "/images/roadview/route_a_3.jpg",
           "slopePercent": 5.6,
           "slopeLevel": "보통",
@@ -63,8 +57,6 @@
         {
           "pointId": "a_4",
           "locationName": "드림하우스 도착 지점",
-          "lat": 37.5872,
-          "lng": 127.0312,
           "imageUrl": "/images/roadview/route_a_4.jpg",
           "slopePercent": 3.2,
           "slopeLevel": "보통",
