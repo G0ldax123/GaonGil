@@ -20,18 +20,14 @@
             "locationName": "경로 A 첫 번째 주요 지점",
             "lat": 37.5861,
             "lng": 127.0291,
-            "imageUrl": "/images/roadview/route_a_1.jpg",
-            "slopePercent": 2.4,
-            "slopeLevel": "완만"
+            "imageUrl": "/images/roadview/route_a_1.jpg"
           },
           {
             "pointId": "a_2",
             "locationName": "경로 A 두 번째 주요 지점",
             "lat": 37.5865,
             "lng": 127.0300,
-            "imageUrl": "/images/roadview/route_a_2.jpg",
-            "slopePercent": 7.8,
-            "slopeLevel": "주의"
+            "imageUrl": "/images/roadview/route_a_2.jpg"
           }
         ]
       },
