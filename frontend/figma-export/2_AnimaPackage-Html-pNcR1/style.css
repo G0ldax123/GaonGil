@@ -1,0 +1,506 @@
+.element {
+  background-color: #ffffff;
+  width: 100%;
+  min-width: 360px;
+  min-height: 780px;
+  position: relative;
+}
+
+.element .codex-etc-horisontal {
+  top: 79px;
+  left: 48px;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1;
+}
+
+.element .rectangle {
+  position: absolute;
+  top: 308px;
+  left: 24px;
+  width: 314px;
+  height: 104px;
+}
+
+.element .group {
+  position: absolute;
+  top: 425px;
+  left: 185px;
+  width: 155px;
+  height: 42px;
+}
+
+.element .div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 153px;
+  height: 42px;
+  background-color: #537cff;
+  border-radius: 10px;
+}
+
+.element .text-wrapper {
+  position: absolute;
+  top: 13px;
+  left: 60px;
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .group-2 {
+  position: absolute;
+  top: 425px;
+  left: 24px;
+  width: 155px;
+  height: 42px;
+}
+
+.element .rectangle-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 153px;
+  height: 42px;
+  background-color: #e9eaea;
+  border-radius: 10px;
+}
+
+.element .text-wrapper-2 {
+  position: absolute;
+  top: 13px;
+  left: 41px;
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .text-wrapper-3 {
+  position: absolute;
+  top: 324px;
+  left: 72px;
+  width: 210px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: #b3b3b3;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .ellipse {
+  position: absolute;
+  top: 327px;
+  left: 46px;
+  width: 13px;
+  height: 13px;
+  border-radius: 6.5px;
+  border: 2px solid;
+  border-color: #9ab3eb;
+}
+
+.element .group-3 {
+  position: absolute;
+  top: 378px;
+  left: 46px;
+  width: 238px;
+  height: 18px;
+  display: flex;
+  gap: 13px;
+}
+
+.element .ellipse-2 {
+  margin-top: 3px;
+  width: 13px;
+  height: 13px;
+  border-radius: 6.5px;
+  border: 2px solid;
+  border-color: #3665fc;
+}
+
+.element .text-wrapper-4 {
+  display: flex;
+  align-items: center;
+  width: 210px;
+  height: 18px;
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: #b3b3b3;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .vector {
+  position: absolute;
+  top: 360px;
+  left: 72px;
+  width: 249px;
+  height: 1px;
+}
+
+.element .ellipse-3 {
+  position: absolute;
+  top: 344px;
+  left: 282px;
+  width: 32px;
+  height: 32px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid;
+  border-color: #d9d9d9;
+}
+
+.element .ix-move-vertically {
+  position: absolute;
+  top: 349px;
+  left: 287px;
+  width: 22px;
+  height: 22px;
+  aspect-ratio: 1;
+}
+
+.element .ellipse-4 {
+  position: absolute;
+  top: 80px;
+  left: 74px;
+  width: 22px;
+  height: 22px;
+  background-color: #3665fc;
+  border-radius: 11px;
+}
+
+.element .text-wrapper-5 {
+  position: absolute;
+  top: 85px;
+  left: 82px;
+  width: 6px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.element .group-4 {
+  position: absolute;
+  top: 80px;
+  left: 126px;
+  width: 24px;
+  height: 22px;
+}
+
+.element .ellipse-5 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  background-color: #ffffff;
+  border-radius: 11px;
+  border: 0.8px solid;
+  border-color: #b3b3b3;
+}
+
+.element .text-wrapper-6 {
+  position: absolute;
+  top: 5px;
+  left: 8px;
+  width: 6px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: #767676;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.element .img {
+  position: absolute;
+  top: 79px;
+  left: 100px;
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1;
+}
+
+.element .text-wrapper-7 {
+  position: absolute;
+  top: 107px;
+  left: 60px;
+  font-family: "Pretendard-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #3665fc;
+  font-size: 9px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 10px;
+}
+
+.element .text-wrapper-8 {
+  position: absolute;
+  top: 163px;
+  left: 24px;
+  font-family: "Pretendard-Bold", Helvetica;
+  font-weight: 700;
+  color: #42454d;
+  font-size: 25px;
+  letter-spacing: 0;
+  line-height: 33px;
+}
+
+.element .status-bar-ios {
+  display: flex;
+  width: 360px;
+  height: 46px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 16px 35px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+}
+
+.element .time {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -1.5px;
+  margin-bottom: -1.5px;
+}
+
+.element .clock {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.element .text-wrapper-9 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "SF Pro Display-Medium", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .icons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8.5px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.element .cellular-signal {
+  position: relative;
+  width: 18px;
+  height: 10px;
+}
+
+.element .bar {
+  position: absolute;
+  width: 100%;
+  height: 40.00%;
+  top: 60.00%;
+  left: 0;
+}
+
+.element .bar-2 {
+  position: absolute;
+  width: 72.22%;
+  height: 60.00%;
+  top: 40.00%;
+  left: 27.78%;
+}
+
+.element .bar-3 {
+  position: absolute;
+  width: 44.44%;
+  height: 80.00%;
+  top: 20.00%;
+  left: 55.56%;
+}
+
+.element .bar-4 {
+  position: absolute;
+  width: 16.67%;
+  height: 100%;
+  top: 0;
+  left: 83.33%;
+}
+
+.element .wifi {
+  position: relative;
+  width: 16px;
+  height: 11.62px;
+}
+
+.element .bar-5 {
+  position: absolute;
+  width: 65.68%;
+  height: 30.16%;
+  top: 69.84%;
+  left: 34.32%;
+}
+
+.element .bar-6 {
+  position: absolute;
+  width: 81.25%;
+  height: 66.27%;
+  top: 33.73%;
+  left: 18.75%;
+}
+
+.element .bar-7 {
+  position: absolute;
+  width: 100%;
+  height: 99.99%;
+  top: 0;
+  left: 0;
+}
+
+.element .battery {
+  position: relative;
+  width: 24px;
+  height: 12px;
+}
+
+.element .border {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.element .indicator {
+  position: absolute;
+  width: 70.83%;
+  height: 66.67%;
+  top: 16.67%;
+  left: 8.33%;
+  background-color: #000000;
+  border-radius: 1px;
+}
+
+.element .cap {
+  position: absolute;
+  width: 8.33%;
+  height: 66.67%;
+  top: 33.33%;
+  left: 91.67%;
+}
+
+.element .nav-bar-gesture {
+  position: absolute;
+  top: 759px;
+  left: 0;
+  width: 360px;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.element .si {
+  margin-top: 1px;
+  height: 6px;
+  width: 52px;
+  background-color: #c4c4c480;
+  border-radius: 100px;
+}
+
+.element .text-wrapper-10 {
+  position: absolute;
+  top: 86px;
+  left: 259px;
+  font-family: "Pretendard-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #3665fc;
+  font-size: 11px;
+  text-align: right;
+  letter-spacing: 0;
+  line-height: 10px;
+  white-space: nowrap;
+}
+
+.element .bi-check-wrapper {
+  position: absolute;
+  top: 80px;
+  left: 24px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  background-color: #9ab3eb;
+  border-radius: 11px;
+}
+
+.element .bi-check {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  margin-left: 3px;
+  aspect-ratio: 1;
+}
+
+.element .group-5 {
+  position: absolute;
+  top: 341px;
+  left: 41px;
+  width: 24px;
+  height: 39px;
+}
+
+.element .codex-etc-vertical {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1;
+}
+
+.element .codex-etc-vertical-2 {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1;
+}
