@@ -4,326 +4,154 @@ Analyze one entire route, not a single point.
 
 Inputs:
 1. Route metadata from routes.json
-2. Road-view capture images for all points in this route
+2. Road-view capture images for all points in the route
 3. userType
-
-The road-view images are captured facing the route's direction of travel.
-Treat the forward direction in each image as the user's likely movement direction.
-
-Current MVP does NOT use VWorld slope data.
-If slopePercent is not explicitly provided, never estimate or invent a slope percentage from images.
-If slopePercent is missing, output slopePercent as null and slopeLevel as null.
 
 Return exactly one JSON object compatible with ai_results.json.
 Do not output explanations, markdown code blocks, or comments.
 
 ---
 
-## 1. Route Context
+## 1. Route Information
 
-- userType: {user_type}
-- routeId: {route_id}
-- routeName: {route_name}
-- origin: {origin}
-- destination: {destination}
-
-points:
-{points_context}
-
-Each point may include:
-- pointId
-- locationName
-- imageUrl
-- slopePercent
-- slopeLevel
+Route information is provided in data/routes.json format, by route unit.
 
 ---
 
 ## 2. Core Goal
 
-Judge whether the given user type can realistically travel through this route all the way to the destination.
+Judge whether the given user type can realistically travel along this route all the way to the destination.
 
-"All the way to the destination" includes:
+"Traveling all the way to the destination" includes:
 - the last point,
-- the final approach to the destination,
+- the final approach segment to the destination,
 - the destination entrance or destination pin area.
 
-A route is not truly passable if the user can reach near the destination but cannot enter or access the final destination because of stairs, problematic curbs, steep slopes, or a narrow path.
+Even if the user can reach near the destination, if they cannot enter or access the final destination because of stairs, problematic curbs, steep slopes, or narrow paths, then the route is not actually passable.
 
-Use exactly three recommendation values:
+The recommendation value must use exactly one of the following three values:
 
-- "안전": generally passable and relatively safe for this user type
-- "주의": passable, but caution or assistance may be needed
-- "위험": difficult or unsafe for this user type
-
-Do not use "추천" or "비추천" as recommendation values.
+- "안전": the given user type can generally pass and the route is relatively safe
+- "주의": passing is possible, but caution or assistance may be needed
+- "위험": movement is difficult or unsafe for the given user type
 
 ---
 
 ## 3. Main Evaluation Factors
 
-Only these four factors should drive the evaluation:
+Use only the following four factors for evaluation:
 
-- curb: a problematic vertical height difference, raised edge, remaining lip, abrupt one-step height change, or step-like threshold that creates an actual barrier
-- stairs: multiple clearly separated steps, a stair flight, continuous stairs, or a staircase-like entrance with more than one step
-- narrowRoad: path too narrow for the user type
-- steepRoad: slope that is visually clear and burdensome for the user type
+- curb: a vertical height difference that acts as an actual barrier, a raised curb, a remaining lip, a sudden one-step height change, or a stair-like threshold
+- stairs: multiple clearly separated steps, a stair section, continuous stairs, or a stair-like entrance with more than one step
+- narrowRoad: a path that is too narrow for the given user type
+- steepRoad: a visually clear slope that is burdensome for the given user type
 
 otherObstacle exists only for schema compatibility.
-Do not use parked cars, moving cars, temporary congestion, weather, lighting, image quality, or temporary objects as main risk factors.
+Do not use parked cars, moving vehicles, temporary congestion, weather, lighting, image quality, or temporary objects as major risk factors.
 
 ---
 
-## 4. Movement-Line Rule
+## 4. Actual Movement Path Standard
 
-Judge only the actual movement line the user must take.
+The road-view image may be from a vehicle perspective, so do not assume that the center roadway or vehicle driving lane in the image is the user's movement path.
 
-Because road-view images are captured facing the route's direction of travel, prioritize:
-- the forward direction of the image,
-- the blue route line or visible navigation direction,
-- the center path the user would naturally follow,
-- the likely final approach path near the destination.
+However, because the road-view image is captured facing the route's direction of travel, use the forward direction as a reference for understanding the overall movement direction.
 
-Ignore:
-- objects at the image edge,
-- opposite sidewalks,
-- side paths not used by the route,
-- parking areas,
-- roads the user does not need to enter,
-- stairs, curbs, or slopes not connected to the route direction.
-
-Near the destination, use a broader but still route-based rule:
-If stairs, problematic curbs, steep slopes, or narrow entrances near the last point appear necessary to reach the destination pin or entrance, treat them as part of the actual movement line.
-
-Do not mark stairs as true just because stairs are visible near the destination.
-Mark stairs as true only when they appear connected to the destination marker, entrance, blue route direction, forward travel direction, or likely final approach path.
+Base the actual judgment on the following:
+- sidewalk connected to the route direction
+- if there is no sidewalk, such as on a side street or alley, the road edge or travel-direction space that pedestrians have no choice but to use
+- crosswalk
+- sidewalk entrance
+- lowered curb or curb ramp
+- access path leading to the destination entrance
+- blue route line or visible navigation direction
 
 ---
 
 ## 5. Curb, Lowered Curb, and Stairs Rules
 
-A curb ramp, curb cut, lowered curb, or smooth sloped sidewalk entrance is usually an accessibility feature, not automatically a curb risk.
+Curb ramps, curb cuts, lowered curbs, and smooth sloped sidewalk entrances are usually accessibility-improving features, and they are not automatically curb risks.
 
-Do NOT set curb to "true" merely because:
-- the route moves from a road to a sidewalk,
-- a road-to-sidewalk boundary is visible,
-- a sidewalk edge exists,
-- there is a sloped entry designed for wheels.
+Set curb to "false" in the following cases:
+- the sidewalk entrance is clearly lowered,
+- the transition from the road to the sidewalk appears smooth,
+- there is a curb ramp or sloped entrance.
 
-Set curb to "false" when:
-- the sidewalk entrance is visibly lowered,
-- the road-to-sidewalk transition appears smooth,
-- a curb ramp or sloped entry is present,
-- wheelchair or stroller users appear able to enter without a clear vertical step.
-
-Set curb to "true" only when:
+Set curb to "true" only in the following cases:
 - there is a clear vertical height difference,
-- there is a raised edge that wheels must climb over,
-- the curb ramp has a visible remaining lip or bump,
-- the transition appears abrupt rather than smooth,
-- the final destination approach has a step-like threshold that blocks wheeled access.
+- there is a raised curb that wheels must climb over.
 
-If the image shows a lowered curb or ramp but the remaining height difference is unclear, set curb to "unknown", not "true".
+If a lowered curb or ramp is visible in the image but the remaining height difference is unclear, set curb to "unknown", not "true".
 
-Set stairs to "true" only when there are multiple clearly separated steps, a stair flight, continuous stairs, or a staircase-like entrance with more than one step.
-
-Do NOT set stairs to "true" for:
-- a single curb,
-- a single raised edge,
-- one entrance threshold,
-- one height difference,
-- a single platform edge,
-- a sidewalk boundary,
-- a curb ramp or lowered curb.
-
-Even if the single height difference is high, classify it as curb, not stairs.
-
-Do not infer hidden stairs that are not visible.
-Final destination access should be judged carefully, but careful judgment does not mean inventing stairs.
+Set stairs to "true" only when there are multiple clearly separated steps, a stair section, continuous stairs, or a stair-like entrance with more than one step.
 
 ---
 
-## 6. Slope Rules
-
-If slopePercent is provided:
-- output the same slopePercent
-- calculate slopeLevel:
-  - 0 <= slopePercent <= 3: "완만"
-  - 3 < slopePercent <= 5.6: "보통"
-  - 5.6 < slopePercent <= 8.33: "주의"
-  - slopePercent > 8.33: "급경사"
-
-If slopePercent is missing:
-- output slopePercent: null
-- output slopeLevel: null
-- do not invent a number
-- judge steepRoad only visually
+## 6. Slope
 
 Visual steepRoad judgment:
 
-- "false": flat or gentle slope, likely passable
+- "false": flat or gently sloped, and appears passable
 - "unknown": slope is unclear due to perspective or image angle
-- "true": actual movement line is visually clear, meaningfully steep, and burdensome for the user type
+- "true": the actual movement path is visually clear, meaningfully steep, and burdensome for the given user type
 
-Do not set steepRoad to "true" only because the road continues for a long distance.
-Length alone is not enough.
-
-Set steepRoad to "true" only when BOTH conditions are satisfied:
-1. The actual movement line is visually and clearly inclined.
-2. The slope appears burdensome for the current user type.
-
-If the route looks long but the slope is mild, nearly flat, or unclear, set steepRoad to "false" or "unknown".
-
-A short curb ramp should not be treated as steepRoad unless it appears unusually steep, broken, or unusable.
+To set steepRoad to "true", both of the following conditions must be satisfied:
+1. The actual movement path is visually and clearly inclined.
+2. The slope appears burdensome for the given user type.
 
 ---
 
-## 7. User-Type Rules
+## 7. User-Type-Specific Rules
 
 ### wheelchair
 
 Wheelchair users are highly sensitive to stairs, problematic curbs, narrow paths, and steep slopes.
 
-Use "위험" strongly when:
-- stairs are on the actual movement line,
-- stairs are in the final destination approach,
-- no ramp is clearly visible,
-- a large vertical curb or threshold blocks wheeled access,
-- a long and visually clear steep uphill/downhill appears on the actual movement line,
+Strongly apply "위험" in the following cases:
+- stairs are on the actual movement path,
+- a large vertical curb or threshold blocks wheeled movement,
+- a long and visually clear steep uphill/downhill appears on the actual movement path,
 - steepRoad appears repeatedly,
-- steepRoad appears together with problematic curb or narrowRoad.
-
-For wheelchair users:
-- stairs on route: high risk
-- final-access stairs: high risk
-- large problematic curb: high risk
-- long visually clear steep slope: high risk
-- smooth curb ramp or lowered curb: usually not a risk
-- narrow path difficult for wheelchair: medium or high risk
-
-Do not keep the result as "주의" merely because passing is not completely impossible.
-Judge actual independent mobility stability, not theoretical passability.
+- steepRoad appears together with a problematic curb or narrowRoad.
 
 ### stroller
 
 Stroller users are sensitive to stairs, problematic curbs, steep slopes, and narrow paths.
 
-- short stairs or low problematic curbs: usually "주의"
-- long stairs, repeated curbs, or stroller must be lifted: "위험"
-- final-access stairs can make the route "위험"
-- smooth curb ramps or lowered curbs are usually passable
-- steep or narrow sections: "주의" or "위험" depending on severity
+- Short stairs or low problematic curbs: usually "주의"
+- Long stairs or repeated curbs: "위험"
+- Smooth curb ramps or lowered curbs are usually passable
+- Steep slopes or narrow sections: "주의" or "위험" depending on severity
 
 ### elderly
 
 Older adults are sensitive to slopes, stairs, curbs, and long walking burden.
 
-- short stairs: usually "주의"
-- long or repeated stairs: high risk
-- steep or long uphill/downhill: mention in routeSummary
-- low problematic curbs: low or medium risk
-- smooth lowered curbs are usually not major risks
-- narrow paths: judge based on stability and passing space
+- Slopes, stairs, curbs, and long walking burden: "안전" to "주의" depending on the situation
+- However, if the severity is high, use "위험"
 
 ### crutches
 
-Crutch users are sensitive to curbs, steep slopes, and narrow paths.
-Stairs are not automatically impossible, unlike wheelchair users.
+Crutch users are sensitive to steep slopes.
+Unlike wheelchair users, stairs are not automatically impossible to pass.
 
-- short stairs: usually "주의"
-- long or steep stairs: high risk
-- problematic curbs: at least "주의"
-- smooth curb ramps or lowered curbs are usually easier than vertical curbs
-- steep slopes: "주의" or high risk
-- narrow paths without space for crutches: medium or high risk
+- Steep downhill: "위험"
+- Steep uphill: "주의"
+- Other risk factors should be judged depending on severity
 
 ---
 
 ## 8. detectedElements Rules
 
-Use string values only: "true", "false", "unknown".
-
-### stairs
-Set stairs to "true" only for multiple clearly separated steps, stair flights, continuous stairs, or staircase-like entrances with more than one step.
-
-If only one height difference is visible, set:
-- curb: "true" or "unknown"
-- stairs: "false" or "unknown"
-
-### curb
-Set curb to "true" only for a problematic vertical height difference, raised edge, remaining lip, abrupt sidewalk boundary, entrance threshold, or one-step level change on the movement line or final approach.
-
-Set curb to "false" for a lowered curb, curb ramp, curb cut, or smooth sloped sidewalk entrance that appears passable for wheeled mobility.
-
-Set curb to "unknown" if a lowered curb or transition is visible but it is unclear whether there is a remaining lip or abrupt height difference.
-
-### steepRoad
-Set steepRoad to "true" only when the actual movement line is visually clear, meaningfully steep, and burdensome for the user type.
-
-Do not set steepRoad to "true" for:
-- a road that is merely long,
-- a mild uphill/downhill,
-- unclear slope due to perspective,
-- a smooth short curb ramp designed for wheeled access.
+Apply the curb, stairs, and steepRoad judgment criteria defined above.
+Each detectedElements value must be one of the strings "true", "false", or "unknown".
 
 ### narrowRoad
-Set narrowRoad to "true" only if the actual path width is burdensome for the user type.
-Do not mark true only because of camera perspective.
+Set narrowRoad to "true" only when the actual path width is burdensome for the given user type.
+Do not mark it as true based only on camera perspective.
 
 ### otherObstacle
-Use "false" or "unknown" unless there is a clear fixed obstacle on the movement line.
-
----
-
-## 9. Risk Factor Rules
-
-riskFactors may contain only these types:
-- curb
-- stairs
-- steepRoad
-- narrowRoad
-
-Use Korean labels:
-- curb: "단차"
-- stairs: "계단"
-- steepRoad: "가파른 길"
-- narrowRoad: "좁은 길"
-
-severity must be:
-- low
-- medium
-- high
-
-Do not include unknown elements in riskFactors unless they are very likely to affect final access.
-
-Do not add a curb riskFactor for a curb ramp, curb cut, lowered curb, or smooth sloped sidewalk entrance unless it still has a clear remaining lip, abrupt height difference, broken surface, or unusable shape.
-
-Example for final-access stairs:
-{
-  "type": "stairs",
-  "label": "계단",
-  "severity": "high",
-  "displayText": "도착지 접근 계단",
-  "description": "도착지로 접근하는 마지막 구간에 계단이 보여 휠체어 이용자는 통과가 어려울 수 있습니다."
-}
-
-Example for final-access curb:
-{
-  "type": "curb",
-  "label": "단차",
-  "severity": "high",
-  "displayText": "도착지 접근 단차",
-  "description": "도착지로 접근하는 마지막 구간에 단일 단차가 있어 휠체어 이용자는 통과가 어려울 수 있습니다."
-}
-
-Example for wheelchair steep slope:
-{
-  "type": "steepRoad",
-  "label": "가파른 길",
-  "severity": "high",
-  "displayText": "긴 급경사 구간",
-  "description": "실제 이동 라인이 길게 가파르게 이어져 휠체어 이용자는 제동이나 자력 이동이 어려울 수 있습니다."
-}
+Use "true" only when there is a clear fixed obstacle on the actual movement path.
 
 ---
 
@@ -331,93 +159,62 @@ Example for wheelchair steep slope:
 
 ### Point recommendation
 
-Use "안전" when:
-- no major risk factor exists,
-- the point is passable for the user type,
-- a curb ramp or lowered curb provides smooth access,
-- riskLevel is low,
-- accessibilityLevel is good.
+recommendation is the final movement-possibility judgment for that point.
+Decide it after applying all of the detectedElements rules, user-type-specific rules, and curb/stairs/slope judgment rules defined above.
 
-Use "주의" when:
-- passable but caution or assistance may be needed,
-- there is a low problematic curb, short stairs, moderate slope, or passable narrow path,
-- a curb ramp exists but its remaining lip is unclear,
-- riskLevel is medium,
-- accessibilityLevel is caution.
+Do not judge a point as "위험" just because a detectedElement is "true".
+Judge how much of an actual barrier that element is for the current userType.
 
-Use "위험" when:
-- difficult or unsafe for the user type,
-- wheelchair route contains stairs,
-- wheelchair final approach contains stairs,
-- large problematic curb blocks movement,
-- long visually clear steep slope affects wheelchair stability,
-- path is too narrow to pass,
-- riskLevel is high,
-- accessibilityLevel is bad.
+Set recommendation using the following criteria:
+
+- "안전":
+  - There are no major risk factors on the actual movement path
+  - Most core detectedElements are "false"
+  - The path appears passable through a lowered curb, curb ramp, etc.
+  - The given user type appears able to pass without difficulty
+
+- "주의":
+  - There is a risk factor, but passing still appears possible
+  - There is a low curb, short stairs, non-gentle slope, or somewhat narrow path
+  - Some detectedElements are "unknown" and related to the actual movement path, so caution is needed
+  - Assistance or slow movement may be needed
+
+- "위험":
+  - The point appears difficult or unsafe for the given user type
+  - There is an element that should be judged as "위험" according to the user-type-specific rules above
+  - There is a large curb, stairs on the actual movement path, a long steep slope, or a path too narrow to pass
+  - Multiple risk factors appear together
+  - Final destination access is blocked by stairs, a large curb, a narrow entrance, etc.
 
 ### Route recommendation
 
-Before deciding routeSummary, check classification priority:
+Route recommendation should be determined by combining the recommendation values of each point.
 
-1. Multiple separated steps → stairs
-2. Single vertical height difference or one raised edge → curb
-3. Lowered curb, curb ramp, curb cut, or smooth sloped sidewalk entrance → usually not curb
-4. Long but mild road → not steepRoad
-5. Clearly steep and burdensome movement line → steepRoad
+안전: danger count is 0, and caution points are 20% or less of all points  
+주의: danger count is 0, and caution points are more than 20% and 40% or less of all points  
+위험: there is at least 1 danger point, or caution points exceed 40% of all points, or 3 or more caution points appear consecutively
 
-Do not upgrade curb to stairs just because the point is near the destination.
-Do not upgrade mild long roads to steepRoad just because the userType is wheelchair.
-Do not classify every road-to-sidewalk transition as curb.
+However, if a danger point is weakly related to the actual movement path or the judgment is uncertain, the route may be lowered to "주의".
 
-Use route "안전" when:
-- most points are safe,
-- no critical stairs, large problematic curbs, long steep slopes, or impassable narrow paths exist,
-- destination final approach is accessible,
-- road-to-sidewalk transitions are handled by visible curb ramps or lowered curbs.
-
-Use route "주의" when:
-- some risks exist, but the route still appears passable,
-- assistance or slow movement may be needed,
-- risks are mostly medium or minor,
-- final approach has only minor issues,
-- a lowered curb exists but its remaining lip is unclear.
-
-Use route "위험" when:
-- the user may fail to reach the destination,
-- wheelchair route contains stairs,
-- wheelchair final approach contains stairs,
-- large or repeated problematic curbs block movement,
-- long visually clear steep slope affects wheelchair safety,
-- path is too narrow to pass,
-- high-risk points repeat,
-- the user can reach near the destination but final access is blocked.
-
-For wheelchair users, prioritize "위험" if any of these exist:
-- stairs on movement line,
-- final-access stairs,
-- large vertical curb or threshold blocks wheeled access,
-- long visually clear steep uphill/downhill,
-- steepRoad true in 2 or more points,
-- steepRoad with high severity,
-- steepRoad combined with problematic curb or narrowRoad.
+routeSummary should be written by aggregating the point-level recommendation results, and the overall structure should follow the ai_results.json format.
 
 ---
 
 ## 11. Writing Rules
 
-All user-facing text must be in Korean.
+All user-facing text must be written in Korean.
 
 routeSummary.aiSummary:
-- summarize the whole route,
-- include user type,
+- summarize the entire route,
+- include the user type,
 - mention final-access stairs, final-access problematic curbs, or long steep slopes if relevant,
-- do not describe curb ramps or lowered curbs as risks unless they are actually problematic.
+- do not describe curb ramps or lowered curbs as risks if they are not actually problematic.
 
 point.aiSummary:
-- summarize that point only.
+- summarize only that point.
 
 reason:
-Mention only:
+Mention only the relevant items among the following:
 - 계단
 - 도착지 접근 계단
 - 단차
@@ -425,71 +222,17 @@ Mention only:
 - 턱낮춤
 - 좁은 길
 - 가파른 길
-- user-type impact
-- slopePercent only if provided
-
-Do not mention:
-- parked cars
-- temporary congestion
-- weather
-- lighting
-- image quality
-- traffic volume
-- unrelated edge elements
+- 사용자 유형별 영향
 
 ---
 
 ## 12. Output Schema
 
-Return exactly this structure:
-
-{
-  "routeId": "route_a",
-  "userType": "wheelchair",
-  "userTypeLabel": "휠체어 이용자",
-  "routeSummary": {
-    "recommendation": "안전 | 주의 | 위험",
-    "riskLevel": "low | medium | high",
-    "summaryTitle": "짧은 제목",
-    "aiSummary": "route 전체 한 줄 요약",
-    "mainRiskFactors": ["한국어 위험 요소"],
-    "reason": "route 전체 판단 근거"
-  },
-  "points": [
-    {
-      "pointId": "a_1",
-      "locationName": "지점 이름",
-      "slopePercent": null,
-      "slopeLevel": null,
-      "detectedElements": {
-        "stairs": "true | false | unknown",
-        "curb": "true | false | unknown",
-        "steepRoad": "true | false | unknown",
-        "narrowRoad": "true | false | unknown",
-        "otherObstacle": "true | false | unknown"
-      },
-      "riskFactors": [
-        {
-          "type": "curb | stairs | steepRoad | narrowRoad",
-          "label": "한국어 위험 요소명",
-          "severity": "low | medium | high",
-          "displayText": "짧은 표시 문구",
-          "description": "상세 설명"
-        }
-      ],
-      "accessibilityLevel": "good | caution | bad",
-      "riskLevel": "low | medium | high",
-      "recommendation": "안전 | 주의 | 위험",
-      "summaryTitle": "짧은 제목",
-      "aiSummary": "point 한 줄 요약",
-      "reason": "point 판단 근거"
-    }
-  ]
-}
+Write routeSummary by aggregating the point-level recommendation results, and make the overall structure follow the ai_results.json format.
 
 ---
 
-## 13. Fixed Mappings
+## 13. Fixed Mapping
 
 userTypeLabel:
 - wheelchair: "휠체어 이용자"
@@ -498,39 +241,12 @@ userTypeLabel:
 - crutches: "목발 이용자"
 - unknown: "교통약자"
 
-mainRiskFactors allowed values:
-- "계단"
-- "단차"
-- "가파른 길"
-- "좁은 길"
-
-Include only risk factors that actually appear in point riskFactors.
-Remove duplicates.
-Do not include otherObstacle.
-Do not include "단차" only because a curb ramp or lowered curb is visible.
-Include "단차" only when there is an actual problematic vertical height difference, remaining lip, abrupt edge, or threshold.
-
 ---
 
 ## 14. Final Output Rules
 
 1. Return only one JSON object.
 2. Include every input point.
-3. Keep point order.
-4. Use input routeId, userType, and pointId exactly.
-5. Use Korean for all user-facing text.
-6. Use null for missing slopePercent and slopeLevel.
-7. Never estimate slopePercent from images.
-8. Use string values "true", "false", "unknown" for detectedElements.
-9. recommendation must be "안전", "주의", or "위험".
-10. Do not use "추천" or "비추천" in recommendation.
-11. riskLevel must be "low", "medium", or "high".
-12. accessibilityLevel must be "good", "caution", or "bad".
-13. If no risks exist, riskFactors must be [].
-14. Do not ignore final-access stairs or problematic curbs.
-15. For wheelchair users, do not downgrade final-access stairs or long visually clear steep slopes to mere caution.
-16. Do not classify a single curb, single threshold, or one height difference as stairs.
-17. Do not classify a long but mild road as steepRoad.
-18. Do not classify a curb ramp, curb cut, lowered curb, or smooth sloped sidewalk entrance as a curb risk unless a real remaining barrier is visible.
-19. Use the forward direction of each road-view image as the primary direction of travel.
-20. Prioritize risks that appear along the forward route direction, blue route line, or likely final approach path.
+3. Preserve the point order.
+4. Write all user-facing text in Korean.
+5. recommendation must be one of "안전", "주의", or "위험".
