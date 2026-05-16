@@ -982,17 +982,18 @@
       .element > .p,
       .element .group-4 .text-wrapper-6,
       .element .group-2 .text-wrapper-6 {
-        width: 170px !important;
-        max-width: 170px !important;
+        width: 230px !important;
+        max-width: 230px !important;
         white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
         word-break: keep-all !important;
-        line-height: 16px !important;
+        overflow-wrap: normal !important;
+        line-height: 15px !important;
         text-align: left !important;
       }
       .element > .p {
-        left: 184px !important;
+        left: 166px !important;
       }
     `;
     document.head.appendChild(style);
