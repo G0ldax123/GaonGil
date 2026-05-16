@@ -1,0 +1,16 @@
+.label {
+  width: 136px;
+  height: 66px;
+}
+
+.label .text-wrapper {
+  position: fixed;
+  top: 163px;
+  left: 24px;
+  font-family: "Pretendard-Bold", Helvetica;
+  font-weight: 700;
+  color: #42454d;
+  font-size: 25px;
+  letter-spacing: 0;
+  line-height: 33px;
+}

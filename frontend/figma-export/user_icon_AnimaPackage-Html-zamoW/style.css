@@ -1,0 +1,234 @@
+.div-wrapper {
+  border: 1px solid;
+  border-color: #000000;
+  width: 100%;
+  min-width: 584px;
+  min-height: 281px;
+  position: relative;
+}
+
+.div-wrapper .o {
+  position: absolute;
+  top: 124px;
+  left: 302px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .img {
+  position: absolute;
+  top: 191px;
+  left: 302px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .o-2 {
+  position: absolute;
+  top: 124px;
+  left: 503px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .o-3 {
+  position: absolute;
+  top: 57px;
+  left: 436px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .o-4 {
+  position: absolute;
+  top: 57px;
+  left: 302px;
+  width: 64px;
+  height: 64px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .o-5 {
+  position: absolute;
+  top: 57px;
+  left: 369px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .o-6 {
+  position: absolute;
+  top: 124px;
+  left: 436px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .o-7 {
+  position: absolute;
+  top: 57px;
+  left: 504px;
+  width: 64px;
+  height: 64px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .o-8 {
+  position: absolute;
+  top: 191px;
+  left: 369px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .o-9 {
+  position: absolute;
+  top: 124px;
+  left: 369px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .text-wrapper {
+  position: absolute;
+  top: 26px;
+  left: 395px;
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.div-wrapper .x {
+  position: absolute;
+  top: 124px;
+  left: 218px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .x-2 {
+  position: absolute;
+  top: 57px;
+  left: 218px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .x-3 {
+  position: absolute;
+  top: 124px;
+  left: 151px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .x-4 {
+  position: absolute;
+  top: 57px;
+  left: 84px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .x-5 {
+  position: absolute;
+  top: 191px;
+  left: 84px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .x-6 {
+  position: absolute;
+  top: 57px;
+  left: 17px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .x-7 {
+  position: absolute;
+  top: 124px;
+  left: 84px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .x-8 {
+  position: absolute;
+  top: 57px;
+  left: 151px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .x-9 {
+  position: absolute;
+  top: 191px;
+  left: 17px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .x-10 {
+  position: absolute;
+  top: 124px;
+  left: 17px;
+  width: 65px;
+  height: 65px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.div-wrapper .div {
+  position: absolute;
+  top: 26px;
+  left: 112px;
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}

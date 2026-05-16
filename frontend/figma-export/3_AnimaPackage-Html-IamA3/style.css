@@ -1,0 +1,199 @@
+.element {
+  background-color: #9ab3eb;
+  width: 100%;
+  min-width: 360px;
+  min-height: 780px;
+  display: flex;
+  flex-direction: column;
+}
+
+.element .status-bar-ios {
+  display: flex;
+  width: 360px;
+  height: 46px;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 16px 35px;
+}
+
+.element .time {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -1.5px;
+  margin-bottom: -1.5px;
+}
+
+.element .clock {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.element .text-wrapper {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "SF Pro Display-Medium", Helvetica;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .icons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8.5px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.element .cellular-signal {
+  position: relative;
+  width: 18px;
+  height: 10px;
+}
+
+.element .bar {
+  position: absolute;
+  width: 100%;
+  height: 40.00%;
+  top: 60.00%;
+  left: 0;
+}
+
+.element .img {
+  position: absolute;
+  width: 72.22%;
+  height: 60.00%;
+  top: 40.00%;
+  left: 27.78%;
+}
+
+.element .bar-2 {
+  position: absolute;
+  width: 44.44%;
+  height: 80.00%;
+  top: 20.00%;
+  left: 55.56%;
+}
+
+.element .bar-3 {
+  position: absolute;
+  width: 16.67%;
+  height: 100%;
+  top: 0;
+  left: 83.33%;
+}
+
+.element .wifi {
+  position: relative;
+  width: 16px;
+  height: 11.62px;
+}
+
+.element .bar-4 {
+  position: absolute;
+  width: 65.68%;
+  height: 30.16%;
+  top: 69.84%;
+  left: 34.32%;
+}
+
+.element .bar-5 {
+  position: absolute;
+  width: 81.25%;
+  height: 66.27%;
+  top: 33.73%;
+  left: 18.75%;
+}
+
+.element .bar-6 {
+  position: absolute;
+  width: 100%;
+  height: 99.99%;
+  top: 0;
+  left: 0;
+}
+
+.element .battery {
+  position: relative;
+  width: 24px;
+  height: 12px;
+}
+
+.element .border {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.element .indicator {
+  position: absolute;
+  width: 70.83%;
+  height: 66.67%;
+  top: 16.67%;
+  left: 8.33%;
+  background-color: #ffffff;
+  border-radius: 1px;
+}
+
+.element .cap {
+  position: absolute;
+  width: 8.33%;
+  height: 66.67%;
+  top: 33.33%;
+  left: 91.67%;
+}
+
+.element .img-2 {
+  margin-left: 1px;
+  height: 109px;
+  width: 119px;
+  align-self: center;
+  margin-top: 264px;
+  aspect-ratio: 1.09;
+}
+
+.element .div {
+  margin-left: 1px;
+  height: 13px;
+  width: 59px;
+  align-self: center;
+  margin-top: 10px;
+  font-family: "Pretendard-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 11px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.element .nav-bar-gesture {
+  width: 360px;
+  height: 21px;
+  margin-top: 317px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.element .si {
+  margin-top: 1px;
+  height: 6px;
+  width: 52px;
+  background-color: #ffffff;
+  border-radius: 100px;
+}

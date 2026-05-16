@@ -1,0 +1,437 @@
+.element {
+  background-color: #ffffff;
+  width: 100%;
+  min-width: 360px;
+  min-height: 780px;
+  position: relative;
+}
+
+.element .group {
+  position: absolute;
+  top: 270px;
+  left: 186px;
+  width: 154px;
+  height: 152px;
+}
+
+.element .rectangle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 152px;
+  height: 152px;
+}
+
+.element .o {
+  position: absolute;
+  top: 7px;
+  left: 21px;
+  width: 110px;
+  height: 116px;
+  aspect-ratio: 0.95;
+}
+
+.element .image {
+  left: 48px;
+  width: 54px;
+  position: absolute;
+  top: 127px;
+  height: 11px;
+}
+
+.element .div {
+  position: absolute;
+  top: 270px;
+  left: 22px;
+  width: 154px;
+  height: 152px;
+}
+
+.element .img {
+  top: 2px;
+  left: 4px;
+  width: 134px;
+  height: 134px;
+  position: absolute;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.element .image-2 {
+  position: absolute;
+  top: 127px;
+  left: 44px;
+  width: 65px;
+  height: 11px;
+}
+
+.element .group-2 {
+  position: absolute;
+  top: 434px;
+  left: 186px;
+  width: 154px;
+  height: 152px;
+}
+
+.element .image-3 {
+  left: 61px;
+  width: 31px;
+  position: absolute;
+  top: 127px;
+  height: 11px;
+}
+
+.element .o-2 {
+  top: 8px;
+  left: 13px;
+  width: 121px;
+  height: 121px;
+  position: absolute;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.element .group-3 {
+  position: absolute;
+  top: 434px;
+  left: 22px;
+  width: 154px;
+  height: 152px;
+}
+
+.element .o-3 {
+  top: 0;
+  left: 10px;
+  width: 132px;
+  height: 132px;
+  position: absolute;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.element .text-wrapper {
+  top: 163px;
+  left: 24px;
+  font-family: "Pretendard-Bold", Helvetica;
+  font-weight: 700;
+  color: #42454d;
+  font-size: 25px;
+  line-height: 33px;
+  position: absolute;
+  letter-spacing: 0;
+}
+
+.element .rectangle-2 {
+  position: absolute;
+  top: 654px;
+  left: 22px;
+  width: 316px;
+  height: 56px;
+  background-color: #527bff;
+  border-radius: 10px;
+}
+
+.element .text-wrapper-2 {
+  top: 674px;
+  left: 168px;
+  font-family: "Pretendard-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 14px;
+  text-align: center;
+  line-height: normal;
+  position: absolute;
+  letter-spacing: 0;
+}
+
+.element .ellipse {
+  top: 80px;
+  left: 24px;
+  background-color: #3665fc;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 11px;
+}
+
+.element .text-wrapper-3 {
+  position: absolute;
+  top: 85px;
+  left: 32px;
+  width: 6px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.element .group-4 {
+  position: absolute;
+  top: 80px;
+  left: 74px;
+  width: 24px;
+  height: 22px;
+}
+
+.element .ellipse-2 {
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  border: 0.8px solid;
+  border-color: #b3b3b3;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 11px;
+}
+
+.element .text-wrapper-4 {
+  position: absolute;
+  top: 5px;
+  left: 8px;
+  width: 6px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: #767676;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.element .group-5 {
+  position: absolute;
+  top: 80px;
+  left: 126px;
+  width: 24px;
+  height: 22px;
+}
+
+.element .img-2 {
+  position: absolute;
+  top: 79px;
+  left: 48px;
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1;
+}
+
+.element .img-3 {
+  position: absolute;
+  top: 79px;
+  left: 100px;
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1;
+}
+
+.element .text-wrapper-5 {
+  top: 107px;
+  left: 18px;
+  font-family: "Pretendard-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #3665fc;
+  font-size: 9px;
+  text-align: center;
+  line-height: 10px;
+  position: absolute;
+  letter-spacing: 0;
+}
+
+.element .text-wrapper-6 {
+  top: 86px;
+  left: 278px;
+  font-family: "Pretendard-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #3665fc;
+  font-size: 11px;
+  text-align: center;
+  line-height: 10px;
+  white-space: nowrap;
+  position: absolute;
+  letter-spacing: 0;
+}
+
+.element .status-bar-ios {
+  display: flex;
+  width: 360px;
+  height: 46px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 16px 35px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+}
+
+.element .time {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -1.5px;
+  margin-bottom: -1.5px;
+}
+
+.element .clock {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.element .text-wrapper-7 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "SF Pro Display-Medium", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .icons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8.5px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.element .cellular-signal {
+  position: relative;
+  width: 18px;
+  height: 10px;
+}
+
+.element .bar {
+  position: absolute;
+  width: 100%;
+  height: 40.00%;
+  top: 60.00%;
+  left: 0;
+}
+
+.element .bar-2 {
+  position: absolute;
+  width: 72.22%;
+  height: 60.00%;
+  top: 40.00%;
+  left: 27.78%;
+}
+
+.element .bar-3 {
+  position: absolute;
+  width: 44.44%;
+  height: 80.00%;
+  top: 20.00%;
+  left: 55.56%;
+}
+
+.element .bar-4 {
+  position: absolute;
+  width: 16.67%;
+  height: 100%;
+  top: 0;
+  left: 83.33%;
+}
+
+.element .wifi {
+  position: relative;
+  width: 16px;
+  height: 11.62px;
+}
+
+.element .bar-5 {
+  position: absolute;
+  width: 65.68%;
+  height: 30.16%;
+  top: 69.84%;
+  left: 34.32%;
+}
+
+.element .bar-6 {
+  position: absolute;
+  width: 81.25%;
+  height: 66.27%;
+  top: 33.73%;
+  left: 18.75%;
+}
+
+.element .bar-7 {
+  position: absolute;
+  width: 100%;
+  height: 99.99%;
+  top: 0;
+  left: 0;
+}
+
+.element .battery {
+  position: relative;
+  width: 24px;
+  height: 12px;
+}
+
+.element .border {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.element .indicator {
+  position: absolute;
+  width: 70.83%;
+  height: 66.67%;
+  top: 16.67%;
+  left: 8.33%;
+  background-color: #000000;
+  border-radius: 1px;
+}
+
+.element .cap {
+  position: absolute;
+  width: 8.33%;
+  height: 66.67%;
+  top: 33.33%;
+  left: 91.67%;
+}
+
+.element .nav-bar-gesture {
+  position: absolute;
+  top: 759px;
+  left: 0;
+  width: 360px;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.element .si {
+  margin-top: 1px;
+  height: 6px;
+  width: 52px;
+  background-color: #c4c4c480;
+  border-radius: 100px;
+}
