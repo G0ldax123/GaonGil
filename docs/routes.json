@@ -1,0 +1,56 @@
+[
+  {
+    "routeSetId": "demo_route_1",
+    "start": {
+      "name": "고려대학교"
+    },
+    "end": {
+      "name": "안암역"
+    },
+    "routes": [
+      {
+        "routeId": "route_a",
+        "name": "추천 경로 A",
+        "description": "계단과 급경사를 최대한 피하는 경로",
+        "duration": 14,
+        "distance": 850,
+        "points": [
+          {
+            "pointId": "a_1",
+            "locationName": "경로 A 첫 번째 주요 지점",
+            "lat": 37.5861,
+            "lng": 127.0291,
+            "imageUrl": "/images/roadview/route_a_1.jpg",
+            "slopePercent": 2.4,
+            "slopeLevel": "완만"
+          },
+          {
+            "pointId": "a_2",
+            "locationName": "경로 A 두 번째 주요 지점",
+            "lat": 37.5865,
+            "lng": 127.0300,
+            "imageUrl": "/images/roadview/route_a_2.jpg",
+            "slopePercent": 7.8,
+            "slopeLevel": "주의"
+          }
+        ]
+      },
+      {
+        "routeId": "route_b",
+        "name": "최단 경로 B",
+        "description": "소요 시간은 짧지만 위험 요소가 있는 경로",
+        "duration": 9,
+        "distance": 620,
+        "points": []
+      },
+      {
+        "routeId": "route_c",
+        "name": "대안 경로 C",
+        "description": "이동 시간과 접근성의 균형을 고려한 경로",
+        "duration": 12,
+        "distance": 760,
+        "points": []
+      }
+    ]
+  }
+]
