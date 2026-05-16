@@ -159,37 +159,36 @@ Length alone is not enough.
 A short ramp should not be treated as steepRoad unless it appears unusually steep, broken, or unsafe.
 
 ---
+## 7. User-Type-Specific Rules (Weighted Guidelines)
 
-## 7. User-Type-Specific Rules (Strict Penalty Weights)
+Apply different severity weights based on the userType. What is "주의" for one user might be "위험" for another. However, evaluate the *actual realistic passability* rather than blindly failing a route.
 
-You MUST apply different severity penalties based on the userType. What is "주의" for one user might be "위험" for another. Apply the following strict mappings based on the detectedElements:
-
-### wheelchair (Strictly intolerant to vertical barriers)
-- If stairs == "true" -> MUST evaluate Point as "위험". (Absolute barrier)
-- If curb == "true" -> MUST evaluate Point as "위험". (Cannot climb)
-- If narrowRoad == "true" -> Evaluate as "주의" or "위험" depending on severity.
-- If steepRoad == "true" -> Evaluate as "주의". If clearly severe, sustained, or blocks final access, evaluate as "위험".
+### wheelchair
+- stairs == "true": Evaluate as "위험". (Absolute barrier)
+- curb == "true": Evaluate as "위험" if it clearly blocks wheels. If it's a borderline low curb or partially lowered, evaluate as "주의".
+- narrowRoad == "true": Evaluate as "주의" or "위험" depending on severity.
+- steepRoad == "true": Evaluate as "주의". Only mark as "위험" if it is severe, sustained, or completely blocks final access.
 * Normal uphill/downhill MUST be "안전".
 
-### stroller (Intolerant to vertical barriers, sensitive to narrow paths)
-- If stairs == "true" -> MUST evaluate Point as "위험". (Lifting is dangerous)
-- If curb == "true" -> Evaluate as "주의" (Can lift front wheels, but impacts baby). If continuous or very high, "위험".
-- If narrowRoad == "true" -> Evaluate as "주의".
-- If steepRoad == "true" -> Evaluate as "주의".
+### stroller
+- stairs == "true": Evaluate as "위험". (Lifting is dangerous)
+- curb == "true": Evaluate as "주의" (Can lift front wheels). If continuous or unusually high, evaluate as "위험".
+- narrowRoad == "true": Evaluate as "주의".
+- steepRoad == "true": Evaluate as "주의".
 * Normal uphill/downhill MUST be "안전".
 
-### elderly (Sensitive to physical strain and fall risks)
-- If stairs == "true" -> Evaluate as "주의" (Painful but possible). If long/continuous, "위험".
-- If curb == "true" -> Evaluate as "주의" (Tripping hazard).
-- If steepRoad == "true" -> MUST evaluate Point as "주의" or "위험" (High physical strain, risk of falling).
-- If narrowRoad == "true" -> Usually "안전".
+### elderly
+- stairs == "true": Evaluate as "주의" (Painful but possible). If very long/continuous, "위험".
+- curb == "true": Evaluate as "주의" (Tripping hazard).
+- steepRoad == "true": Evaluate as "주의". If extremely severe, "위험".
+- narrowRoad == "true": Usually "안전" or mild "주의".
 * Normal uphill/downhill MUST be "안전".
 
-### crutches (Sensitive to balance and lateral space)
-- If stairs == "true" -> Evaluate as "주의" (Fall risk).
-- If curb == "true" -> Usually "안전" or mild "주의" (Can step over).
-- If narrowRoad == "true" -> MUST evaluate Point as "주의" or "위험" (Needs wide lateral space for crutches).
-- If steepRoad == "true" -> MUST evaluate Point as "주의" or "위험" (Extremely high slip/fall risk on slopes).
+### crutches
+- stairs == "true": Evaluate as "주의" (Fall risk).
+- curb == "true": Usually "안전" or mild "주의" (Can step over).
+- narrowRoad == "true": Evaluate as "주의" (Needs lateral space). If severely restricted, "위험".
+- steepRoad == "true": Evaluate as "주의" or "위험" (Slip/fall risk).
 * Normal uphill/downhill MUST be "안전".
 
 ---
@@ -247,26 +246,23 @@ Do not mark it as true based only on camera perspective.
 ### Point recommendation
 
 recommendation is the final movement-possibility judgment for that point.
-Determine the recommendation strictly based on the "7. User-Type-Specific Rules".
-Do NOT average the severity; the worst element dictates the point's recommendation.
+Determine the recommendation based on the "7. User-Type-Specific Rules" and the actual barrier level.
 
 Set recommendation using the following criteria:
 
 - "위험":
-  - MUST be triggered if any detected element falls into the "위험" category for that specific userType in Section 7. (e.g., curb=="true" for wheelchair).
-  - The point appears difficult or unsafe for the given user type.
-  - Final destination access is blocked by stairs, a large curb, a narrow entrance, etc.
+  - The element acts as a realistic and absolute barrier for the given userType (e.g., stairs for a wheelchair).
+  - Final destination access is completely blocked.
+  - Do not use "위험" for minor inconveniences or normal neighborhood slopes.
 
 - "주의":
-  - Triggered if an element falls into the "주의" category for that specific userType in Section 7.
-  - Passing is possible, but with significant physical strain, assistance needed, or risk of injury (e.g., tripping hazard, baby shaking).
-  - The slope is clearly more burdensome than an ordinary street but does not block movement.
+  - Passing is possible, but with significant physical strain, caution, assistance needed, or risk of injury.
+  - The slope or curb is burdensome but does not entirely block movement.
 
 - "안전":
-  - No elements present that trigger "주의" or "위험" for that specific userType.
-  - Most core detectedElements are "false".
-  - The path appears passable through a lowered curb, curb ramp, etc.
-  - A visible slope is mild, ordinary, or manageable (normal neighborhood uphill/downhill street).
+  - No major risk factors for that specific userType.
+  - A visible slope is mild, ordinary, or manageable (normal neighborhood uphill/downhill street).
+  - Minor curbs with ramps, lowered edges, or smooth transitions.
 
 ### Route recommendation
 
