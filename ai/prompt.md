@@ -168,7 +168,7 @@ You MUST apply different severity penalties based on the userType. What is "주�
 - If stairs == "true" -> MUST evaluate Point as "위험". (Absolute barrier)
 - If curb == "true" -> MUST evaluate Point as "위험". (Cannot climb)
 - If narrowRoad == "true" -> Evaluate as "주의" or "위험" depending on severity.
-- If steepRoad == "true" -> Evaluate as "주의" (Motorized can pass, but manual is hard). If clearly severe, sustained, or blocks final access, evaluate as "위험".
+- If steepRoad == "true" -> Evaluate as "주의". If clearly severe, sustained, or blocks final access, evaluate as "위험".
 * Normal uphill/downhill MUST be "안전".
 
 ### stroller (Intolerant to vertical barriers, sensitive to narrow paths)
@@ -313,6 +313,7 @@ routeSummary should be written by aggregating the point-level recommendation res
 ## 10. Writing Rules
 
 All user-facing text must be written in Korean.
+Every aiSummary and summaryTitle must describe accessibility only for the current userType, and must never mention a different user type.
 
 aiSummary rules:
 - aiSummary must be written in Korean and must be 28 Korean characters or fewer.
