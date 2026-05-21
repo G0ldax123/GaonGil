@@ -1,4 +1,4 @@
-# GaonGil - AI Hack Camp 2026 우수상
+# 가온길 - AI Hack Camp 2026 우수상
 
 AI 기반 교통약자 맞춤형 경로 안내 MVP입니다.
 
